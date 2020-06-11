@@ -13,7 +13,7 @@
     "serve": "npm run build && firebase emulators:start --only functions,hosting",
     "shell": "npm run build && firebase functions:shell",
     "deploy": "firebase deploy --only functions,hosting",
-    "logs": "firebase functions:log"
+    "clean": "rimraf .next"
   },
   "dependencies": {
     "babel-plugin-module-resolver": "^4.0.0",
@@ -21,7 +21,6 @@
     "dotenv": "8.2.0",
     "firebase-admin": "^8.9.0",
     "firebase-functions": "^3.3.0",
-    "fs": "^0.0.1-security",
     "next": "^9.3.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
@@ -30,7 +29,8 @@
     "contentful-import": "^7.7.12",
     "firebase-functions-test": "^0.1.6",
     "firebase-tools": "^8.0.1",
-    "postcss-preset-env": "^6.7.0"
+    "rimraf": "^3.0.2",
+    "sass": "^1.26.8"
   },
   "private": true
 }

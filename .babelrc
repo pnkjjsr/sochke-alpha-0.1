@@ -6,6 +6,7 @@
       {
         "root": ["."],
         "alias": {
+          "@styles": "./src/styles",
           "@pages": "./src/pages",
           "@libs": "./src/libs",
           "@utils": "./src/utils",

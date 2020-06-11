@@ -1,0 +1,16 @@
+/*Global Component*/
+@import "./base/base";
+
+body {
+  background-color: $bg-body;
+  color: $base-color;
+  font-family: $font-family;
+  font-size: 1rem;
+
+  .main {
+    position: relative;
+    z-index: $main;
+    padding-bottom: 10px;
+    background-color: $bg-color;
+  }
+}

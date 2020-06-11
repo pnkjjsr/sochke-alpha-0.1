@@ -1,0 +1,58 @@
+//Base Variable of Project
+$gap: 10px;
+
+$base-color: #26264c;
+$color-safron: #ef873d;
+$color-chakra: #000088;
+$color-green: #5fbe40;
+
+// Color
+$color-link: $color-chakra;
+$color-primary: $color-chakra;
+$color-secondary: $color-green;
+
+$color-gray: #404040;
+$color-gray-light: #808080;
+$color-black: #000;
+$color-white: #fff;
+$color-blue: #251e40;
+
+$color-light: #bfbfbf;
+$color-lighter: #e5e5e5;
+$color-lightest: #f2f2f2;
+
+$color-error: #c00;
+$color-danger: #c00;
+$color-warning: $color-safron;
+$color-success: $color-green;
+$color-info: #09c;
+
+// BG
+$bg-body: #ededed;
+$bg-color: $bg-body;
+$bg-panel: $color-white;
+
+// Font Styling
+$font-family: "Lato", Tahoma, Geneva, Verdana, sans-serif;
+$font-size: 16px;
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight: 400;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+$box-shadow: 0px 3px 10px 0 rgba(0, 0, 0, 0.15);
+$border-radius-min: 3px;
+$border-radius: 4px;
+$border-radius-max: 20px;
+$border-color: #cfd9e6;
+
+// z-index Defination
+$notification: 9999;
+$loader: 100;
+
+$modal: 90;
+$bottomNav: 11;
+$header: 10;
+$main: 1;
+$footer: 0;
