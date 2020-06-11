@@ -1,9 +1,10 @@
+import contenfulConfig from "config/contenfulConfig.json";
 const { createClient } = require("contentful");
 
 const defaultConfig = {
-  SPACE: process.env.CONTENTFUL_SPACE_ID,
-  DELIVERY_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
-  PREVIEW_TOKEN: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+  SPACE: contenfulConfig.CONTENTFUL_SPACE_ID,
+  DELIVERY_TOKEN: contenfulConfig.CONTENTFUL_ACCESS_TOKEN,
+  PREVIEW_TOKEN: contenfulConfig.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
 };
 
 const isProduction = process.env.NODE_ENV === "production";

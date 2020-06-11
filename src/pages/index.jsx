@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { contentfulClient, getEntry } from "@libs/contentful-client";
+import { contentfulClient, getEntry } from "@libs/contentful";
 
 export default function Home({ data }) {
   const pageData = data.fields;
