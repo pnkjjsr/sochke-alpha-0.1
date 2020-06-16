@@ -1,30 +1,44 @@
 import Head from "next/head";
+import Link from "next/link";
 import { contentfulClient, getEntry } from "@libs/contentful";
+import Layout from "@layouts/open/index";
 
 export default function Home({ data }) {
   const pageData = data.fields;
 
   return (
-    <div className="main ">
-      <Head>
-        <title>{pageData.company}</title>
-        <link rel="icon" href="public/favicon.ico" />
-      </Head>
+    <>
+      <Layout>
+        <Head>
+          <title>Home | {pageData.company}</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main>
+          <header>
+            <nav>
+              <Link href="/">
+                <a>Home</a>
+              </Link>{" "}
+              |
+              <Link href="/test">
+                <a>test</a>
+              </Link>{" "}
+            </nav>
+          </header>
+          <h1 className="text-3xl">
+            Welcome to <a href="https://nextjs.org">{pageData.company}</a>
+          </h1>
 
-      <main>
-        <h1 className="text-3xl">
-          Welcome to <a href="https://nextjs.org">{pageData.company}</a>
-        </h1>
+          <p className="description">
+            Get started by editing <code>pages/index.js</code>
+          </p>
+        </main>
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-      </main>
-
-      <footer></footer>
+        <footer>{"I`m here to stay"}</footer>
+      </Layout>
       <style jsx>{``}</style>
       <style jsx global>{``}</style>
-    </div>
+    </>
   );
 }
 

@@ -11,7 +11,7 @@
           "@libs": "./src/libs",
           "@utils": "./src/utils",
           "@common": "./src/common",
-          "@layout": "./src/layout",
+          "@layouts": "./src/layouts",
           "@components": "./src/components"
         }
       }
