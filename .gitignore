@@ -40,3 +40,7 @@ config/
 .env.test.local
 .env.production.local
 .firebase/hosting.cHVibGlj.cache
+sw.js
+.gitignore
+.gitignore
+workbox-4d0bff02.js

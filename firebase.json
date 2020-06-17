@@ -4,7 +4,7 @@
     "rewrites": [
       {
         "source": "**/**",
-        "function": "nextjsFunc"
+        "function": "nextApp"
       }
     ],
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
