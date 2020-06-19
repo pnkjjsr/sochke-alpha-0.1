@@ -12,7 +12,6 @@
   "functions": {
     "source": ".",
     "predeploy": [
-      "npm --prefix \"$PROJECT_DIR\" run clean",
       "npm --prefix \"$PROJECT_DIR\" install",
       "npm --prefix \"$PROJECT_DIR\" run build"
     ]

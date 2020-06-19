@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import NextHead from "next/head";
+
 import { string } from "prop-types";
 
 const DEFAULT_CONFIG = {
@@ -16,7 +17,6 @@ const DEFAULT_CONFIG = {
 };
 
 class Head extends React.Component {
-  componentDidMount() {}
   render() {
     return (
       <Fragment>
@@ -65,8 +65,8 @@ class Head extends React.Component {
             content="black-translucent"
           />
 
-          <link rel="icon" sizes="192x192" href="/touch-icon.png" />
-          <link rel="apple-touch-icon" href="/touch-icon.png" />
+          {/* <link rel="icon" sizes="192x192" href="/touch-icon.png" />
+          <link rel="apple-touch-icon" href="/touch-icon.png" /> */}
           <link rel="mask-icon" href="/favicon-mask.svg" color="#49B882" />
           <link rel="icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
