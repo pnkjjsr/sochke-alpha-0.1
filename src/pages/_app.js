@@ -1,9 +1,34 @@
 import "@styles/global.scss";
-import React, { Component } from "react";
+import React, {Fragment} from 'react';
+import PropTypes from 'prop-types';
 
-export default class MyApp extends Component {
-  render() {
-    const { Component, ctx, router, pageProps, store } = this.props;
-    return <Component {...pageProps} />;
-  }
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from '@layouts/theme';
+
+export default function MyApp(props) {
+  const { Component, pageProps } = props;
+
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+
+  return (
+    <Fragment>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </Fragment>
+  );
 }
+
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};
