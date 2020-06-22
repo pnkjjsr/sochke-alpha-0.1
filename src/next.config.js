@@ -1,5 +1,5 @@
 require("dotenv").config();
-const withOffline = require('next-offline')
+const withOffline = require("next-offline");
 const path = require("path");
 
 const nextConfig = {
@@ -9,14 +9,14 @@ const nextConfig = {
   },
   workboxOpts: {
     swDest: process.env.NEXT_EXPORT
-      ? 'service-worker.js'
-      : 'static/service-worker.js',
+      ? "service-worker.js"
+      : "static/service-worker.js",
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
-        handler: 'NetworkFirst',
+        handler: "NetworkFirst",
         options: {
-          cacheName: 'offlineCache',
+          cacheName: "offlineCache",
           expiration: {
             maxEntries: 200,
           },
@@ -28,10 +28,10 @@ const nextConfig = {
     async rewrites() {
       return [
         {
-          source: '/service-worker.js',
-          destination: '/_next/static/service-worker.js',
+          source: "/service-worker.js",
+          destination: "/_next/static/service-worker.js",
         },
-      ]
+      ];
     },
   },
 };

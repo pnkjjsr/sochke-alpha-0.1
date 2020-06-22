@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Button from "@material-ui/core/Button";
 import { contentfulClient, getEntry } from "@libs/contentful";
 import Layout from "@layouts/open/index";
 
@@ -15,15 +16,9 @@ export default function Home({ data }) {
         </Head>
         <main>
           <header>
-            <nav>
-              <Link href="/">
-                <a>Home</a>
-              </Link>{" "}
-              |
-              <Link href="/test">
-                <a>test</a>
-              </Link>{" "}
-            </nav>
+            <Button variant="contained" color="primary" href="/test">
+              Go to the test page
+            </Button>
           </header>
           <h1 className="text-3xl">
             Welcome to <a href="https://nextjs.org">{pageData.company}</a>
