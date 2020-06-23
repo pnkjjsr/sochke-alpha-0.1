@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import Button from "@material-ui/core/Button";
 import { contentfulClient, getEntry } from "@libs/contentful";
 import Layout from "@layouts/open/index";

@@ -1,5 +1,4 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
 
 // Create a theme instance.
 const theme = createMuiTheme({
@@ -28,12 +27,14 @@ const theme = createMuiTheme({
   },
   typography: {
     htmlFontSize: 16,
-    fontFamily: "Lato, Roboto, Helvetica, Arial, sans-serif",
-    fontSize: "16",
+    fontFamily: "Lato, Tahoma, Geneva, Verdana, sans-serif",
+    fontSize: 16,
+    fontWeightThin: 100,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 700,
     fontWeightBold: 900,
+    fontDisplay: "swap",
   },
   breakpoints: {
     values: {
@@ -53,7 +54,15 @@ const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       "@global": {
-        "@font-face": "Lato",
+        body: {
+          color: "#26264c",
+        },
+      },
+    },
+    MuiButton: {
+      label: {
+        fontWeight: 400,
+        textTransform: "capitalize",
       },
     },
   },

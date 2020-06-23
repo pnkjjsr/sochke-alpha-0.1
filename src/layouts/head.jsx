@@ -70,6 +70,7 @@ class Head extends React.Component {
           <link rel="mask-icon" href="/favicon-mask.svg" color="#49B882" />
           <link rel="icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
+          <link rel="preload" />
         </NextHead>
 
         <noscript>

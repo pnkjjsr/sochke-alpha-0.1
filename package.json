@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.9.1",
     "babel-plugin-module-resolver": "^4.0.0",
     "contentful": "^7.14.4",
     "dotenv": "8.2.0",

@@ -13,11 +13,11 @@ export default class test extends Component {
           <title>Test</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <header>
+        <div>
           <Button variant="contained" color="primary" href="/">
             Go to the main page
           </Button>
-        </header>
+        </div>
         <div className={s.title}>test</div>
       </Layout>
     );
