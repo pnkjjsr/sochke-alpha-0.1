@@ -4,6 +4,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 
+import SocialComponent from "./SocialComponent";
 import s from "./open.module.scss";
 
 export default function Layout({
@@ -17,7 +18,7 @@ export default function Layout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <header id={s.header} role="main">
+      <header id={s.header}>
         <IconButton edge="start" color="inherit" aria-label="menu">
           <MenuIcon />
         </IconButton>
@@ -34,6 +35,12 @@ export default function Layout({
       </header>
 
       {children}
+
+      <footer id={s.footer}>
+        <div className={s.copy}>Sochke © 2019-2020 </div>
+
+        <SocialComponent />
+      </footer>
     </>
   );
 }

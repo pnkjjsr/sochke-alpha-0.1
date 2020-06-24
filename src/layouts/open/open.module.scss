@@ -1,6 +1,6 @@
 @import "src/styles/base";
 
-#header[role="main"] {
+#header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,5 +8,42 @@
 
   .action {
     // text-transform: capitalize;
+  }
+}
+
+#footer {
+  position: fixed;
+  z-index: $footer;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 12px;
+
+  .copy {
+    font-size: rem(13);
+  }
+  .social {
+    a {
+      color: $color-gray-light;
+
+      &.facebook {
+        &:hover {
+          color: #3b5998;
+        }
+      }
+      &.twitter {
+        &:hover {
+          color: #00acee;
+        }
+      }
+      &.linkedin {
+        &:hover {
+          color: #0e76a8;
+        }
+      }
+    }
   }
 }

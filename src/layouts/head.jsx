@@ -39,10 +39,9 @@ class Head extends React.Component {
             name="viewport"
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
           />
-
           <meta name="description" content={DEFAULT_CONFIG.desc} />
           <meta name="keywords" content={DEFAULT_CONFIG.keyword}></meta>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+
           <meta
             name="google-site-verification"
             content="X_UAViRRJK8KBMJtpV6wJmolpk-h5vIn8ooaBt7AHL0"

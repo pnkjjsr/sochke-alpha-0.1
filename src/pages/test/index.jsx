@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Head from "next/head";
-import Button from "@material-ui/core/Button";
-import Layout from "@layouts/open/index";
 
+import Layout from "@layouts/open/index";
 import s from "./test.module.scss";
 
 export default class test extends Component {
@@ -13,11 +12,7 @@ export default class test extends Component {
           <title>Test</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <div>
-          <Button variant="contained" color="primary" href="/">
-            Go to the main page
-          </Button>
-        </div>
+
         <div className={s.title}>test</div>
       </Layout>
     );
