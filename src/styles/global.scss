@@ -9,3 +9,9 @@ body {
     background-color: $bg-color;
   }
 }
+
+.MuiDrawer-root {
+  .MuiPaper-root {
+    width: 250px;
+  }
+}

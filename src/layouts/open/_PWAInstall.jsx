@@ -10,10 +10,11 @@ const PWAInstall = () => {
 
   useEffect(() => {
     const handler = (e) => {
-      e.preventDefault();
+      // e.preventDefault();
       setSupportsPWA(true);
       setPromptInstall(e);
     };
+
     window.addEventListener("beforeinstallprompt", handler);
     return () => window.removeEventListener("transitionend", handler);
   }, []);

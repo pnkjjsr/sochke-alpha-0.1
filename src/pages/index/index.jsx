@@ -9,13 +9,14 @@ export default function Home({ data }) {
     <>
       <Layout>
         <Head>
-          <title>Home | {pageData.company}</title>
+          <title>{pageData.title}</title>
+          <meta name="description" content={pageData.desc} />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <main>
           <h1>
-            Welcome to <a href="https://nextjs.org">{pageData.company}</a>
+            Welcome to <a href="https://nextjs.org">{pageData.title}</a>
           </h1>
         </main>
       </Layout>
@@ -26,7 +27,7 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-  let data = await getEntry("15jwOBqpxqSAOy2eOO4S0m");
+  let data = await getEntry("4AMXmeupFBkkkJwuwRM99M");
 
   return {
     props: { data },

@@ -1,9 +1,8 @@
 import Head from "@layouts/head";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 
-import SocialComponent from "./SocialComponent";
-// import PWAInstall from "./PWAInstall";
+import PWAInstall from "./_PWAInstall";
+import SocialComponent from "./_socialComponent";
+import Drawer from "./_drawer";
 import s from "./open.module.scss";
 
 export default function Layout({
@@ -18,11 +17,9 @@ export default function Layout({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <header id={s.header}>
-        <IconButton edge="start" color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
+        <Drawer />
 
-        {/* <PWAInstall /> */}
+        <PWAInstall />
       </header>
 
       {children}
