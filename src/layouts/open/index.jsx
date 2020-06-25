@@ -1,10 +1,9 @@
 import Head from "@layouts/head";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Button from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
 
 import SocialComponent from "./SocialComponent";
+// import PWAInstall from "./PWAInstall";
 import s from "./open.module.scss";
 
 export default function Layout({
@@ -23,15 +22,7 @@ export default function Layout({
           <MenuIcon />
         </IconButton>
 
-        <Button
-          size="small"
-          variant="contained"
-          color="primary"
-          className={s.action}
-          startIcon={<Icon>add</Icon>}
-        >
-          Install
-        </Button>
+        {/* <PWAInstall /> */}
       </header>
 
       {children}
