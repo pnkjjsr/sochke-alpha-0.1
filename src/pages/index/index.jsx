@@ -1,9 +1,16 @@
+import { useEffect } from "react";
 import Head from "next/head";
+
 import { contentfulClient, getEntry } from "@libs/contentful";
+import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 import Layout from "@layouts/open/index";
 
 export default function Home({ data }) {
   const pageData = data.fields;
+
+  useEffect(() => {
+    firebaseCloudMessaging.init();
+  }, []);
 
   return (
     <>

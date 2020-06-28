@@ -1,4 +1,4 @@
-import contenfulConfig from "config/contenfulConfig.json";
+import contenfulConfig from "@configs/contenfulConfig.json";
 const { createClient } = require("contentful");
 
 const defaultConfig = {

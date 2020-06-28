@@ -11,6 +11,7 @@
           "@libs": "./src/libs",
           "@utils": "./src/utils",
           "@common": "./src/common",
+          "@configs": "./configs",
           "@layouts": "./src/layouts",
           "@components": "./src/components"
         }
