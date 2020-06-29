@@ -9,23 +9,24 @@ const firebaseCloudMessaging = {
   },
 
   init: async function () {
-    const firebase = new Firebase();
-    firebase.init();
+    const firebaseLibs = new Firebase();
+    await firebaseLibs
+      .init()
+      .then(async (firebase) => {
+        if ((await this.tokenInlocalforage()) !== null) {
+          return false;
+        }
 
-    try {
-      if ((await this.tokenInlocalforage()) !== null) {
-        return false;
-      }
+        const messaging = firebase.messaging();
+        await messaging.requestPermission();
+        const token = await messaging.getToken();
 
-      const messaging = firebase.messaging();
-      await messaging.requestPermission();
-      const token = await messaging.getToken();
-
-      localforage.setItem("fcm_token", token);
-      console.log("fcm_token", token);
-    } catch (error) {
-      console.error(error);
-    }
+        localforage.setItem("fcm_token", token);
+        console.log("fcm_token", token);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   },
 };
 

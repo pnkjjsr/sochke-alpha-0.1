@@ -5,7 +5,8 @@ export default class Firebase {
   init() {
     return new Promise((resolve, reject) => {
       if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
+        let res = firebase.initializeApp(firebaseConfig);
+        resolve(res);
       }
     });
   }

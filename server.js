@@ -32,6 +32,23 @@ app.prepare().then(() => {
     }
   });
 
+  const serviceWorkers = [
+    {
+      filename: "service-worker.js",
+      path: "./.next/static/service-worker.js",
+    },
+    {
+      filename: "firebase-messaging-sw.js",
+      path: "./next/static/firebase-messaging-sw.js",
+    },
+  ];
+
+  serviceWorkers.forEach(({ filename, path }) => {
+    server.get(`/${filename}`, (req, res) => {
+      app.serveStatic(req, res, path);
+    });
+  });
+
   if (isDev) {
     server.listen(port, (err) => {
       if (err) throw err;
