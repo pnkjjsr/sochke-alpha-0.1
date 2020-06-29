@@ -5,10 +5,10 @@ importScripts(
 );
 
 firebase.initializeApp({
-  apiKey: "",
-  projectId: "",
-  messagingSenderId: "",
-  appId: "",
+  apiKey: "AIzaSyCZM1B324riRuykR26WauuSfOF_wGmkoQA",
+  projectId: "nextjs-contentful-firebase",
+  messagingSenderId: "339091831749",
+  appId: "1:339091831749:web:827fbe43a33fbcfd06a9ac",
 });
 
 firebase.messaging();
