@@ -19,7 +19,7 @@ export default function Layout({
       <header id={s.header}>
         <Drawer />
 
-        <PWAInstall />
+        {/* <PWAInstall /> */}
       </header>
 
       {children}

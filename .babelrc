@@ -6,14 +6,15 @@
       {
         "root": ["."],
         "alias": {
-          "@styles": "./src/styles",
+          "@layouts": "./src/layouts",
           "@pages": "./src/pages",
+          "@components": "./src/components",
+          "@styles": "./src/styles",
+
           "@libs": "./src/libs",
           "@utils": "./src/utils",
-          "@common": "./src/common",
-          "@configs": "./configs",
-          "@layouts": "./src/layouts",
-          "@components": "./src/components"
+
+          "@configs": "./configs"
         }
       }
     ]
