@@ -31,7 +31,9 @@
     "next": "^9.3.4",
     "next-offline": "^5.0.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-ga": "^3.0.0",
+    "react-gtm-module": "^2.0.8"
   },
   "devDependencies": {
     "contentful-import": "^7.7.12",

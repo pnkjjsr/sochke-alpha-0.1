@@ -1,11 +1,12 @@
-import "@styles/global.scss";
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "@styles/theme";
+import "@styles/global.scss";
 
+import tracker from "@utils/trackers";
 import LoaderPage from "@components/LoaderPage";
 
 export default function MyApp(props) {
@@ -17,6 +18,8 @@ export default function MyApp(props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
+
+    tracker();
   }, []);
 
   return (
