@@ -2,6 +2,8 @@ const express = require("express");
 const { parse } = require("url");
 const { join } = require("path");
 const { https } = require("firebase-functions");
+const functions = require("firebase-functions");
+
 const { default: next } = require("next");
 
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -60,3 +62,16 @@ app.prepare().then(() => {
 exports.nextApp = https.onRequest((req, res) => {
   return app.prepare().then(() => handle(req, res));
 });
+
+// exports.sendEmail = functions.pubsub
+//   .schedule("every 1 minutes")
+//   .onRun((context) => {
+//     console.log("This will be run every 1 minutes!");
+//     return null;
+//   });
+
+// exports.testEmail = https.onRequest((req, res) => {
+//   const { sendEmail } = require("./server/libs/mailChimp");
+//   sendEmail();
+//   return res.json("done");
+// });
