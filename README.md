@@ -1,6 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-##Features
+## Features
+
 - SSR react development - Nextjs
 - Firebase function deployment
 - Absolute alias path with, babel-nextjs
@@ -11,7 +12,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - ContentFul CMS
 - Material-UI (react)
 - Page loader with router change
-
 
 ## Getting Started
 
