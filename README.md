@@ -1,5 +1,18 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+##Features
+- SSR react development - Nextjs
+- Firebase function deployment
+- Absolute alias path with, babel-nextjs
+- Progressive Web App
+- Service worker, Firebase cloud message notification
+- 100% Audit Score (85% Performance)
+- Google Tag Manager and Google Analytics
+- ContentFul CMS
+- Material-UI (react)
+- Page loader with router change
+
+
 ## Getting Started
 
 First, run the development server:
