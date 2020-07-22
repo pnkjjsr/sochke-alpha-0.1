@@ -2,13 +2,9 @@
 
 #header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flext-start;
   align-items: center;
   padding: 0 12px;
-
-  .action {
-    // text-transform: capitalize;
-  }
 }
 
 #footer {
@@ -21,29 +17,4 @@
   align-items: center;
   width: 100%;
   padding: 0 12px;
-
-  .copy {
-    font-size: rem(13);
-  }
-  .social {
-    a {
-      color: $color-gray-light;
-
-      &.facebook {
-        &:hover {
-          color: #3b5998;
-        }
-      }
-      &.twitter {
-        &:hover {
-          color: #00acee;
-        }
-      }
-      &.linkedin {
-        &:hover {
-          color: #0e76a8;
-        }
-      }
-    }
-  }
 }

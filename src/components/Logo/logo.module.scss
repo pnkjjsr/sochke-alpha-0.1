@@ -1,0 +1,14 @@
+@import "src/styles/base";
+
+.logo {
+  display: flex;
+  align-items: flex-start;
+  color: $color-primary;
+  font-size: rem(24);
+  font-weight: $font-weight-black;
+
+  span {
+    font-size: rem(10);
+    font-weight: $font-weight-light;
+  }
+}

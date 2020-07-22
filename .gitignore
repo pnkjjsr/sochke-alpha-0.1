@@ -44,3 +44,5 @@ sw.js
 .gitignore
 .gitignore
 workbox-4d0bff02.js
+
+/public/firebase-messaging-sw.js

@@ -1,7 +1,9 @@
 import Head from "@layouts/head";
 
+import Logo from "@components/Logo";
+
 import PWAInstall from "./_PWAInstall";
-import SocialComponent from "./_socialComponent";
+
 import Drawer from "./_drawer";
 import s from "./open.module.scss";
 
@@ -18,17 +20,13 @@ export default function Layout({
       </Head>
       <header id={s.header}>
         <Drawer />
-
+        <Logo />
         {/* <PWAInstall /> */}
       </header>
 
       {children}
 
-      <footer id={s.footer}>
-        <div className={s.copy}>Sochke © 2019-2020 </div>
-
-        <SocialComponent />
-      </footer>
+      <footer id={s.footer}></footer>
     </>
   );
 }

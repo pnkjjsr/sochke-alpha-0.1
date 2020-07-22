@@ -19,8 +19,20 @@ a {
   }
 }
 
+figure {
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
 .MuiDrawer-root {
   .MuiPaper-root {
-    width: 250px;
+    width: 243px;
   }
 }

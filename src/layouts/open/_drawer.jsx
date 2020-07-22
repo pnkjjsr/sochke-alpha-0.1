@@ -1,8 +1,10 @@
 import React from "react";
-import Link from "next/link";
+
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+
+import Open from "@components/Navigation/Open";
 
 export default function DrawerOpen() {
   const [state, setState] = React.useState({
@@ -36,22 +38,7 @@ export default function DrawerOpen() {
         open={state["left"]}
         onClose={toggleDrawer("left", false)}
       >
-        <ul>
-          <li>
-            <Link href="/">
-              <a>
-                <label>Home</label>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/about">
-              <a>
-                <label>About</label>
-              </a>
-            </Link>
-          </li>
-        </ul>
+        <Open />
       </Drawer>
     </div>
   );
