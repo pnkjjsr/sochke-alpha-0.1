@@ -60,11 +60,40 @@ const theme = createMuiTheme({
       },
     },
     MuiButton: {
+      root: {
+        // padding: "10px"
+      },
+
       label: {
         fontWeight: 400,
         textTransform: "capitalize",
+
       },
     },
+    MuiTextField: {
+      root: {
+        borderRadius: "3px",
+        backgroundColor: "#fff",
+      }
+    },
+    MuiFormLabel: {
+      root: {
+        color: "#595959",
+        fontSize: "16px"
+      }
+    },
+    MuiFilledInput: {
+      underline: {
+        "&:after": {
+          borderBottom: "1px solid #000088"
+        }
+      }
+    },
+    MuiInputBase: {
+      input: {
+        fontSize: "16px"
+      }
+    }
   },
 });
 

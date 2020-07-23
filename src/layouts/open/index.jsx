@@ -19,7 +19,10 @@ export default function Layout({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <header id={s.header}>
-        <Drawer />
+        <div className={s.drawer}>
+          <Drawer />
+        </div>
+
         <Logo />
         {/* <PWAInstall /> */}
       </header>

@@ -18,3 +18,17 @@
   width: 100%;
   padding: 0 12px;
 }
+
+.drawer {
+  button {
+    color: $color-white;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .drawer {
+    button {
+      color: $base-color;
+    }
+  }
+}

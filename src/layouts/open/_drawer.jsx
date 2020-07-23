@@ -23,7 +23,7 @@ export default function DrawerOpen() {
   };
 
   return (
-    <div>
+    <>
       <IconButton
         edge="start"
         color="inherit"
@@ -40,6 +40,6 @@ export default function DrawerOpen() {
       >
         <Open />
       </Drawer>
-    </div>
+    </>
   );
 }

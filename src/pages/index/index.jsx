@@ -5,6 +5,10 @@ import { contentfulClient, getEntry } from "@libs/contentful";
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 import Layout from "@layouts/open/index";
 
+import SubscribeSmall from "@components/Subscribe/small";
+
+import s from "./home.module.scss";
+
 export default function Home({ data }) {
   const pageData = data.fields;
 
@@ -13,7 +17,7 @@ export default function Home({ data }) {
   }, []);
 
   return (
-    <>
+    <div className={s.home}>
       <Layout>
         <Head>
           <title>{pageData.title}</title>
@@ -22,14 +26,22 @@ export default function Home({ data }) {
         </Head>
 
         <main>
+          {/* heading */}
           <h1>
-            Welcome to <a href="https://nextjs.org">{pageData.title}</a>
+            {/* {pageData.title} */}
+            Political networking platform for <span>leaders</span> &amp;{" "}
+            <span className={s.grn}>citizens</span>.
           </h1>
+
+          {/* Subscriber */}
+          <div className={s.subscribe}>
+            <SubscribeSmall />
+          </div>
         </main>
       </Layout>
       <style jsx>{``}</style>
       <style jsx global>{``}</style>
-    </>
+    </div>
   );
 }
 

@@ -1,0 +1,37 @@
+@import "src/styles/base";
+
+.home {
+  position: relative;
+  height: 100vh;
+  background: #25264c
+    url("https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fhome%2Fbg-home.png?alt=media&token=436daae2-7180-4f96-be0f-95490704c5ac")
+    center bottom no-repeat;
+
+  h1 {
+    max-width: 320px;
+    margin: 30px auto;
+    color: $color-white;
+    font-size: rem(24);
+    font-weight: $font-weight-light;
+    text-align: center;
+
+    span {
+      color: $color-safron;
+      font-weight: $font-weight;
+      text-transform: capitalize;
+
+      &.grn {
+        color: $color-green;
+      }
+    }
+  }
+
+  .subscribe {
+    position: fixed;
+    bottom: 10px;
+    left: calc(50% - 145px);
+  }
+}
+
+@include media-breakpoint-up(xs) {
+}
