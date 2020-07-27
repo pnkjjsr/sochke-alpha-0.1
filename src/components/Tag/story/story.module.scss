@@ -1,0 +1,18 @@
+@import "src/styles/base";
+
+.tag {
+  padding: 5px 10px;
+  border-radius: 25px;
+  background-color: $color-lightest;
+  font-size: rem(12);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+$colors: #cef3ff, #ffcece, #d5ffce, #deceff;
+$repeat: 10;
+@for $i from 0 through $repeat {
+  .tag:nth-child(#{length($colors)}n + #{$i}) {
+    // background: nth($colors, random(length($colors)));
+    background-color: lighten(rgb(random(100), random(100), random(100)), 70%);
+  }
+}

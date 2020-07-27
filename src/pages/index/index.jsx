@@ -6,6 +6,7 @@ import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 import Layout from "@layouts/open/index";
 
 import SubscribeSmall from "@components/Subscribe/small";
+import TagStory from "@components/Tag/story";
 
 import s from "./home.module.scss";
 
@@ -32,6 +33,19 @@ export default function Home({ data }) {
             Political networking platform for <span>leaders</span> &amp;{" "}
             <span className={s.grn}>citizens</span>.
           </h1>
+
+          {/* Story Tags */}
+          <div className={s.tags}>
+            <TagStory value="Today's Politics" />
+            <TagStory value="Corona" />
+            <TagStory value="China" />
+            <TagStory value="Indian Army" />
+            <TagStory value="Today's Politics" />
+            <TagStory value="Corona" />
+            <TagStory value="China" />
+            <TagStory value="Indian Army" />
+            <TagStory value="Today's Politics" />
+          </div>
 
           {/* Subscriber */}
           <div className={s.subscribe}>

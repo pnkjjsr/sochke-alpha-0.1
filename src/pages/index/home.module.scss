@@ -26,6 +26,23 @@
     }
   }
 
+  .tags {
+    margin: 10px;
+    text-align: center;
+
+    label {
+      display: inline-block;
+      margin: 5px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
   .subscribe {
     position: fixed;
     bottom: 10px;
