@@ -26,8 +26,24 @@
     }
   }
 
+  .neta {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      height: 0;
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: transparent;
+    }
+  }
+
   .tags {
-    margin: 10px;
+    margin: 0 10px;
     text-align: center;
 
     label {

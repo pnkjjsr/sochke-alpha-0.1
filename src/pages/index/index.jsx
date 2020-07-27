@@ -5,8 +5,9 @@ import { contentfulClient, getEntry } from "@libs/contentful";
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 import Layout from "@layouts/open/index";
 
-import SubscribeSmall from "@components/Subscribe/small";
+import NetaThumb from "@components/Neta/thumb";
 import TagStory from "@components/Tag/story";
+import SubscribeSmall from "@components/Subscribe/small";
 
 import s from "./home.module.scss";
 
@@ -33,6 +34,29 @@ export default function Home({ data }) {
             Political networking platform for <span>leaders</span> &amp;{" "}
             <span className={s.grn}>citizens</span>.
           </h1>
+
+          {/* Neta */}
+          <div className={s.neta}>
+            <div>
+              <NetaThumb name="Narendra Modi" src="" like="999" />
+            </div>
+
+            <div>
+              <NetaThumb name="Rahult Gandhi" src="" like="450" />
+            </div>
+
+            <div>
+              <NetaThumb name="Arvind Kejriwal" src="" like="780" />
+            </div>
+
+            <div>
+              <NetaThumb name="Arvind Kejriwal" src="" like="780" />
+            </div>
+
+            <div>
+              <NetaThumb name="Arvind Kejriwal" src="" like="780" />
+            </div>
+          </div>
 
           {/* Story Tags */}
           <div className={s.tags}>
