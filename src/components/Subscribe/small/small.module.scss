@@ -1,19 +1,83 @@
 @import "src/styles/base";
 
 .subscribe_small {
-  .form {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  overflow: hidden;
 
-    button {
-      margin-left: -5px;
+  .form {
+    &.hide {
+      display: none;
+    }
+    &.show {
+      display: block;
+    }
+
+    .group {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      button {
+        position: relative;
+        margin-left: -5px;
+
+        &.loading {
+          @include loader-slide();
+        }
+      }
+    }
+
+    .note {
+      margin-top: 5px;
+      color: $color-white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
   }
 
-  .note {
-    margin-top: 5px;
-    color: $color-white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  .notification {
+    position: relative;
+    bottom: -65px;
+    display: flex;
+    // display: none;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 290px;
+    background-color: $color-white;
+    @include border-radius(3px);
+    @include box-shadow();
+    opacity: 0;
+    @include transition(ease 0.3s all);
+
+    &.show {
+      bottom: 0;
+      opacity: 1;
+    }
+    &.hide {
+      bottom: -65px;
+      opacity: 0;
+    }
+
+    div {
+      position: absolute;
+      z-index: 1;
+      top: 5px;
+      right: 5px;
+      color: $color-gray-light;
+    }
+
+    > i {
+      margin: 20px;
+      color: $color-success;
+      font-size: rem(24);
+    }
+
+    p {
+      margin: 0;
+      font-size: rem(14);
+
+      b {
+        display: block;
+      }
+    }
   }
 }
