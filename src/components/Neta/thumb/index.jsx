@@ -15,7 +15,7 @@ export default class NetaThumb extends Component {
   }
 
   renderImage = () => {
-    const { src } = this.state;
+    const { src, name } = this.state;
 
     if (!src) return <i className="material-icons">person</i>;
     else return <img src={src} alt={name} />;
