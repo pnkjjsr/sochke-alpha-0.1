@@ -18,8 +18,13 @@ export default class Open extends Component {
 
         <ul>
           <li>
-            <Link href="/about">
-              <a>About Us</a>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/story">
+              <a>Story</a>
             </Link>
           </li>
         </ul>
