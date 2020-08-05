@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Head from "next/head";
+import Link from "next/link";
 
 import { contentfulClient, getEntry } from "@libs/contentful";
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
@@ -38,11 +39,15 @@ export default function Home({ data }) {
           {/* Neta */}
           <div className={s.neta}>
             <div>
-              <NetaThumb
-                name="Narendra Modi"
-                src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fthumb_90x90%2Fnarendra-modi.png?alt=media&token=afe4e029-512c-462c-a56e-5fa80cc0e991"
-                like="999"
-              />
+              <Link href="/neta">
+                <a>
+                  <NetaThumb
+                    name="Narendra Modi"
+                    src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fthumb_90x90%2Fnarendra-modi.png?alt=media&token=afe4e029-512c-462c-a56e-5fa80cc0e991"
+                    like="999"
+                  />
+                </a>
+              </Link>
             </div>
 
             <div>
@@ -64,7 +69,11 @@ export default function Home({ data }) {
 
           {/* Story Tags */}
           <div className={s.tags}>
-            <TagStory value="Today's Politics" />
+            <Link href="/story">
+              <a>
+                <TagStory value="Today's Politics" />
+              </a>
+            </Link>
             <TagStory value="Corona" />
             <TagStory value="China" />
             <TagStory value="Indian Army" />
