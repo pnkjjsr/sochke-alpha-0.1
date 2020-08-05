@@ -1,12 +1,15 @@
-@mixin transition($property) {
-  // -webkit-transition: $property;
-  // /* Safari 4+ */
-  // -moz-transition: $property;
-  // /* Fx 5+ */
-  // -o-transition: $property;
-  /* Opera 12+ */
-  transition: $property;
-  /* IE 10+, Fx 29+ */
+$fast: all 0.3s ease;
+$normal: all 0.5s ease;
+$slow: all 1s ease;
+
+@mixin transition($transition) {
+  @if $transition== "fast" {
+    transition: $fast;
+  } @else if $transition== "normal" {
+    transition: $normal;
+  } @else if $transition== "slow" {
+    transition: $slow;
+  }
 }
 
 @mixin border-radius($value) {

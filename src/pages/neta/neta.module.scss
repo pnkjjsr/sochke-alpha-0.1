@@ -54,14 +54,18 @@
   }
 
   .detail {
+    position: absolute;
+    top: auto;
+    bottom: 60px;
+    left: 0;
+    z-index: 2;
+    width: 100%;
     padding: 0 10px;
+    @include transition(fast);
 
     .top {
-      margin-top: 20px;
+      padding: 10px 10px 0;
       line-height: rem(35);
-      // background: rgba(242, 242, 242, 0.6);
-      // border: 1px solid rgba(242, 242, 242, 0.6);
-      // border-radius: 10px;
 
       h1 {
         margin: 0;
@@ -74,14 +78,37 @@
       }
     }
 
-    .feature {
+    .middle {
       position: relative;
+      height: 105px;
+      background: linear-gradient(180deg, #850088 0%, #000088 100%);
+      border-radius: 10px;
+      @include transition(slow);
+
+      .display {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        @include transition(slow);
+
+        > .action {
+          position: absolute;
+          left: 0;
+          bottom: -10px;
+          z-index: 1;
+          width: 100%;
+          padding: 0 10px;
+          text-align: right;
+        }
+      }
+    }
+
+    .feature {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      padding: 18px 15px;
-      background: linear-gradient(180deg, #850088 0%, #000088 100%);
-      border-radius: 10px;
+
+      padding: 18px 15px 5px;
 
       .action {
         position: absolute;
@@ -106,7 +133,7 @@
       }
 
       .item {
-        color: $color-light;
+        color: $color-white;
         text-align: center;
 
         div {
@@ -118,6 +145,32 @@
         }
       }
       .symbol {
+      }
+    }
+
+    &.show {
+      top: auto;
+      bottom: 60;
+
+      .top {
+        background: rgba(242, 242, 242, 0.6);
+        border-top: 1px solid rgba(242, 242, 242, 0.6);
+        border-left: 1px solid rgba(242, 242, 242, 0.6);
+        border-right: 1px solid rgba(242, 242, 242, 0.6);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      .middle {
+        height: calc(100vh - 190px);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background: linear-gradient(180deg, #850088 0%, #000088 35%);
+
+        .display {
+          height: inherit;
+          opacity: 1;
+          overflow: initial;
+        }
       }
     }
   }

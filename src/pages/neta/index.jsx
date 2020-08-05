@@ -9,8 +9,10 @@ import s from "./neta.module.scss";
 
 export default function Story() {
   const DEFAULT = {
-    TITLE: "",
-    DESC: "",
+    TITLE:
+      "Narendra Modi | sochke.com/neta First Political Networking Platform of India",
+    DESC:
+      "Shri Narendra Modi, Get all the information news, updates, speeches on the official website of Prime Minister of India.",
   };
 
   return (

@@ -93,6 +93,17 @@ const theme = createMuiTheme({
       input: {
         fontSize: "16px"
       }
+    },
+    MuiLinearProgress: {
+      root: {
+        height: "1px",
+        overflow: "initial"
+      },
+      bar: {
+        top: "-3px",
+        height: "7px",
+        borderRadius: "3px"
+      }
     }
   },
 });
