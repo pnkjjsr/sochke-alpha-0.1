@@ -15,7 +15,7 @@
     "serve": "npm run build && firebase emulators:start --only functions,hosting",
     "shell": "npm run build && firebase functions:shell",
     "deploy": "firebase deploy --only functions,hosting",
-    "clean": "rimraf .next"
+    "clean": "rimraf .next && rm package-lock.json"
   },
   "dependencies": {
     "@material-ui/core": "latest",

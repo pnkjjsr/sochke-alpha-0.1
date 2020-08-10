@@ -51,12 +51,12 @@ app.prepare().then(() => {
     });
   });
 
-  if (isDev) {
-    server.listen(port, (err) => {
-      if (err) throw err;
-      console.log(`> Ready on https://localhost:${port}`);
-    });
-  }
+  // if (isDev) {
+  //   server.listen(port, (err) => {
+  //     if (err) throw err;
+  //     console.log(`> Ready on https://localhost:${port}`);
+  //   });
+  // }
 });
 
 exports.nextApp = https.onRequest((req, res) => {
