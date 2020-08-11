@@ -1,15 +1,26 @@
 import React, { Component } from "react";
+import TwitterIcon from "@material-ui/icons/Twitter";
 import s from "./small.module.scss";
 
 export default class TwitSmall extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      color: this.props.color,
+    };
+  }
+
   render() {
+    const { color } = this.state;
+
+    let theme = "";
+    if (color == "white") theme = s.white;
+
     return (
-      <div className={s.twit}>
+      <div className={`${s.twit} ${theme}`}>
         <figure>
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Ftwitter.svg?alt=media&token=6ba77c09-c983-4a31-9b4f-1090a4bae1b2"
-            alt="twitter logo"
-          />
+          <TwitterIcon />
         </figure>
         <p>
           Felicitations to my dear friend @EmmanuelMacron and the friendly

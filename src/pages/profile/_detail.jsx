@@ -3,8 +3,9 @@ import Button from "@material-ui/core/Button";
 
 import TwitSmall from "@components/Twit/small";
 import TenureSmall from "@components/Tenure/small";
+import NetaThumb from "@components/Neta/thumb";
 
-import s from "./neta.module.scss";
+import s from "./profile.module.scss";
 
 export default class Detail extends Component {
   constructor(props) {
@@ -35,23 +36,21 @@ export default class Detail extends Component {
 
     return (
       <div className={`${s.detail} ${d_collapse}`}>
+        <div className={s.thumb}>
+          <NetaThumb
+            // name="Narendra Modi"
+            src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fthumb_90x90%2Fnarendra-modi.png?alt=media&token=afe4e029-512c-462c-a56e-5fa80cc0e991"
+            like="999"
+          />
+        </div>
+
         <div className={s.top}>
-          <h1>Profiel | Narendra Modi</h1>
+          <h1>Narendra Modi</h1>
           <small>Prime Minister</small>
         </div>
 
         <div className={s.middle}>
           <div className={s.feature}>
-            <div className={s.action}>
-              <i className="material-icons" onClick={this.handleCollapse}>
-                {t_expand}
-              </i>
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fupward.svg?alt=media&token=735498ef-0ed1-430b-a8d4-11d81e7bd29b"
-                alt="upward-shape"
-              />
-            </div>
-
             <div className={s.item}>
               <div name="achievement">28</div>
               <label htmlFor="achievement">Achievement</label>
@@ -62,37 +61,33 @@ export default class Detail extends Component {
               <label htmlFor="work">Work</label>
             </div>
 
-            <div className={s.symbol}>
-              <figure>
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fparty%2Fbjp.svg?alt=media&token=2ba59de4-f0ae-486a-b899-560df15a86ab"
-                  alt="BJP Symbols"
-                />
-              </figure>
+            <div className={s.item}>
+              <div className={s.symbol}>
+                <figure>
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fparty%2Fbjp.svg?alt=media&token=2ba59de4-f0ae-486a-b899-560df15a86ab"
+                    alt="BJP Symbols"
+                  />
+                </figure>
+              </div>
+
+              <label htmlFor="work">BJP</label>
             </div>
           </div>
 
-          <div className={s.display}>
-            <TwitSmall />
-            <TenureSmall
-              title="Prime Minister Of India"
-              start={2019}
-              end={2020}
-              value={20}
-            />
-            <TenureSmall
-              title="Prime Minister Of India"
-              start={2014}
-              end={2019}
-              value={100}
-            />
-
-            <div className={s.action}>
-              <Button variant="contained" color="secondary" size="small">
-                More Details
-              </Button>
-            </div>
-          </div>
+          <TwitSmall />
+          <TenureSmall
+            title="Prime Minister Of India"
+            start={2019}
+            end={2020}
+            value={20}
+          />
+          <TenureSmall
+            title="Prime Minister Of India"
+            start={2014}
+            end={2019}
+            value={100}
+          />
         </div>
       </div>
     );

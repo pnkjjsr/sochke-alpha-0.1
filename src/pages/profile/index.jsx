@@ -5,7 +5,7 @@ import Layout from "@layouts/open";
 import Photo from "./_photo";
 import Detail from "./_detail";
 import Bottom from "./_bottom";
-import s from "./neta.module.scss";
+import s from "./profile.module.scss";
 
 export default function Story() {
   const DEFAULT = {

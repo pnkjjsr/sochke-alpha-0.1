@@ -5,9 +5,8 @@
 
   .title {
     margin: 0;
-    color: $color-white;
     font-size: rem(18);
-    font-weight: $font-weight-light;
+    font-weight: $font-weight;
   }
   .bar {
     height: 7px;
@@ -20,7 +19,10 @@
   .year {
     display: flex;
     justify-content: space-between;
-    color: $color-white;
     font-size: rem(13);
+  }
+
+  &.white {
+    color: $color-white;
   }
 }

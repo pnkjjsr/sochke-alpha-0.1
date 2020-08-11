@@ -34,6 +34,6 @@ export default class NetaThumb extends Component {
 }
 
 NetaThumb.propTypes = {
-  name: PropTypes.string.isRequired,
+  // name: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
 };

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import s from "./neta.module.scss";
+import s from "./profile.module.scss";
 
 export default class Photo extends Component {
   render() {

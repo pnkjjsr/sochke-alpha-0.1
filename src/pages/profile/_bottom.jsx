@@ -4,7 +4,7 @@ import ShareIcon from "@material-ui/icons/Share";
 
 import CommonBack from "@components/Common/back";
 
-import s from "./neta.module.scss";
+import s from "./profile.module.scss";
 
 export default class Bottom extends Component {
   render() {

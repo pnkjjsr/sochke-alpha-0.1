@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import router from "next/router";
 import Button from "@material-ui/core/Button";
 
 import TwitSmall from "@components/Twit/small";
@@ -28,6 +29,10 @@ export default class Detail extends Component {
         t_expand: "expand_less",
       });
     }
+  };
+
+  handleAction = () => {
+    router.push("/profile");
   };
 
   render() {
@@ -73,22 +78,29 @@ export default class Detail extends Component {
           </div>
 
           <div className={s.display}>
-            <TwitSmall />
+            <TwitSmall color="white" />
             <TenureSmall
               title="Prime Minister Of India"
               start={2019}
               end={2020}
               value={20}
+              color="white"
             />
             <TenureSmall
               title="Prime Minister Of India"
               start={2014}
               end={2019}
               value={100}
+              color="white"
             />
 
             <div className={s.action}>
-              <Button variant="contained" color="secondary" size="small">
+              <Button
+                variant="contained"
+                color="secondary"
+                size="small"
+                onClick={this.handleAction}
+              >
                 More Details
               </Button>
             </div>

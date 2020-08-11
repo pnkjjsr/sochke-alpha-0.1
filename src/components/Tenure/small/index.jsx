@@ -12,13 +12,18 @@ export default class TenureSmall extends Component {
       start: this.props.start,
       end: this.props.end,
       value: this.props.value,
+      color: this.props.color,
     };
   }
 
   render() {
-    const { title, start, end, value } = this.state;
+    const { title, start, end, value, color } = this.state;
+
+    let theme = "";
+    if (color == "white") theme = s.white;
+
     return (
-      <div className={s.tenure}>
+      <div className={`${s.tenure} ${theme}`}>
         <h2 className={s.title}>{title}</h2>
         <div className={s.bar}>
           <LinearProgress
