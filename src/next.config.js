@@ -1,39 +1,21 @@
 require("dotenv").config();
-const withOffline = require("next-offline");
+
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 const path = require("path");
 
 const nextConfig = {
   distDir: "../.next",
+
   sassOptions: {
     includePaths: [path.join(__dirname, "src/styles/global")],
   },
-  workboxOpts: {
-    swDest: process.env.NEXT_EXPORT
-      ? "service-worker.js"
-      : "static/service-worker.js",
-    runtimeCaching: [
-      {
-        urlPattern: /^https?.*/,
-        handler: "NetworkFirst",
-        options: {
-          cacheName: "offlineCache",
-          expiration: {
-            maxEntries: 200,
-          },
-        },
-      },
-    ],
-  },
-  experimental: {
-    async rewrites() {
-      return [
-        {
-          source: "/service-worker.js",
-          destination: "/_next/static/service-worker.js",
-        },
-      ];
-    },
+
+  pwa: {
+    // dest: '../public',
+    disable: process.env.NODE_ENV === 'development',
+    runtimeCaching,
   },
 };
 
-module.exports = withOffline(nextConfig);
+module.exports = withPWA(nextConfig)

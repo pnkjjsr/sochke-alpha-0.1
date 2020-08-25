@@ -26,8 +26,8 @@ app.prepare().then(() => {
     const { pathname } = parsedUrl;
 
     // handle GET request to /service-worker.js
-    if (pathname === "/service-worker.js") {
-      const filePath = join(__dirname, ".next/static", pathname);
+    if (pathname === "/sw.js" || pathname.startsWith('/workbox-')) {
+      const filePath = join(__dirname, ".next", pathname);
       app.serveStatic(req, res, filePath);
     } else {
       handle(req, res, parsedUrl);
@@ -36,12 +36,12 @@ app.prepare().then(() => {
 
   const serviceWorkers = [
     {
-      filename: "service-worker.js",
-      path: "./.next/static/service-worker.js",
+      filename: "sw.js",
+      path: "./static/sw.js",
     },
     {
       filename: "firebase-messaging-sw.js",
-      path: "./next/static/firebase-messaging-sw.js",
+      path: "./static/firebase-messaging-sw.js",
     },
   ];
 
@@ -51,12 +51,12 @@ app.prepare().then(() => {
     });
   });
 
-  // if (isDev) {
-  //   server.listen(port, (err) => {
-  //     if (err) throw err;
-  //     console.log(`> Ready on https://localhost:${port}`);
-  //   });
-  // }
+  if (isDev) {
+    server.listen(port, (err) => {
+      if (err) throw err;
+      console.log(`> Ready on https://localhost:${port}`);
+    });
+  }
 });
 
 exports.nextApp = https.onRequest((req, res) => {
