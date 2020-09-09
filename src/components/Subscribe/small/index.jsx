@@ -64,17 +64,24 @@ export default class SubscribeSmall extends Component {
       .post("/subscribe", data)
       .then((res) => {
         console.log(res);
+        if (res.data.code === "subscriber/repeat") {
+          return this.setState({
+            n_value: res.data.message,
+            n_open: true,
+            loading: "",
+          });
+        }
+
+        setTimeout(() => {
+          this.setState({
+            d_form: s.hide,
+            d_notification: s.show,
+          });
+        }, 2000);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.json);
       });
-
-    setTimeout(() => {
-      this.setState({
-        d_form: s.hide,
-        d_notification: s.show,
-      });
-    }, 2000);
   };
 
   render() {
