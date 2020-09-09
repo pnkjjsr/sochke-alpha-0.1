@@ -2,18 +2,20 @@ import axios from "axios";
 import isPlainObject from "is-plain-object";
 import "firebase/auth";
 import firebase from "firebase/app";
-import clientCredentials from "../firebaseConfig";
+
+import clientCredentials from "@configs/firebaseConfig";
 
 const NODE = process.env.NODE_ENV === "production";
 let req = null;
 
 export default class Service {
   constructor(axiosConfig) {
-    this.requestTimeout = process.env.requestTimeout;
-    this.apiVersion = process.env.apiVersion;
-    this.apiProtocol = process.env.apiProtocol;
-    this.requestBaseurl = process.env.requestBaseurl;
-    this.requestBaseurlLocal = process.env.requestBaseurlLocal;
+    this.requestTimeout = process.env.NEXT_PUBLIC_REQUEST_TIMEOUT;
+    this.apiVersion = process.env.NEXT_PUBLIC_API_VERSION;
+    this.apiProtocol = process.env.NEXT_PUBLIC_API_PROTOCOL;
+    this.requestBaseurl = process.env.NEXT_PUBLIC_REQUEST_BASEURL;
+    this.requestBaseurlLocal = process.env.NEXT_PUBLIC_REQUEST_BASEURL_LOCAL;
+    this.xAccessKey = process.env.NEXT_PUBLIC_X_ACCESS_KEY;
 
     if (!isPlainObject(axiosConfig)) {
       throw new TypeError(
@@ -46,16 +48,14 @@ export default class Service {
   }
 
   getBaseURL() {
-    const api = `/api/${this.apiVersion}`;
+    const api = `/api`;
 
     // construct base URL when is on server side
-    if (NODE) {
-      return `${this.apiProtocol}://${this.requestBaseurl}${api}`;
-    }
+    if (NODE) return `${this.apiProtocol}://${this.requestBaseurl}${api}`;
+
     // else, use it if request base URL is explicitly defined (eg: domain name)
-    else if (this.requestBaseurlLocal.trim()) {
-      return `${this.requestBaseurlLocal}${api}`;
-    }
+    else if (this.requestBaseurlLocal) return `${this.requestBaseurlLocal}${api}`;
+
     // or return as it is
     return api;
   }
@@ -95,7 +95,7 @@ export default class Service {
             resolve(token);
           });
         } else {
-          resolve(process.env.xAccessKey);
+          resolve(this.xAccessKey);
         }
       });
     });

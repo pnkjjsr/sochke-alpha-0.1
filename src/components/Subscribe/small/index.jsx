@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+import { service } from "@utils/api";
+
 import MuiSnackbar from "@components/Mui/Snackbar";
 
 import validation from "./_validation";
@@ -52,6 +54,20 @@ export default class SubscribeSmall extends Component {
         loading: "",
       });
     }
+
+    let data = {
+      email: email,
+      type: "mobile-home",
+    };
+
+    service
+      .post("/subscribe", data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     setTimeout(() => {
       this.setState({
