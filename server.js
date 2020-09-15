@@ -54,7 +54,7 @@ app.prepare().then(() => {
   if (isDev) {
     server.listen(port, (err) => {
       if (err) throw err;
-      console.log(`> Ready on https://localhost:${port}`);
+      console.log(`> Ready on http://127.0.0.1:${port}`);
     });
   }
 });

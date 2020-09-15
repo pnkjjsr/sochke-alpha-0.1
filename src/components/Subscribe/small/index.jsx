@@ -63,7 +63,6 @@ export default class SubscribeSmall extends Component {
     service
       .post("/subscribe", data)
       .then((res) => {
-        console.log(res);
         if (res.data.code === "subscriber/repeat") {
           return this.setState({
             n_value: res.data.message,
@@ -72,12 +71,27 @@ export default class SubscribeSmall extends Component {
           });
         }
 
+        // UI notification
         setTimeout(() => {
           this.setState({
             d_form: s.hide,
             d_notification: s.show,
           });
         }, 2000);
+
+        // push new subscriber email
+        const emailData = {
+          email: email,
+          status: "subscribed",
+        };
+        service
+          .post("/subscribe/email-push", emailData)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err.json);
+          });
       })
       .catch((err) => {
         console.log(err.json);
