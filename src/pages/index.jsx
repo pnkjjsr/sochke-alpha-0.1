@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
 import { contentfulClient, getEntry } from "@libs/contentful";
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
+import { Session } from "@utils/session";
 import Layout from "@layouts/open/index";
 
 import NetaThumb from "@components/Neta/thumb";
@@ -14,9 +15,14 @@ import s from "./home.module.scss";
 
 export default function Home({ data }) {
   const pageData = data.fields;
+  const [d_Subscribed, setd_Subscribed] = useState(true);
 
   useEffect(() => {
     firebaseCloudMessaging.init();
+
+    let session = new Session();
+    let isSubscribed = session.getSubscribed();
+    if (isSubscribed === "true") setd_Subscribed(false);
   }, []);
 
   return (
@@ -86,7 +92,7 @@ export default function Home({ data }) {
 
           {/* Subscriber */}
           <div className={s.subscribe}>
-            <SubscribeSmall />
+            {d_Subscribed ? <SubscribeSmall /> : ""}
           </div>
         </main>
       </Layout>

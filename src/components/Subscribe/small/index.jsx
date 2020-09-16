@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 import { service } from "@utils/api";
+import { Session } from "@utils/session";
 
 import MuiSnackbar from "@components/Mui/Snackbar";
 
@@ -70,6 +71,10 @@ export default class SubscribeSmall extends Component {
             loading: "",
           });
         }
+
+        // Save session
+        let session = new Session();
+        session.setSubscribed();
 
         // UI notification
         setTimeout(() => {
