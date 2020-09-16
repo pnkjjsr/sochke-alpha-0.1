@@ -1,6 +1,14 @@
 export default class Local {
     constructor() { }
 
+    setLanguage = (language) => {
+        localStorage.setItem("language", language);
+    }
+
+    getLanguage = () => {
+        return localStorage.getItem("language");
+    }
+
     login(token) {
         this.setToken(token);
     }

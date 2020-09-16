@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Link from "next/link";
 
 import SocialComponent from "./_socialComponent";
+import Language from "./_languageSelect";
 
 import s from "./open.module.scss";
 
@@ -38,6 +39,8 @@ export default class Open extends Component {
             </Link>
           </li>
         </ul>
+
+        <Language />
 
         <div className={s.bot}>
           <SocialComponent />
