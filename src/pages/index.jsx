@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
@@ -11,11 +11,19 @@ import NetaThumb from "@components/Neta/thumb";
 import TagStory from "@components/Tag/story";
 import SubscribeSmall from "@components/Subscribe/small";
 
+import GlobalContext from "./AppContext";
 import s from "./home.module.scss";
 
 export default function Home({ data }) {
   const pageData = data.fields;
   const [d_Subscribed, setd_Subscribed] = useState(true);
+  const { language } = useContext(GlobalContext);
+
+  console.log(language);
+  contentfulClient
+    .getEntries({ locale: language })
+    .then((response) => console.log(response.items))
+    .catch(console.error);
 
   useEffect(() => {
     firebaseCloudMessaging.init();
