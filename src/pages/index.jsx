@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
-import { contentfulClient, getEntry } from "@libs/contentful";
+import { contentfulClient } from "@libs/contentful";
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 import { Session } from "@utils/session";
 import Layout from "@layouts/open/index";
@@ -15,19 +15,35 @@ import GlobalContext from "./AppContext";
 import s from "./home.module.scss";
 
 export default function Home({ data }) {
-  const pageData = data.fields;
-  const [d_Subscribed, setd_Subscribed] = useState(true);
+  const pageData = data.items[0].fields;
+  // console.log(pageData);
   const { language } = useContext(GlobalContext);
 
-  console.log(language);
-  contentfulClient
-    .getEntries({ locale: language })
-    .then((response) => console.log(response.items))
-    .catch(console.error);
+  const [d_Subscribed, setd_Subscribed] = useState(true);
+  const [title, setTitle] = useState(pageData.title);
+  const [desc, setDesc] = useState(pageData.desc);
+  const [lang, setLang] = useState(language);
+
+  if (language != lang) {
+    contentfulClient
+      .getEntries({
+        content_type: "pageHead",
+        locale: language,
+        "fields.slug": "home",
+      })
+      .then((res) => {
+        let newData = res.items[0].fields;
+        setLang(language);
+        setTitle(newData.title);
+        setDesc(newData.desc);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   useEffect(() => {
-    firebaseCloudMessaging.init();
-
+    // firebaseCloudMessaging.init();
     let session = new Session();
     let isSubscribed = session.getSubscribed();
     if (isSubscribed === "true") setd_Subscribed(false);
@@ -37,8 +53,8 @@ export default function Home({ data }) {
     <div className={s.home}>
       <Layout>
         <Head>
-          <title>{pageData.title}</title>
-          <meta name="description" content={pageData.desc} />
+          <title>{title}</title>
+          <meta name="description" content={desc} />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -110,9 +126,12 @@ export default function Home({ data }) {
   );
 }
 
-export async function getStaticProps() {
-  let data = await getEntry("4AMXmeupFBkkkJwuwRM99M");
-
+export async function getServerSideProps() {
+  let data = await contentfulClient.getEntries({
+    content_type: "pageHead",
+    locale: "hi-IN",
+    "fields.slug": "home",
+  });
   return {
     props: { data },
   };

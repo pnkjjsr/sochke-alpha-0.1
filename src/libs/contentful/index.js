@@ -17,8 +17,4 @@ const contentfulClient = createClient({
   space: defaultConfig.SPACE,
 });
 
-const getEntry = (entryId) => {
-  return contentfulClient.getEntry(entryId, { include: 2 });
-};
-
-module.exports = { contentfulClient, getEntry };
+module.exports = { contentfulClient };
