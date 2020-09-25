@@ -6,7 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 import Local from "@utils/session/localStorage";
-import GlobalContext from "@pages/AppContext";
+import GlobalContext from "@contexts/GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {

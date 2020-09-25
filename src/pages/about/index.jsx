@@ -3,7 +3,7 @@ import { contentfulClient, getEntry } from "@libs/contentful";
 import Layout from "@layouts/open/index";
 
 export default function About({ data }) {
-  const pageData = data.fields;
+  const pageData = data.items[0].fields;
 
   return (
     <>
@@ -59,7 +59,11 @@ export default function About({ data }) {
 }
 
 export async function getStaticProps() {
-  let data = await getEntry("4AMXmeupFBkkkJwuwRM99M");
+  let data = await contentfulClient.getEntries({
+    content_type: "pageHead",
+    locale: "en-US",
+    "fields.slug": "home",
+  });
 
   return {
     props: { data },

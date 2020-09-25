@@ -9,7 +9,7 @@ import "@styles/global.scss";
 import tracker from "@utils/trackers";
 import LoaderPage from "@components/LoaderPage";
 
-import GlobalContext from "./AppContext"
+import GlobalContext from "@contexts/GlobalContext"
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;

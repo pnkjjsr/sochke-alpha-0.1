@@ -6,6 +6,7 @@
       {
         "root": ["."],
         "alias": {
+          "@contexts": "./src/contexts",
           "@layouts": "./src/layouts",
           "@pages": "./src/pages",
           "@components": "./src/components",

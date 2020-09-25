@@ -11,7 +11,7 @@ import NetaThumb from "@components/Neta/thumb";
 import TagStory from "@components/Tag/story";
 import SubscribeSmall from "@components/Subscribe/small";
 
-import GlobalContext from "./AppContext";
+import GlobalContext from "@contexts/GlobalContext";
 import s from "./home.module.scss";
 
 export default function Home({ data }) {
@@ -129,7 +129,7 @@ export default function Home({ data }) {
 export async function getServerSideProps() {
   let data = await contentfulClient.getEntries({
     content_type: "pageHead",
-    locale: "hi-IN",
+    locale: "en-US",
     "fields.slug": "home",
   });
   return {
