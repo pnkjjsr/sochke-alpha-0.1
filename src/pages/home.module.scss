@@ -47,7 +47,7 @@
     margin: 0 10px;
     text-align: center;
 
-    label {
+    a {
       display: inline-block;
       margin: 5px;
 
@@ -56,6 +56,23 @@
       }
       &:last-child {
         margin-right: 0;
+      }
+
+      label {
+        text-transform: capitalize;
+      }
+
+      $colors: #cef3ff, #ffcece, #d5ffce, #deceff;
+      $repeat: 10;
+      @for $i from 0 through $repeat {
+        &:nth-child(#{length($colors)}n + #{$i}) {
+          label {
+            background-color: lighten(
+              rgb(random(100), random(100), random(100)),
+              70%
+            );
+          }
+        }
       }
     }
   }

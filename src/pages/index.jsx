@@ -8,15 +8,15 @@ import { Session } from "@utils/session";
 import Layout from "@layouts/open/index";
 
 import NetaThumb from "@components/Neta/thumb";
-import TagStory from "@components/Tag/story";
 import SubscribeSmall from "@components/Subscribe/small";
 
 import GlobalContext from "@contexts/GlobalContext";
+import Tags from "@pages/index/_tags";
 import s from "./home.module.scss";
 
 export default function Home({ data }) {
-  const pageData = data.items[0].fields;
-  // console.log(pageData);
+  const pageData = data.head.items[0].fields;
+  const tagsData = data.tags.items;
   const { language } = useContext(GlobalContext);
 
   const [d_Subscribed, setd_Subscribed] = useState(true);
@@ -99,19 +99,7 @@ export default function Home({ data }) {
 
           {/* Story Tags */}
           <div className={s.tags}>
-            <Link href="/story">
-              <a>
-                <TagStory value="Today's Politics" />
-              </a>
-            </Link>
-            <TagStory value="Corona" />
-            <TagStory value="China" />
-            <TagStory value="Indian Army" />
-            <TagStory value="Today's Politics" />
-            <TagStory value="Corona" />
-            <TagStory value="China" />
-            <TagStory value="Indian Army" />
-            <TagStory value="Today's Politics" />
+            <Tags data={tagsData} />
           </div>
 
           {/* Subscriber */}
@@ -127,10 +115,17 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  let data = await contentfulClient.getEntries({
+  let data = {};
+  data.head = await contentfulClient.getEntries({
     content_type: "pageHead",
     locale: "en-US",
     "fields.slug": "home",
+  });
+
+  data.tags = await contentfulClient.getEntries({
+    content_type: "story",
+    locale: "en-US",
+    limit: 10,
   });
   return {
     props: { data },
