@@ -3,23 +3,55 @@ import IconButton from "@material-ui/core/IconButton";
 import ShareIcon from "@material-ui/icons/Share";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
+import { contentfulClient } from "@libs/contentful";
+import Date from "@utils/date";
+
 import Layout from "@layouts/open/index";
 import TagStory from "@components/Tag/story";
 
 import CommonBack from "@components/Common/back";
 
+import { getStory } from "./_api";
 import s from "./story.module.scss";
 
-export default function Story() {
+export default function Story({ story }) {
   const DEFAULT = {
-    TITLE:
-      "Notice to rebels in Rajasthan; BJP may have to reconcile to Pilot floating own party",
-    DESC:
-      "The Rajasthan assembly speaker’s notice to 19 rebel Congress MLAs and Sachin Pilot’s announcement that he will not join the BJP has led the saffron party to look at the legal implications in case of disqualification of these lawmakers and ways to stall the process. BJP is still hopeful of toppling the Ashok Gehlot government but may have to reconcile with Pilot floating his own party... The Rajasthan assembly speaker’s notice to 19 rebel Congress MLAs and Sachin Pilot’s announcement that he will not join the BJP has led the saffron party to look at the legal implications in case of disqualification of these lawmakers and ways to stall the process. BJP is still hopeful of toppling the Ashok Gehlot government but may have to reconcile with Pilot floating his own party...",
+    TITLE: story.title,
+    DESC: story.desc,
+    IMAGE: story.image,
+    TAG: story.tag,
+    DATE: story.date,
   };
 
+  let description = DEFAULT.DESC.map((para, i) => {
+    if (para.content.length == 1) {
+      return <p key={i}>{para.content[0].value}</p>;
+    } else {
+      return (
+        <p key={i}>
+          {para.content.map((text, x) => {
+            let style = {};
+            if (text.marks[0]?.type) {
+              style = { fontWeight: text.marks[0]?.type };
+            }
+
+            return (
+              <span key={x} style={style}>
+                {text.value}
+              </span>
+            );
+          })}
+        </p>
+      );
+    }
+  });
+
+  let date = new Date();
+  let formatDate = date.format(DEFAULT.DATE, "full");
+  let url = `url(${DEFAULT.IMAGE.url})`;
+
   return (
-    <div className={s.story}>
+    <div className={s.story} style={{ backgroundImage: url }}>
       <div className={s.container}>
         <Layout>
           <Head>
@@ -33,12 +65,12 @@ export default function Story() {
 
             {/* Info Bar */}
             <div className={s.info}>
-              <TagStory value="Politics" />
+              <TagStory value={DEFAULT.TAG} />
 
-              <span>Wednesday, 15 July 2020</span>
+              <span>{formatDate}</span>
             </div>
 
-            <p>{DEFAULT.DESC}</p>
+            <div className={s.description}>{description}</div>
 
             <div className={s.bottom}>
               <CommonBack />
@@ -60,4 +92,14 @@ export default function Story() {
       <style jsx global>{``}</style>
     </div>
   );
+}
+
+export async function getServerSideProps({ params }) {
+  const data = await getStory(params.slug);
+
+  return {
+    props: {
+      story: data?.story ?? null,
+    },
+  };
 }
