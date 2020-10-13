@@ -2,40 +2,38 @@ import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
-import { contentfulClient } from "@libs/contentful";
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
-import { Session } from "@utils/session";
+
+import { contentfulClient } from "@libs/contentful";
+import { Session, getLanguage } from "@utils/session";
 import Layout from "@layouts/open/index";
 
 import NetaThumb from "@components/Neta/thumb";
 import SubscribeSmall from "@components/Subscribe/small";
 
 import GlobalContext from "@contexts/GlobalContext";
+import { getHome } from "@libs/contentful/home";
 import Tags from "@pages/index/_tags";
 import s from "./home.module.scss";
 
 export default function Home({ data }) {
-  const pageData = data.head.items[0].fields;
-  const tagsData = data.tags.items;
+  const head = data.head;
+  const tags = data.tags;
   const { language } = useContext(GlobalContext);
+  const [lang, setLang] = useState(language);
+  const [tag, setTag] = useState(tags);
 
   const [d_Subscribed, setd_Subscribed] = useState(true);
-  const [title, setTitle] = useState(pageData.title);
-  const [desc, setDesc] = useState(pageData.desc);
-  const [lang, setLang] = useState(language);
+  const [title, setTitle] = useState(head.title);
+  const [desc, setDesc] = useState(head.desc);
 
   if (language != lang) {
-    contentfulClient
-      .getEntries({
-        content_type: "pageHead",
-        locale: language,
-        "fields.slug": "home",
-      })
-      .then((res) => {
-        let newData = res.items[0].fields;
+    getHome(language)
+      .then((data) => {
         setLang(language);
-        setTitle(newData.title);
-        setDesc(newData.desc);
+        setTitle(data.head.title);
+        setDesc(data.head.desc);
+        setTag(data.tags);
       })
       .catch((err) => {
         console.log(err);
@@ -99,7 +97,7 @@ export default function Home({ data }) {
 
           {/* Story Tags */}
           <div className={s.tags}>
-            <Tags data={tagsData} />
+            <Tags data={tag} />
           </div>
 
           {/* Subscriber */}
@@ -114,19 +112,19 @@ export default function Home({ data }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req }) {
   let data = {};
-  data.head = await contentfulClient.getEntries({
-    content_type: "pageHead",
-    locale: "en-US",
-    "fields.slug": "home",
-  });
+  let cookie = req.headers.cookie;
 
-  data.tags = await contentfulClient.getEntries({
-    content_type: "story",
-    locale: "en-US",
-    limit: 10,
-  });
+  await getLanguage(cookie)
+    .then(async (res) => {
+      let language = res;
+      data = await getHome(language);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
   return {
     props: { data },
   };

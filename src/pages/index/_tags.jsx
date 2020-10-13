@@ -5,7 +5,6 @@ import TagStory from "@components/Tag/story";
 
 export default function Tags(props) {
   const tagData = props.data;
-  const [tags, setTags] = useState([]);
 
   useEffect(() => {}, []);
 
@@ -15,9 +14,9 @@ export default function Tags(props) {
 
   return tagData.map((item, key) => {
     return (
-      <Link key={key} href={`story/${item.fields.slug}`}>
+      <Link key={key} href={`story/${item.slug}`}>
         <a>
-          <TagStory value={item.fields.tag} />
+          <TagStory value={item.tag} />
         </a>
       </Link>
     );

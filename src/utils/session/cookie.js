@@ -1,11 +1,11 @@
-// import cookie from 'utils/js-cookie';
+import Cookies from 'js-cookie'
 
 export default class Cookie {
     constructor() { }
 
     setCookie = (key, value) => {
         if (process.browser) {
-            cookie.set(key, value, {
+            Cookies.set(key, value, {
                 expires: 1,
                 path: '/'
             });
@@ -14,7 +14,7 @@ export default class Cookie {
 
     removeCookie = (key) => {
         if (process.browser) {
-            cookie.remove(key, {
+            Cookies.remove(key, {
                 expires: 1
             });
         }
@@ -22,12 +22,12 @@ export default class Cookie {
 
     getCookie = (key, req) => {
         return process.browser ?
-            getCookieFromBrowser(key) :
-            getCookieFromServer(key, req);
+            this.getCookieFromBrowser(key) :
+            this.getCookieFromServer(key, req);
     };
 
     getCookieFromBrowser = key => {
-        return cookie.get(key);
+        return Cookies.get(key);
     };
 
     getCookieFromServer = (key, req) => {

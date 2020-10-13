@@ -4,16 +4,8 @@ import PropTypes from "prop-types";
 import s from "./story.module.scss";
 
 export default class TagStory extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: this.props.value,
-    };
-  }
-
   render() {
-    const { value } = this.state;
+    const { value } = this.props;
 
     return <label className={s.tag}>{value}</label>;
   }

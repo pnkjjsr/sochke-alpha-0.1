@@ -5,7 +5,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
-import Local from "@utils/session/localStorage";
+import { Cookie } from "@utils/session";
+
 import GlobalContext from "@contexts/GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,14 +18,17 @@ const useStyles = makeStyles((theme) => ({
 export default function LanguageSelect() {
   const classes = useStyles();
   const { setLanguage } = useContext(GlobalContext);
-  const [lang, setLang] = useState("en-US");
+
+  let cookie = new Cookie();
+  let langauge = cookie.getCookie("language");
+  const [lang, setLang] = useState(langauge || "en-US");
 
   const handleChange = (event) => {
     setLang(event.target.value);
     setLanguage(event.target.value);
 
-    let local = new Local();
-    local.setLanguage(event.target.value);
+    let cookie = new Cookie();
+    cookie.setCookie("language", event.target.value);
   };
 
   return (
