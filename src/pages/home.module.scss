@@ -80,7 +80,8 @@
   .subscribe {
     position: fixed;
     bottom: 10px;
-    left: calc(50% - 145px);
+    left: calc(50% - 150px);
+    max-width: 300px;
   }
 }
 

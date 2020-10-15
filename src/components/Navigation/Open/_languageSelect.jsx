@@ -29,6 +29,9 @@ export default function LanguageSelect() {
 
     let cookie = new Cookie();
     cookie.setCookie("language", event.target.value);
+
+    //@TODO: firebase won't accept other than __session as cookie
+    cookie.setCookie("__session", "hi-IN");
   };
 
   return (

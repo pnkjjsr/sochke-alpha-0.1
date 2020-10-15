@@ -108,9 +108,8 @@ export default function Story({ story }) {
 
 export async function getServerSideProps({ req, params }) {
   let data = {};
-  let cookie = req.headers.cookie;
 
-  await getLanguage(cookie)
+  await getLanguage(req)
     .then(async (res) => {
       let language = res;
       data = await getStory(params.slug, language);

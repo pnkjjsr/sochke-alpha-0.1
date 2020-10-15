@@ -114,9 +114,8 @@ export default function Home({ data }) {
 
 export async function getServerSideProps({ req }) {
   let data = {};
-  let cookie = req.headers.cookie;
 
-  await getLanguage(cookie)
+  await getLanguage(req)
     .then(async (res) => {
       let language = res;
       data = await getHome(language);
