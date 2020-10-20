@@ -86,8 +86,49 @@
     bottom: 10px;
     left: calc(50% - 150px);
     max-width: 300px;
+    margin: auto;
   }
 }
 
-@include media-breakpoint-up(xs) {
+@include media-breakpoint-up(sm) {
+  .home {
+    background-size: cover;
+    h1 {
+      max-width: 100%;
+      margin: 0 auto 10px;
+    }
+    .neta {
+      justify-content: center;
+      margin-bottom: 0;
+    }
+    .subscribe {
+      bottom: 0;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .home {
+    background-image: none;
+    background-color: #fff;
+
+    h1 {
+      max-width: 400px;
+      margin: 30px auto;
+      color: $base-color;
+      font-size: rem(30);
+    }
+
+    .neta {
+      margin-bottom: 30px;
+    }
+
+    .tags {
+    }
+
+    .subscribe {
+      position: static;
+      margin-top: 100px;
+    }
+  }
 }

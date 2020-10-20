@@ -14,8 +14,9 @@
   }
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(md) {
   .logo {
     color: $color-primary;
+    text-shadow: none;
   }
 }

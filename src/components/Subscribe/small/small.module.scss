@@ -81,3 +81,27 @@
     }
   }
 }
+
+@include media-breakpoint-up(md) {
+  .subscribe_small {
+    padding-bottom: 10px;
+    .form {
+      .note {
+        color: $base-color;
+        text-shadow: none;
+      }
+    }
+
+    .notification {
+      background-color: $color-green;
+
+      div {
+        color: $color-white;
+      }
+
+      > i {
+        color: $color-white;
+      }
+    }
+  }
+}

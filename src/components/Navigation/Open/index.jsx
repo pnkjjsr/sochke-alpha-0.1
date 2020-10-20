@@ -23,21 +23,6 @@ export default class Open extends Component {
               <a>Home</a>
             </Link>
           </li>
-          <li>
-            <Link href="/neta">
-              <a>Neta</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/profile">
-              <a>Profile</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/story">
-              <a>Story</a>
-            </Link>
-          </li>
         </ul>
 
         <Language />

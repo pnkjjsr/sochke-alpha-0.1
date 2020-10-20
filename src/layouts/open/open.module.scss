@@ -25,7 +25,7 @@
   }
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(md) {
   .drawer {
     button {
       color: $base-color;

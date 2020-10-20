@@ -33,3 +33,12 @@
     font-size: rem(14);
   }
 }
+
+@include media-breakpoint-up(md) {
+  .thumb {
+    figcaption {
+      color: $base-color;
+      font-size: rem(14);
+    }
+  }
+}
