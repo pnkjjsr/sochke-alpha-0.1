@@ -41,6 +41,10 @@
     &::-webkit-scrollbar-thumb {
       background: transparent;
     }
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .tags {
