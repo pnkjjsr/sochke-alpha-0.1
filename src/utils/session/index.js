@@ -4,17 +4,16 @@ export { default as Local } from './localStorage';
 export { default as Cookie } from './cookie';
 
 export const getLanguage = (req) => {
-    let cookie = req.headers.cookie;
-    let session = req.cookies.__session;
+    const isDev = process.env.NODE_ENV !== "production";
+    //@TODO: firebase only pass special cookie name "__session".  Othe than that key cookie not available on server.
+    let cookie = isDev ? req.headers.cookie : req.cookies.__session
 
     return new Promise((resolve, reject) => {
         let name = "language" + "=";
-        if (!cookie && !session) resolve("en-US");
+        if (!cookie) resolve("en-US");
 
-        //@TODO: firebase only pass special cookie name "__session".  Othe than that key cookie not available on server.
-        if (session) resolve(session);
-
-        let ca = cookie.split(";");
+        let splitter = isDev ? ";" : "?";
+        let ca = cookie.split(splitter);
         ca.map((c, i) => {
             while (c.charAt(0) == " ") {
                 c = c.substring(1);
