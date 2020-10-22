@@ -22,7 +22,7 @@ export default function Layout({ children }) {
       {children}
 
       <footer id={s.footer}>
-        <div class={s.links}>
+        <div className={s.links}>
           <Link href="/">
             <a>Home</a>
           </Link>
@@ -33,7 +33,7 @@ export default function Layout({ children }) {
             <a>Cookies</a>
           </Link>
         </div>
-        <div class={s.copy}>© 2020 Sochke</div>
+        <div className={s.copy}>© 2020 Sochke</div>
       </footer>
     </>
   );

@@ -21,6 +21,7 @@ export default function Story({ story }) {
   const [title, setTitle] = useState(story.title);
   const [desc, setDesc] = useState(story.desc);
   const [tag, setTag] = useState(story.tag);
+  const [url, setUrl] = useState(`url(${story.image.url})`);
 
   if (language != lang) {
     getStory(story.slug, language)
@@ -60,10 +61,21 @@ export default function Story({ story }) {
 
   let date = new Date();
   let formatDate = date.format(story.date, "full");
-  let url = `url(${story.image.url})`;
+
+  useEffect(() => {
+    if (window.innerWidth >= 768) {
+      setUrl(`url("")`);
+    }
+  }, []);
 
   return (
     <div className={s.story} style={{ backgroundImage: url }}>
+      <div className={s.banner}>
+        <figure>
+          <img src={story.image.url} alt={title} />
+        </figure>
+      </div>
+
       <div className={s.container}>
         <Layout>
           <Head>
