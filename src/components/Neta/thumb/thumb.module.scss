@@ -36,9 +36,15 @@
 
 @include media-breakpoint-up(md) {
   .thumb {
+    width: 200px;
+
+    figure {
+      width: 150px;
+      height: 150px;
+    }
     figcaption {
       color: $base-color;
-      font-size: rem(14);
+      font-size: rem(16);
     }
   }
 }

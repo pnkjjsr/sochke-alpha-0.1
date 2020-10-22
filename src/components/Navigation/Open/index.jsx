@@ -23,6 +23,16 @@ export default class Open extends Component {
               <a>Home</a>
             </Link>
           </li>
+          <li>
+            <Link href="/about">
+              <a>About</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/cookies">
+              <a>Cookies</a>
+            </Link>
+          </li>
         </ul>
 
         <Language />

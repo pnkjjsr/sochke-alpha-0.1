@@ -111,16 +111,19 @@
   .home {
     background-image: none;
     background-color: #fff;
+    // background: #fff
+    //   url(https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fregister%2Ftop.jpg?alt=media)
+    //   top center no-repeat;
 
     h1 {
-      max-width: 400px;
-      margin: 30px auto;
+      max-width: 100%;
+      margin: 30px auto 50px;
       color: $base-color;
-      font-size: rem(30);
+      font-size: rem(36);
     }
 
     .neta {
-      margin-bottom: 30px;
+      margin-bottom: 50px;
     }
 
     .tags {
@@ -128,7 +131,7 @@
 
     .subscribe {
       position: static;
-      margin-top: 100px;
+      margin: 50px auto;
     }
   }
 }

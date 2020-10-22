@@ -60,8 +60,8 @@ export default function Home({ data }) {
           {/* heading */}
           <h1>
             {/* {pageData.title} */}
-            Political networking platform for <span>leaders</span> &amp;{" "}
-            <span className={s.grn}>citizens</span>.
+            Political networking platform for <span>citizens</span> &amp;{" "}
+            <span className={s.grn}>leaders</span>.
           </h1>
 
           {/* Neta */}

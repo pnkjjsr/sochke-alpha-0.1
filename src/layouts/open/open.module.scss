@@ -12,11 +12,27 @@
   z-index: $footer;
   left: 0;
   bottom: 0;
-  display: flex;
+  // display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 12px;
+  height: 410px;
+  padding: 10px 12px 0;
+  background: url(https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fhome%2Fbg-home-web.jpg?alt=media&token=d5d69207-911f-46ba-9dcf-140548292ccc)
+    center top no-repeat;
+  text-align: center;
+
+  .links {
+    a {
+      display: inline-block;
+      margin: 0 20px;
+      font-weight: $font-weight-light;
+    }
+  }
+  .copy {
+    font-weight: $font-weight-light;
+  }
 }
 
 .drawer {
@@ -30,5 +46,10 @@
     button {
       color: $base-color;
     }
+  }
+
+  #footer {
+    display: block;
+    position: static;
   }
 }
