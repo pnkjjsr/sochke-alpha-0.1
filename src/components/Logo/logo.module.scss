@@ -8,6 +8,10 @@
   font-weight: $font-weight-black;
   text-shadow: 1px 1px 1px $base-color;
 
+  a {
+    text-decoration: none;
+  }
+
   span {
     font-size: rem(10);
     font-weight: $font-weight-light;
