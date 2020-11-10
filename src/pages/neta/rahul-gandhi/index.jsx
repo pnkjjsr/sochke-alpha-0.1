@@ -33,9 +33,11 @@ export default function Story({ data }) {
             <meta name="description" content={desc} />
           </Head>
 
-          <Photo />
-          {isSmallDevice ? <DetailM /> : <DetailW />}
-          <Bottom />
+          <main>
+            <Photo />
+            {isSmallDevice ? <DetailM /> : <DetailW />}
+            <Bottom />
+          </main>
         </Layout>
       </div>
 

@@ -68,19 +68,6 @@ export default class Detail extends Component {
                 end={2019}
                 value={100}
               />
-
-              <TenureSmall
-                title="Chief Minister Of Gujarat"
-                start={2007}
-                end={2012}
-                value={100}
-              />
-              <TenureSmall
-                title="Chief Minister Of Gujarat"
-                start={2002}
-                end={2007}
-                value={100}
-              />
             </div>
             <div>
               <Feature />

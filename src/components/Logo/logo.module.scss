@@ -3,12 +3,12 @@
 .logo {
   display: flex;
   align-items: flex-start;
-  color: $color-white;
   font-size: rem(24);
   font-weight: $font-weight-black;
   text-shadow: 1px 1px 1px $base-color;
 
   a {
+    color: $color-white;
     text-decoration: none;
   }
 
@@ -20,7 +20,10 @@
 
 @include media-breakpoint-up(md) {
   .logo {
-    color: $color-primary;
     text-shadow: none;
+
+    a {
+      color: $color-primary;
+    }
   }
 }

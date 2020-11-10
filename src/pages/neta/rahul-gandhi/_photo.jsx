@@ -9,8 +9,6 @@ export default class Photo extends Component {
     this.state = {
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fprofile%2Fnarendra-modi.png?alt=media&token=68d77a43-4f01-451b-86ce-cf641db45651",
-      imgSrcLg:
-        "https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fprofile%2Fnarendra-modi-lg.jpg?alt=media&token=1fdc9c4c-767c-4d58-b771-accc417a98d4",
       isSmallDevice: true,
     };
   }
@@ -51,12 +49,13 @@ export default class Photo extends Component {
   };
 
   renderWeb = () => {
-    const { imgSrc, imgSrcLg } = this.state;
+    const { imgSrc } = this.state;
     return (
       <div className={s.photo}>
         <picture>
-          <source media="(min-width:735px)" srcSet={imgSrcLg} />
+          {/* <source media="(min-width:768px)" srcSet={imgSrc} /> */}
           <source media="(min-width:568px)" srcSet={imgSrc} />
+
           <img src={imgSrc} alt="Flowers" />
         </picture>
       </div>

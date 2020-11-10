@@ -226,8 +226,7 @@
 
     .detail {
       position: static;
-      min-width: $sm;
-      max-width: $lg;
+      width: $lg;
       margin: auto;
       padding: ($gap * 5) 0;
 

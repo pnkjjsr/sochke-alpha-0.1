@@ -1,19 +1,19 @@
 import React, { Component, Fragment } from "react";
 
 import TextMobileStepper from "./_stepper";
-import s from "./profile.module.scss";
+import s from "./neta.module.scss";
 
 export default class Feature extends Component {
   render() {
     return (
       <>
         <div className={s.feature}>
-          <div className={`${s.item}`}>
-            <div name="achievement">10</div>
+          <div className={`${s.item} ${s.active}`}>
+            <div name="achievement">28</div>
             <label htmlFor="achievement">Achievement</label>
           </div>
 
-          <div className={`${s.item} ${s.active}`}>
+          <div className={s.item}>
             <div name="work">15</div>
             <label htmlFor="work">Work</label>
           </div>

@@ -8,12 +8,12 @@ export default class Feature extends Component {
     return (
       <>
         <div className={s.feature}>
-          <div className={`${s.item} ${s.active}`}>
-            <div name="achievement">28</div>
+          <div className={`${s.item}`}>
+            <div name="achievement">10</div>
             <label htmlFor="achievement">Achievement</label>
           </div>
 
-          <div className={s.item}>
+          <div className={`${s.item} ${s.active}`}>
             <div name="work">15</div>
             <label htmlFor="work">Work</label>
           </div>

@@ -58,7 +58,7 @@ export default class Detail extends Component {
             </div>
 
             <div className={s.item}>
-              <div name="achievement">10</div>
+              <div name="achievement">28</div>
               <label htmlFor="achievement">Achievement</label>
             </div>
 

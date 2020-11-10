@@ -16,38 +16,29 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const tutorialSteps = [
   {
     label: [
-      "1 All farmers covered under the PM Kisan Yojana",
-      "Ensuring pension to farmers, laborers, shopkeepers",
-      "Ministry of Jal Shakti constituted to end silos on important subject like water",
-      "Special fund of Rs. 25,000 crore for completing housing projects for the middle class",
-      "Regularising unauthorized colonies which benefits 40 lakh people of Delhi",
+      "Completed the country’s largest Sardar Sarovar Dam, which was stuck for 65 years due to the construction of Iron Man Patel",
+      "Built the country’s longest Bhupendra Hazarika bridge 9.15km which the previous government had stopped due to fear of China",
+      "Built the country’s longest Chanani-Nowshera tunnel which was stuck by the previous government",
+      "World’s highest railway bridge built on river Chenab whose work was stopped in 2008",
+      "One rank one pension given to the army, which the previous government was cheating for 45 years",
     ],
   },
   {
     label: [
-      "2 All farmers covered under the PM Kisan Yojana",
-      "Ensuring pension to farmers, laborers, shopkeepers",
-      "Ministry of Jal Shakti constituted to end silos on important subject like water",
-      "Special fund of Rs. 25,000 crore for completing housing projects for the middle class",
-      "Regularising unauthorized colonies which benefits 40 lakh people of Delhi",
+      "The route of metro train was 250 km in 2014, now it is 650 km in 2019, Modi government completed the route of 400 km in 5 years",
+      "Modi government completed the country’s first 14-lane highway Delhi-Meerut Express in just 1 year in 4 months",
+      "The country’s first waterway was built in the Ganges river (between Benares to Haldia), it also started in four years.",
+      "Completed the construction of the longest extra-dosed bridge in the country on river Narmada in Bharuch district",
+      "75 MW of Mirzapur, the country’s largest solar plant, was completed in UP",
     ],
   },
   {
     label: [
-      "3 All farmers covered under the PM Kisan Yojana",
-      "Ensuring pension to farmers, laborers, shopkeepers",
-      "Ministry of Jal Shakti constituted to end silos on important subject like water",
-      "Special fund of Rs. 25,000 crore for completing housing projects for the middle class",
-      "Regularising unauthorized colonies which benefits 40 lakh people of Delhi",
-    ],
-  },
-  {
-    label: [
-      "4 All farmers covered under the PM Kisan Yojana",
-      "Ensuring pension to farmers, laborers, shopkeepers",
-      "Ministry of Jal Shakti constituted to end silos on important subject like water",
-      "Special fund of Rs. 25,000 crore for completing housing projects for the middle class",
-      "Regularising unauthorized colonies which benefits 40 lakh people of Delhi",
+      "Sardar Patel, the world’s most appropriate statue Statue of Unit, was completed in a timely manner",
+      "Electricity was 70% in rural town village, now 95% in 2014",
+      "Launched the country’s largest gas distribution scheme 400 districts are connected to the network",
+      "GPG gas has been given to rural poor women under Ujjwala scheme so far more than 6 crore people have availed",
+      "Generics (Jan Aushadhi) medicine center was only 80 till 2014, now it is more than 5000, here, 70% cheaper medicine is available, Heart rate is reduced by 80%",
     ],
   },
 ];

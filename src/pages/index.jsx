@@ -67,7 +67,7 @@ export default function Home({ data }) {
           {/* Neta */}
           <div className={s.neta}>
             <div>
-              <Link href="/neta">
+              <Link href="/neta/narendra-modi">
                 <a>
                   <NetaThumb
                     name="Narendra Modi"
@@ -78,21 +78,29 @@ export default function Home({ data }) {
               </Link>
             </div>
 
-            <div>
-              <NetaThumb
-                name="Rahul Gandhi"
-                src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fthumb_90x90%2Frahul-gandhi.png?alt=media&token=c6368ad6-1100-4b7e-a1c9-111a31f6d374"
-                like="450"
-              />
+            {/* <div>
+              <Link href="/neta/rahul-gandhi">
+                <a>
+                  <NetaThumb
+                    name="Rahul Gandhi"
+                    src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fthumb_90x90%2Frahul-gandhi.png?alt=media&token=c6368ad6-1100-4b7e-a1c9-111a31f6d374"
+                    like="450"
+                  />
+                </a>
+              </Link>
             </div>
 
             <div>
-              <NetaThumb
-                name="Arvind Kejriwal"
-                src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fthumb_90x90%2Farvind-kejriwal.png?alt=media&token=90e5f567-8b3c-43df-91b3-c2d111cfaa48"
-                like="780"
-              />
-            </div>
+              <Link href="/neta/arvind-kejriwal">
+                <a>
+                  <NetaThumb
+                    name="Arvind Kejriwal"
+                    src="https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fthumb_90x90%2Farvind-kejriwal.png?alt=media&token=90e5f567-8b3c-43df-91b3-c2d111cfaa48"
+                    like="780"
+                  />
+                </a>
+              </Link>
+            </div> */}
           </div>
 
           {/* Story Tags */}
