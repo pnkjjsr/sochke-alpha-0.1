@@ -120,6 +120,15 @@
       margin: 30px auto 50px;
       color: $base-color;
       font-size: rem(36);
+
+      span {
+        // color: #af632d;
+        color: darken($color-safron, 20%);
+
+        &.grn {
+          color: #42852d;
+        }
+      }
     }
 
     .neta {
