@@ -29,9 +29,9 @@ export default function Layout({ children }) {
           <Link href="/about">
             <a>About</a>
           </Link>
-          <Link href="/cookies">
+          {/* <Link href="/cookies">
             <a>Cookies</a>
-          </Link>
+          </Link> */}
         </div>
         <div className={s.copy}>© 2020 Sochke</div>
       </footer>

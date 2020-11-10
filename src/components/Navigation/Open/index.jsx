@@ -28,11 +28,11 @@ export default class Open extends Component {
               <a>About</a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/cookies">
               <a>Cookies</a>
             </Link>
-          </li>
+          </li> */}
         </ul>
 
         <Language />

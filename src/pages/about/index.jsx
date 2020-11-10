@@ -8,7 +8,7 @@ export default function About({ data }) {
   const pageData = data.items[0].fields;
 
   return (
-    <>
+    <div className={s.about}>
       <Layout>
         <Head>
           <title>{pageData.title}</title>
@@ -16,7 +16,7 @@ export default function About({ data }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main className={s.about}>
+        <main>
           <div>
             <h1>About Us</h1>
             <section className="context__section">
@@ -59,7 +59,7 @@ export default function About({ data }) {
       </Layout>
       <style jsx>{``}</style>
       <style jsx global>{``}</style>
-    </>
+    </div>
   );
 }
 
