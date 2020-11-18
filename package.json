@@ -40,7 +40,7 @@
     "react-swipeable-views": "^0.13.9"
   },
   "devDependencies": {
-    "contentful-import": "^7.7.12",
+    "contentful-import": "^7.9.21",
     "firebase-functions-test": "^0.1.6",
     "firebase-tools": "^8.0.1",
     "prop-types": "latest",
