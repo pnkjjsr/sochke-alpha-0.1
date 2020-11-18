@@ -21,6 +21,12 @@ export default function About({ data }) {
             <h1>About Us</h1>
             <section className="context__section">
               <h2>Introduction</h2>
+
+              <p>
+                Sochke (Alpha 0.1), platform helps you get updated with all the
+                latest political news.
+              </p>
+
               <p>
                 Sochke is a technology and data-driven platform that enables
                 citizens to connect with their area minister and minister’s

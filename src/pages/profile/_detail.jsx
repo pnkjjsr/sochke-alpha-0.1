@@ -62,6 +62,14 @@ export default class Detail extends Component {
           end={2007}
           value={100}
         />
+
+        <p className="notice">
+          Disclaimer: This information is an archive of the candidate's
+          self-declared affidavit that was filed during the elections. The
+          current status of this information may be different. For the latest
+          available information, please refer to the affidavit filed by the
+          candidate to the Election Commission in the most recent election.
+        </p>
       </div>
     );
   }

@@ -13,9 +13,9 @@ export default class Bottom extends Component {
         <CommonBack />
 
         <div className={s.action}>
-          <IconButton size="small" aria-label="share">
+          {/* <IconButton size="small" aria-label="share">
             <ShareIcon /> <label htmlFor="share">Share</label>
-          </IconButton>
+          </IconButton> */}
         </div>
       </div>
     );

@@ -34,6 +34,9 @@ export default function Layout({ children }) {
           <Link href="/about">
             <a>About</a>
           </Link>
+          <Link href="/privacy">
+            <a>Privacy</a>
+          </Link>
           {/* <Link href="/cookies">
             <a>Cookies</a>
           </Link> */}
