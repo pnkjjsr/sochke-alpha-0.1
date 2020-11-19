@@ -27,6 +27,13 @@ export default function Home({ data }) {
   const [title, setTitle] = useState(head.title);
   const [desc, setDesc] = useState(head.desc);
 
+  const DEFAULT = {
+    title: title,
+    defaultOGURL: `https://sochke.com`,
+    defaultOGImage:
+      "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
+  };
+
   if (language != lang) {
     getHome(language)
       .then((data) => {
@@ -53,7 +60,12 @@ export default function Home({ data }) {
         <Head>
           <title>{title}</title>
           <meta name="description" content={desc} />
-          <link rel="icon" href="/favicon.ico" />
+
+          <meta property="og:url" content={DEFAULT.defaultOGURL} />
+          <meta property="og:title" content={DEFAULT.title} />
+          <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
+          <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
+          <meta property="og:image" content={DEFAULT.defaultOGImage} />
         </Head>
 
         <main>
