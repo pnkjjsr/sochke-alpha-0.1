@@ -13,6 +13,7 @@
   }
 
   span {
+    color: $color-white;
     font-size: rem(10);
     font-weight: $font-weight-light;
   }
@@ -23,6 +24,10 @@
     text-shadow: none;
 
     a {
+      color: $color-primary;
+    }
+
+    span {
       color: $color-primary;
     }
   }

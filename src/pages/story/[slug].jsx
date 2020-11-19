@@ -14,7 +14,7 @@ import GlobalContext from "@contexts/GlobalContext";
 import { getStory } from "@libs/contentful/story";
 import s from "./story.module.scss";
 
-export default function Story({ story }) {
+export default function Story({ story, param }) {
   const { language } = useContext(GlobalContext);
   const [lang, setLang] = useState(language);
 
@@ -22,6 +22,12 @@ export default function Story({ story }) {
   const [desc, setDesc] = useState(story.desc);
   const [tag, setTag] = useState(story.tag);
   const [url, setUrl] = useState(`url(${story.image.url})`);
+
+  const DEFAULT = {
+    title: title,
+    defaultOGURL: `https://sochke.com/story/${param}`,
+    defaultOGImage: story.image.url,
+  };
 
   if (language != lang) {
     getStory(story.slug, language)
@@ -80,7 +86,12 @@ export default function Story({ story }) {
         <Layout>
           <Head>
             <title>{title}</title>
-            {/* <meta name="description" content={description} /> */}
+
+            <meta property="og:url" content={DEFAULT.defaultOGURL} />
+            <meta property="og:title" content={DEFAULT.title} />
+            <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
+            <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
+            <meta property="og:image" content={DEFAULT.defaultOGImage} />
           </Head>
 
           <main>
@@ -133,6 +144,7 @@ export async function getServerSideProps({ req, params }) {
   return {
     props: {
       story: data?.story ?? null,
+      param: params.slug,
     },
   };
 }

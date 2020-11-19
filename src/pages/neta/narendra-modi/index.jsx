@@ -19,6 +19,14 @@ export default function Story({ data }) {
   );
   const [isSmallDevice, setIsSmallDevice] = useState(true);
 
+  const DEFAULT = {
+    title: title,
+    desc: desc,
+    defaultOGURL: `https://sochke.com/neta/narendra-modi`,
+    defaultOGImage:
+      "https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fprofile%2Fnarendra-modi.png?alt=media&token=68d77a43-4f01-451b-86ce-cf641db45651",
+  };
+
   useEffect(() => {
     let screenWidth = window.innerWidth;
     screenWidth >= 768 ? setIsSmallDevice(false) : null;
@@ -30,7 +38,12 @@ export default function Story({ data }) {
         <Layout>
           <Head>
             <title>{title}</title>
-            <meta name="description" content={desc} />
+            <meta name="description" content={DEFAULT.desc} />
+            <meta property="og:url" content={DEFAULT.defaultOGURL} />
+            <meta property="og:title" content={DEFAULT.title} />
+            <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
+            <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
+            <meta property="og:image" content={DEFAULT.defaultOGImage} />
           </Head>
 
           <Photo />
