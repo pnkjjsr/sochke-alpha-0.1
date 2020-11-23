@@ -40,7 +40,7 @@ export default function About({ data }) {
               <p>
                 You can contact with 'Sochke' via email at{" "}
                 <b>
-                  <a href="mailto:">contact@sochke.com</a>
+                  <a href="mailto:">policy@sochke.com</a>
                 </b>
               </p>
             </section>
