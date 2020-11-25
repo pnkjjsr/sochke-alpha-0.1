@@ -35,7 +35,7 @@ export default class Detail extends Component {
 
         <Info />
 
-        <TwitSmall />
+        {/* <TwitSmall /> */}
 
         <TenureSmall
           title="Prime Minister Of India"

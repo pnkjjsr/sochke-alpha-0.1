@@ -41,11 +41,11 @@ export default class Photo extends Component {
           </svg>
         </figure>
 
-        <div className={s.count}>
+        {/* <div className={s.count}>
           <IconButton size="small" aria-label="view">
             <VisibilityIcon /> <label htmlFor="view">10K</label>
           </IconButton>
-        </div>
+        </div> */}
       </div>
     );
   };

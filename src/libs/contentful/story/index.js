@@ -1,10 +1,15 @@
 import { contentfulClient } from "@libs/contentful";
 
-function parseStory({ fields, sys }) {
+function parseImages(fields) {
+    return fields.fields.file.url
+
+}
+
+function parseStory({ fields, sys, cb = parseImages }) {
     return {
         slug: fields.slug,
         tag: fields.tag,
-        image: fields.image.fields.file,
+        image: fields?.image?.map(cb),
         title: fields.title,
         desc: fields.desc.content,
         date: sys.createdAt
@@ -12,7 +17,7 @@ function parseStory({ fields, sys }) {
 }
 
 function parseStoryEntries(entries, cb = parseStory) {
-    return entries?.items?.map(cb)
+    return entries?.items?.map(cb);
 }
 
 export async function getStory(slug, lang) {

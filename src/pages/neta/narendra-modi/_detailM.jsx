@@ -78,7 +78,7 @@ export default class Detail extends Component {
           </div>
 
           <div className={s.display}>
-            <TwitSmall color="white" />
+            {/* <TwitSmall color="white" /> */}
             <TenureSmall
               title="Prime Minister Of India"
               start={2019}

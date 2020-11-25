@@ -73,7 +73,7 @@ export async function getStaticProps() {
   let data = await contentfulClient.getEntries({
     content_type: "pageHead",
     locale: "en-US",
-    "fields.slug": "home",
+    "fields.slug": "about",
   });
 
   return {
