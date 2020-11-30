@@ -122,7 +122,7 @@ export default function Home({ data }) {
 
           {/* Subscriber */}
           <div className={s.subscribe}>
-            {/* {d_Subscribed ? <SubscribeSmall /> : ""} */}
+            {d_Subscribed ? <SubscribeSmall /> : ""}
           </div>
         </main>
       </Layout>
