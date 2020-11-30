@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 
-import { contentfulClient } from "@libs/contentful";
 import { Session, getLanguage } from "@utils/session";
 import Layout from "@layouts/open/index";
 
@@ -48,7 +47,7 @@ export default function Home({ data }) {
   }
 
   useEffect(() => {
-    // firebaseCloudMessaging.init();
+    firebaseCloudMessaging.init();
     let session = new Session();
     let isSubscribed = session.getSubscribed();
     if (isSubscribed === "true") setd_Subscribed(false);
