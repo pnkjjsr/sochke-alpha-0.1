@@ -152,7 +152,7 @@ export default class SubscribeSmall extends Component {
               </Button>
             </div>
 
-            <div className={s.note}>Get latest update of Indian Politcs</div>
+            <div className={s.note}>Get latest update of Indian Politics</div>
           </div>
         </form>
 

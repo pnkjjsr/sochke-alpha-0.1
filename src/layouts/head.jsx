@@ -75,7 +75,6 @@ class Head extends React.Component {
           />
           <link rel="icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
-          {/* <link rel="preload" /> */}
         </NextHead>
 
         <noscript>

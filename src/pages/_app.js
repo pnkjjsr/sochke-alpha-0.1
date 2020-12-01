@@ -6,7 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "@styles/theme";
 import "@styles/global.scss";
 
-import tracker from "@utils/trackers";
+import analytics from "@utils/trackers";
 import LoaderPage from "@components/LoaderPage";
 
 import GlobalContext from "@contexts/GlobalContext"
@@ -23,7 +23,7 @@ export default function MyApp(props) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
 
-    tracker();
+    analytics();
   }, []);
 
   return (
