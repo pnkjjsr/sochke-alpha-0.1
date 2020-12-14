@@ -78,14 +78,14 @@ export default function Home({ data }) {
             <span className={s.grn}>leaders</span>.
           </h1>
 
-          {/* Neta */}
-          <div className={s.neta}>
-            <Thumbs data={ministers} />
-          </div>
-
           {/* Story Tags */}
           <div className={s.tags}>
             <Tags data={tag} />
+          </div>
+
+          {/* Neta */}
+          <div className={s.neta}>
+            <Thumbs data={ministers} />
           </div>
 
           {/* Subscriber */}
