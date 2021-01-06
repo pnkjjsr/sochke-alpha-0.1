@@ -54,7 +54,7 @@ class Head extends React.Component {
             content={DEFAULT_CONFIG.defaultDescription}
           /> */}
           {/* <meta name="twitter:site" content={DEFAULT_CONFIG.defaultOGURL} /> */}
-          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:card" content="summary" />
           {/* <meta name="twitter:image" content={DEFAULT_CONFIG.defaultOGImage} /> */}
           {/* <meta property="og:image" content={DEFAULT_CONFIG.defaultOGImage} /> */}
           <meta property="og:image:width" content="1200" />

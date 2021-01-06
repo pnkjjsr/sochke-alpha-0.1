@@ -18,16 +18,16 @@
     "clean": "rimraf .next && rimraf package-lock.json && rimraf .firebase"
   },
   "dependencies": {
-    "@material-ui/core": "latest",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.56",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "contentful": "^7.14.4",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "contentful": "^7.15.2",
     "dotenv": "8.2.0",
     "express": "^4.17.1",
     "firebase": "^7.20.5",
     "firebase-admin": "^8.9.0",
-    "firebase-functions": "^3.3.0",
+    "firebase-functions": "^3.13.0",
     "js-cookie": "^2.2.1",
     "localforage": "^1.7.4",
     "moment": "^2.29.0",
@@ -38,12 +38,12 @@
     "react-swipeable-views": "^0.13.9"
   },
   "devDependencies": {
-    "contentful-import": "^7.9.21",
+    "contentful-import": "^7.9.29",
     "firebase-functions-test": "^0.1.6",
-    "firebase-tools": "^8.0.1",
+    "firebase-tools": "^8.20.0",
     "prop-types": "latest",
     "rimraf": "^3.0.2",
-    "sass": "^1.26.8"
+    "sass": "^1.30.0"
   },
   "private": true
 }

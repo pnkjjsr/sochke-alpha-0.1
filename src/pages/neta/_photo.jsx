@@ -6,18 +6,19 @@ import s from "./neta.module.scss";
 export default class Photo extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      imgSrc:
-        "https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fneta%2Fprofile%2Fnarendra-modi.png?alt=media&token=68d77a43-4f01-451b-86ce-cf641db45651",
+      imgSrc: "",
+      imgSrcLg: "",
       isSmallDevice: true,
     };
   }
 
   renderMobile = () => {
-    const { imgSrc } = this.state;
+    const { imgSrc, imgSrcLg } = this.state;
     return (
       <div className={s.photo}>
-        <figure>
+        {/* <figure>
           <svg
             width="320"
             height="320"
@@ -35,36 +36,42 @@ export default class Photo extends Component {
               </clipPath>
             </defs>
 
-            <image href={imgSrc} clipPath="url(#photo)" />
+            <image href={imgSrcLg} clipPath="url(#photo)" />
           </svg>
-        </figure>
+        </figure> */}
 
-        <div className={s.count}>
+        {/* <div className={s.count}>
           <IconButton size="small" aria-label="view">
             <VisibilityIcon /> <label htmlFor="view">10K</label>
           </IconButton>
-        </div>
+        </div> */}
       </div>
     );
   };
 
   renderWeb = () => {
-    const { imgSrc } = this.state;
+    const { imgSrc, imgSrcLg } = this.state;
+
     return (
       <div className={s.photo}>
         <picture>
-          {/* <source media="(min-width:768px)" srcSet={imgSrc} /> */}
+          <source media="(min-width:735px)" srcSet={imgSrcLg} />
           <source media="(min-width:568px)" srcSet={imgSrc} />
-
-          <img src={imgSrc} alt="Flowers" />
+          {!imgSrcLg ? "" : <img src={imgSrcLg} alt="Flowers" />}
         </picture>
       </div>
     );
   };
 
   componentDidMount() {
+    const { data } = this.props;
     let screenWidth = window.innerWidth;
     screenWidth >= 768 ? this.setState({ isSmallDevice: false }) : null;
+
+    this.setState({
+      imgSrc: data.imageUrl,
+      imgSrcLg: data.bannerUrl,
+    });
   }
 
   render() {

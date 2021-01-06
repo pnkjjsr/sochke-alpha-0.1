@@ -8,9 +8,9 @@ export default class NetaThumb extends Component {
     super(props);
 
     this.state = {
-      name: this.props.name,
-      src: this.props.src,
-      like: this.props.like,
+      name: "",
+      src: "",
+      like: "",
     };
   }
 
@@ -20,6 +20,14 @@ export default class NetaThumb extends Component {
     if (!src) return <i className="material-icons">person</i>;
     else return <img src={src} alt={name} />;
   };
+
+  componentDidMount() {
+    const { src, name, like } = this.props;
+    this.setState({
+      name: name,
+      src: src,
+    });
+  }
 
   render() {
     const { name, src, like } = this.state;

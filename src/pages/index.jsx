@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
-import Link from "next/link";
 
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 
@@ -11,7 +10,7 @@ import SubscribeSmall from "@components/Subscribe/small";
 
 import GlobalContext from "@contexts/GlobalContext";
 import { getHome } from "@libs/contentful/home";
-import { getMinister } from "@libs/firebase/home";
+import { getPromotedMinisters } from "@libs/firebase/home";
 import Tags from "@pages/index/_tags";
 import Thumbs from "@pages/index/_thumbs";
 import s from "./home.module.scss";
@@ -19,7 +18,7 @@ import s from "./home.module.scss";
 export default function Home({ data }) {
   const head = data.head;
   const tags = data.tags;
-  const ministers = data.minister;
+  // const ministers = data.minister;
 
   const { language } = useContext(GlobalContext);
   const [lang, setLang] = useState(language);
@@ -28,6 +27,7 @@ export default function Home({ data }) {
   const [d_Subscribed, setd_Subscribed] = useState(true);
   const [title, setTitle] = useState(head.title);
   const [desc, setDesc] = useState(head.desc);
+  const [ministers, setMinisters] = useState();
 
   const DEFAULT = {
     title: title,
@@ -49,11 +49,18 @@ export default function Home({ data }) {
       });
   }
 
+  const getMinisters = async () => {
+    let data = await getPromotedMinisters();
+    setMinisters(data.minister);
+  };
+
   useEffect(() => {
     firebaseCloudMessaging.init();
     let session = new Session();
     let isSubscribed = session.getSubscribed();
     if (isSubscribed === "true") setd_Subscribed(false);
+
+    getMinisters();
   }, []);
 
   return (
@@ -112,8 +119,8 @@ export async function getServerSideProps({ req }) {
       console.log(err);
     });
 
-  let minister = await getMinister();
-  Object.assign(data, minister);
+  // let minister = await getPromotedMinisters();
+  // Object.assign(data, minister);
 
   return {
     props: { data },

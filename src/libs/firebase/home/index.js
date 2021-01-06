@@ -13,7 +13,7 @@ function parseMinisterEntries(entries, cb = parseHead) {
 }
 
 
-export async function getMinister() {
+export async function getPromotedMinisters() {
     let entries = {};
     await service
         .get("/minister/promoted")

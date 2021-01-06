@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 
 import TwitSmall from "@components/Twit/small";
 import TenureSmall from "@components/Tenure/small";
+import NetaThumb from "@components/Neta/thumb";
 
 import Feature from "./_feature";
 import Info from "./_info";
@@ -15,6 +16,9 @@ export default class Detail extends Component {
     this.state = {
       d_collapse: s.hide,
       t_expand: "expand_less",
+      thumb: "",
+      name: "",
+      title: "",
     };
   }
 
@@ -37,11 +41,35 @@ export default class Detail extends Component {
     router.push("/profile");
   };
 
+  componentDidMount() {
+    const { data } = this.props;
+    this.setState({
+      thumb: data.imageUrl,
+      name: data.name,
+      title: data.title,
+    });
+  }
+
   render() {
+    const { thumb, name, title } = this.state;
+    const { data } = this.props;
     const { d_collapse, t_expand } = this.state;
 
     return (
       <div className={s.detail}>
+        <div className={s.thumb}>
+          {!thumb ? (
+            ""
+          ) : (
+            <NetaThumb
+              // name="Narendra Modi"
+              src={thumb}
+              name={name}
+              like="999"
+            />
+          )}
+        </div>
+
         <div className={s.top}>
           <div>
             <h1>Narendra Modi</h1>
@@ -54,37 +82,19 @@ export default class Detail extends Component {
             <div>
               {/* <TwitSmall /> */}
 
-              <Info />
+              <Info data={data} />
 
-              <TenureSmall
+              {/* <TenureSmall
                 title="Prime Minister Of India"
                 start={2019}
                 end={2020}
                 value={20}
-              />
-              <TenureSmall
-                title="Prime Minister Of India"
-                start={2014}
-                end={2019}
-                value={100}
-              />
+              /> */}
+            </div>
 
-              <TenureSmall
-                title="Chief Minister Of Gujarat"
-                start={2007}
-                end={2012}
-                value={100}
-              />
-              <TenureSmall
-                title="Chief Minister Of Gujarat"
-                start={2002}
-                end={2007}
-                value={100}
-              />
-            </div>
-            <div>
-              <Feature />
-            </div>
+            {/* <div>
+              <Feature data={data} />
+            </div> */}
           </div>
         </div>
       </div>
