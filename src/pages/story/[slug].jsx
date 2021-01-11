@@ -21,7 +21,7 @@ export default function Story({ story, param }) {
   const [title, setTitle] = useState(story.title);
   const [desc, setDesc] = useState(story.desc);
   const [tag, setTag] = useState(story.tag);
-  const [url, setUrl] = useState(`url(${story.image[1]})`);
+  const [url, setUrl] = useState(`url(${story.image[0]})`);
 
   const DEFAULT = {
     title: title,
@@ -76,12 +76,6 @@ export default function Story({ story, param }) {
 
   return (
     <div className={s.story} style={{ backgroundImage: url }}>
-      <div className={s.banner}>
-        <figure>
-          <img src={story.image[0]} alt={title} />
-        </figure>
-      </div>
-
       <div className={s.container}>
         <Layout>
           <Head>
@@ -96,6 +90,11 @@ export default function Story({ story, param }) {
 
           <main>
             {/* heading */}
+            <div className={s.banner}>
+              <figure>
+                <img src={story.image[0]} alt={title} />
+              </figure>
+            </div>
             <h1 className={s.heading}>{title}</h1>
 
             {/* Info Bar */}

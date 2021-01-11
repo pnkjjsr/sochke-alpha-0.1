@@ -9,7 +9,16 @@
   background-position: center center;
 
   .banner {
-    display: none;
+    display: block;
+    margin-bottom: $gap * 2;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      margin: 0 auto;
+      object-fit: cover;
+      vertical-align: middle;
+    }
   }
 
   header {
@@ -117,17 +126,8 @@
 @include media-breakpoint-up(md) {
   .story {
     .banner {
-      display: block;
       height: 500px;
       margin-bottom: 50px;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        margin: 0 auto;
-        object-fit: cover;
-        vertical-align: middle;
-      }
     }
 
     &:after {
