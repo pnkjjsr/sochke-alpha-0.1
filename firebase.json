@@ -15,12 +15,5 @@
       "npm --prefix \"$PROJECT_DIR\" install",
       "npm --prefix \"$PROJECT_DIR\" run build"
     ]
-  },
-  "emulators": {
-    "hosting": {
-      "port": 8080,
-      "host": "localhost"
-    }
   }
-
 }

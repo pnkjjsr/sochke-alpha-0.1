@@ -9,7 +9,8 @@ export default function Thumbs(props) {
   useEffect(() => {}, []);
 
   if (!thumbData) {
-    return "no data available";
+    // return "no data available";
+    return true;
   }
 
   return thumbData.map((item, key) => {

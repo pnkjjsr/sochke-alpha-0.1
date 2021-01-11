@@ -1,9 +1,9 @@
 {
-  "name": "nextjs-contentful-firebase",
+  "name": "sochke",
   "version": "1.0.0",
-  "description": "Host Next.js SSR app on Firebase Cloud Functions with Firebase Hosting redirects.",
+  "description": "Sochke App | India First Political, networking platform",
   "engines": {
-    "node": "10"
+    "node": "12"
   },
   "main": "server.js",
   "scripts": {
