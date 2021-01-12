@@ -4,7 +4,9 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
   padding: 0 12px;
+  background-color: $base-color;
 }
 
 #footer {
@@ -42,6 +44,10 @@
 }
 
 @include media-breakpoint-up(md) {
+  #header {
+    background-color: $color-white;
+  }
+
   .drawer {
     button {
       color: $base-color;
