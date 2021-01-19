@@ -1,13 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
-import IconButton from "@material-ui/core/IconButton";
-import ShareIcon from "@material-ui/icons/Share";
-import VisibilityIcon from "@material-ui/icons/Visibility";
 
 import Date from "@utils/date";
 import Layout from "@layouts/open/index";
 import TagStory from "@components/Tag/story";
 import CommonBack from "@components/Common/back";
+import ShareComponent from "@components/Social/share";
 import { getLanguage } from "@utils/session";
 
 import GlobalContext from "@contexts/GlobalContext";
@@ -110,12 +108,7 @@ export default function Story({ story, param }) {
               <CommonBack />
 
               <div className={s.action}>
-                <IconButton size="small" aria-label="share">
-                  <ShareIcon /> <label htmlFor="share">10K</label>
-                </IconButton>
-                <IconButton size="small" aria-label="view">
-                  <VisibilityIcon /> <label htmlFor="view">10K</label>
-                </IconButton>
+                <ShareComponent data={DEFAULT} />
               </div>
             </div>
           </main>

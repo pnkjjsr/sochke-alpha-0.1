@@ -100,18 +100,18 @@
 
     .action {
       display: flex;
-      display: none;
+      // display: none;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
 
       button {
-        color: $color-white;
+        // color: $color-white;
         margin-left: 10px;
 
         svg {
-          margin-right: 5px;
-          font-size: rem(20);
+          // margin-right: 5px;
+          // font-size: rem(20);
         }
 
         label {

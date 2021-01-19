@@ -21,7 +21,7 @@ export default function Story(props) {
   const [minister, setMinister] = useState(props.minister);
 
   const DEFAULT = {
-    TITLE: `${minister.name} ${minister.title} ${minister.party}`,
+    title: `${minister.name} ${minister.title} ${minister.party}`,
     defaultOGURL: `https://www.sochke.com/neta/${minister.slug}`,
     defaultOGImage: `${minister.imageUrl}`,
   };
@@ -53,9 +53,9 @@ export default function Story(props) {
       <div className={s.container}>
         <Layout>
           <Head>
-            <title>{DEFAULT.TITLE}</title>
+            <title>{DEFAULT.title}</title>
 
-            <meta property="og:title" content={DEFAULT.TITLE} />
+            <meta property="og:title" content={DEFAULT.title} />
             <meta property="og:url" content={DEFAULT.defaultOGURL} />
             <meta property="og:image" content={DEFAULT.defaultOGImage} />
 
@@ -79,7 +79,7 @@ export default function Story(props) {
             candidate to the Election Commission in the most recent election.
           </p>
 
-          <Bottom />
+          <Bottom data={DEFAULT} />
         </Layout>
       </div>
 
