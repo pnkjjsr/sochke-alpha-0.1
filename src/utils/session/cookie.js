@@ -31,7 +31,7 @@ export default class Cookie {
     };
 
     getCookieFromServer = (key, req) => {
-        if (!req.headers.cookie) {
+        if (!req?.headers?.cookie) {
             return undefined;
         }
         const rawCookie = req.headers.cookie

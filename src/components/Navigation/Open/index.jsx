@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Link from "next/link";
 
 import SocialComponent from "./_socialComponent";
-import Language from "./_languageSelect";
+import Language from "@components/Language/dropdown";
 
 import s from "./open.module.scss";
 

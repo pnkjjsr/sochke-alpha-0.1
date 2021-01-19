@@ -6,6 +6,7 @@ import Layout from "@layouts/open/index";
 import TagStory from "@components/Tag/story";
 import CommonBack from "@components/Common/back";
 import ShareComponent from "@components/Social/share";
+import LanguageComponent from "@components/Language/dropdown";
 import { getLanguage } from "@utils/session";
 
 import GlobalContext from "@contexts/GlobalContext";
@@ -78,7 +79,6 @@ export default function Story({ story, param }) {
         <Layout>
           <Head>
             <title>{title}</title>
-
             <meta property="og:url" content={DEFAULT.defaultOGURL} />
             <meta property="og:title" content={DEFAULT.title} />
             <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
@@ -93,13 +93,19 @@ export default function Story({ story, param }) {
                 <img src={story.image[0]} alt={title} />
               </figure>
             </div>
+
             <h1 className={s.heading}>{title}</h1>
 
             {/* Info Bar */}
             <div className={s.info}>
-              <TagStory value={tag} />
+              <div>
+                <TagStory value={tag} />
+                <span>{formatDate}</span>
+              </div>
 
-              <span>{formatDate}</span>
+              <div className={s.language}>
+                <LanguageComponent />
+              </div>
             </div>
 
             <div className={s.description}>{description}</div>
