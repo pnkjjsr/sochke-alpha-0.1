@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
+import Link from "next/link";
 
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 
@@ -77,7 +78,7 @@ export default function Home({ data }) {
           <meta property="og:image" content={DEFAULT.defaultOGImage} />
         </Head>
 
-        <main>
+        <main className={s.main}>
           {/* heading */}
           <h1>
             {/* {pageData.title} */}
@@ -88,6 +89,12 @@ export default function Home({ data }) {
           {/* Story Tags */}
           <div className={s.tags}>
             <Tags data={tag} />
+
+            <div>
+              <Link href="/story">
+                <a>Check All Story</a>
+              </Link>
+            </div>
           </div>
 
           {/* Neta */}

@@ -80,6 +80,13 @@
         }
       }
     }
+
+    > div {
+      a {
+        color: $color-white;
+        text-decoration: underline;
+      }
+    }
   }
 
   .subscribe {
@@ -112,9 +119,17 @@
   .home {
     background-image: none;
     background-color: #fff;
+    height: auto;
+    margin-bottom: 410px;
     // background: #fff
     //   url(https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fregister%2Ftop.jpg?alt=media)
     //   top center no-repeat;
+
+    .main {
+      position: relative;
+      z-index: 1;
+      background-color: $color-white;
+    }
 
     h1 {
       max-width: 100%;
@@ -138,6 +153,12 @@
 
     .tags {
       margin-bottom: 70px;
+      > div {
+        margin-top: $gap * 2;
+        a {
+          color: $color-primary;
+        }
+      }
     }
 
     .subscribe {

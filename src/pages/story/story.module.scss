@@ -152,7 +152,7 @@
 @include media-breakpoint-up(md) {
   .story {
     .banner {
-      height: 500px;
+      max-height: 500px;
       margin-bottom: 50px;
     }
 
@@ -168,8 +168,13 @@
       padding: 0;
 
       main {
-        max-width: $md;
-        margin: 0 50px;
+        position: relative;
+        z-index: 1;
+        max-width: $lg;
+        padding: 0 50px;
+        margin: auto;
+        margin-bottom: 420px;
+        background-color: $color-white;
       }
     }
 
@@ -220,11 +225,5 @@
 
 @include media-breakpoint-up(lg) {
   .story {
-    .container {
-      main {
-        max-width: $lg;
-        margin: auto;
-      }
-    }
   }
 }
