@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import router from "next/router";
-import Button from "@material-ui/core/Button";
 
-import TwitSmall from "@components/Twit/small";
-import TenureSmall from "@components/Tenure/small";
 import NetaThumb from "@components/Neta/thumb";
 
-import Feature from "./_feature";
 import Info from "./_info";
 import s from "./neta.module.scss";
 
@@ -51,9 +47,8 @@ export default class Detail extends Component {
   }
 
   render() {
-    const { thumb, name, title } = this.state;
+    const { thumb, name } = this.state;
     const { data } = this.props;
-    const { d_collapse, t_expand } = this.state;
 
     return (
       <div className={s.detail}>

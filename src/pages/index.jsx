@@ -65,7 +65,7 @@ export default function Home({ data }) {
   }, []);
 
   return (
-    <div className={s.home}>
+    <>
       <Layout>
         <Head>
           <title>{title}</title>
@@ -78,7 +78,7 @@ export default function Home({ data }) {
           <meta property="og:image" content={DEFAULT.defaultOGImage} />
         </Head>
 
-        <main className={s.main}>
+        <div className={s.home}>
           {/* heading */}
           <h1>
             {/* {pageData.title} */}
@@ -106,11 +106,12 @@ export default function Home({ data }) {
           <div className={s.subscribe}>
             {d_Subscribed ? <SubscribeSmall /> : ""}
           </div>
-        </main>
+        </div>
       </Layout>
+
       <style jsx>{``}</style>
       <style jsx global>{``}</style>
-    </div>
+    </>
   );
 }
 

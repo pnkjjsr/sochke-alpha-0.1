@@ -65,3 +65,7 @@ $slow: all 1s ease;
 @function rem($pixels, $size: 16) {
   @return ($pixels / $size) * 1rem;
 }
+
+@mixin mobileFullHeight() {
+  min-height: calc(100vh - (51px + 37px));
+}

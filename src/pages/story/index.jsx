@@ -3,7 +3,7 @@ import Link from "next/link";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
+import Container from "@material-ui/core/Container";
 
 import Date from "@utils/date";
 import { getLanguage } from "@utils/session";
@@ -103,21 +103,27 @@ export default function Index({ data }) {
         <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
         <meta property="og:image" content={DEFAULT.defaultOGImage} />
       </Head>
-      <main className={s.landing}>
-        <h1>
-          All latest Indian &amp; political news, information which matters you.
-        </h1>
 
-        <div className={s.section}>
-          <h2>Latest Story</h2>
-          {renderLatestStory()}
-        </div>
+      <div className={s.landing}>
+        <Container maxWidth="xl">
+          <div className={s.header}>
+            <h1>
+              All latest Indian &amp; political news, information which matters
+              you.
+            </h1>
+          </div>
 
-        <div className={s.section}>
-          <h2>Previous Stories</h2>
-          <div className={s.stories}>{renderPreviousStory()}</div>
-        </div>
-      </main>
+          <div className={s.section}>
+            <h2>Latest Story</h2>
+            {renderLatestStory()}
+          </div>
+
+          <div className={s.section}>
+            <h2>Previous Stories</h2>
+            <div className={s.stories}>{renderPreviousStory()}</div>
+          </div>
+        </Container>
+      </div>
     </Layout>
   );
 }

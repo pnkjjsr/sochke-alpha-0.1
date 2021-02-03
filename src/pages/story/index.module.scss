@@ -1,20 +1,20 @@
 @import "src/styles/base";
 
 .landing {
-  > h1 {
-    margin: $gap;
-    font-size: rem(26);
-    font-weight: $font-weight-light;
+  .header {
+    > h1 {
+      margin: 0;
+      margin-top: $gap;
+      font-size: rem(26);
+      font-weight: $font-weight-light;
+    }
   }
 
-  > .section {
-    margin: $gap;
-
+  .section {
     h2 {
       margin: $gap 0 $gap/2;
       font-size: rem(22);
       font-weight: $font-weight;
-      //   border-bottom: 1px solid $color-primary;
     }
   }
 
@@ -67,7 +67,6 @@
     position: relative;
     z-index: 1;
     background-color: $color-white;
-    margin-bottom: 420px;
 
     .stories {
       display: flex;

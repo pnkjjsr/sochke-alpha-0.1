@@ -16,8 +16,9 @@ export default class Photo extends Component {
 
   renderMobile = () => {
     const { imgSrc, imgSrcLg } = this.state;
+    let url = `#26264c url(${imgSrcLg}) no-repeat center center`;
     return (
-      <div className={s.photo}>
+      <div className={s.photo} style={{ background: url }}>
         {/* <figure>
           <svg
             width="320"

@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
+import Container from "@material-ui/core/Container";
 
 import { Session, getLanguage } from "@utils/session";
 import GlobalContext from "@contexts/GlobalContext";
@@ -49,20 +50,20 @@ export default function Story(props) {
   };
 
   return (
-    <div className={s.neta}>
-      <div className={s.container}>
-        <Layout>
-          <Head>
-            <title>{DEFAULT.title}</title>
+    <>
+      <Layout>
+        <Head>
+          <title>{DEFAULT.title}</title>
 
-            <meta property="og:title" content={DEFAULT.title} />
-            <meta property="og:url" content={DEFAULT.defaultOGURL} />
-            <meta property="og:image" content={DEFAULT.defaultOGImage} />
+          <meta property="og:title" content={DEFAULT.title} />
+          <meta property="og:url" content={DEFAULT.defaultOGURL} />
+          <meta property="og:image" content={DEFAULT.defaultOGImage} />
 
-            <meta name="twitter:title" content={DEFAULT.title} />
-            <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
-          </Head>
+          <meta name="twitter:title" content={DEFAULT.title} />
+          <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
+        </Head>
 
+        <div className={s.neta}>
           <Photo data={minister} />
 
           {isSmallDevice ? (
@@ -71,7 +72,7 @@ export default function Story(props) {
             <DetailW data={minister} />
           )}
 
-          <p className="notice">
+          <p className={`notice ${s.notice}`}>
             Disclaimer: This information is an archive of the candidate's
             self-declared affidavit that was filed during the elections. The
             current status of this information may be different. For the latest
@@ -80,12 +81,12 @@ export default function Story(props) {
           </p>
 
           <Bottom data={DEFAULT} />
-        </Layout>
-      </div>
 
-      <style jsx>{``}</style>
-      <style jsx global>{``}</style>
-    </div>
+          <style jsx>{``}</style>
+          <style jsx global>{``}</style>
+        </div>
+      </Layout>
+    </>
   );
 }
 

@@ -1,15 +1,16 @@
 @import "src/styles/base";
 
 .home {
-  position: relative;
-  height: 100vh;
+  //@todo: feb 3 2020, temprory fix for full height;
+  @include mobileFullHeight();
   background: $base-color
     url("https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fhome%2Fbg-home.png?alt=media&token=436daae2-7180-4f96-be0f-95490704c5ac")
     center bottom no-repeat;
 
   h1 {
     max-width: 320px;
-    margin: 30px auto;
+    margin: 0 auto $gap;
+    padding-top: $gap * 2;
     color: $color-white;
     font-size: rem(24);
     font-weight: $font-weight-light;
@@ -29,7 +30,7 @@
   .neta {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: $gap;
     overflow: auto;
     scroll-behavior: smooth;
 
@@ -48,7 +49,7 @@
   }
 
   .tags {
-    margin: 0 10px 30px 10px;
+    margin: 0 $gap $gap;
     text-align: center;
 
     a {
@@ -90,9 +91,6 @@
   }
 
   .subscribe {
-    position: fixed;
-    bottom: 10px;
-    left: calc(50% - 150px);
     max-width: 300px;
     margin: auto;
   }
@@ -103,37 +101,23 @@
     background-size: cover;
     h1 {
       max-width: 100%;
-      margin: 0 auto 10px;
     }
     .neta {
       justify-content: center;
       margin-bottom: 0;
-    }
-    .subscribe {
-      bottom: 0;
     }
   }
 }
 
 @include media-breakpoint-up(md) {
   .home {
+    min-height: auto;
     background-image: none;
     background-color: #fff;
-    height: auto;
-    margin-bottom: 410px;
-    // background: #fff
-    //   url(https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fregister%2Ftop.jpg?alt=media)
-    //   top center no-repeat;
-
-    .main {
-      position: relative;
-      z-index: 1;
-      background-color: $color-white;
-    }
 
     h1 {
       max-width: 100%;
-      margin: 30px auto 50px;
+      margin: $gap auto ($gap * 2);
       color: $base-color;
       font-size: rem(36);
 
@@ -147,12 +131,8 @@
       }
     }
 
-    .neta {
-      margin-bottom: 0px;
-    }
-
     .tags {
-      margin-bottom: 70px;
+      margin-bottom: $gap * 5;
       > div {
         margin-top: $gap * 2;
         a {
@@ -163,7 +143,7 @@
 
     .subscribe {
       position: static;
-      margin: 50px auto;
+      margin: $gap auto;
     }
   }
 }

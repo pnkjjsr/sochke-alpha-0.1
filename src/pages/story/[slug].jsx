@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
+import Container from "@material-ui/core/Container";
 
 import Date from "@utils/date";
 import Layout from "@layouts/open/index";
@@ -74,25 +75,24 @@ export default function Story({ story, param }) {
   }, []);
 
   return (
-    <div className={s.story} style={{ backgroundImage: url }}>
-      <div className={s.container}>
-        <Layout>
-          <Head>
-            <title>{title}</title>
-            <meta property="og:url" content={DEFAULT.defaultOGURL} />
-            <meta property="og:title" content={DEFAULT.title} />
-            <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
-            <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
-            <meta property="og:image" content={DEFAULT.defaultOGImage} />
-          </Head>
+    <>
+      <Layout>
+        <Head>
+          <title>{title}</title>
+          <meta property="og:url" content={DEFAULT.defaultOGURL} />
+          <meta property="og:title" content={DEFAULT.title} />
+          <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
+          <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
+          <meta property="og:image" content={DEFAULT.defaultOGImage} />
+        </Head>
 
-          <main>
+        <div className={s.story}>
+          <Container maxWidth="lg">
             {/* heading */}
-            <div className={s.banner}>
-              <figure>
-                <img src={story.image[0]} alt={title} />
-              </figure>
-            </div>
+
+            <figure className={s.banner}>
+              <img src={story.image[0]} alt={title} />
+            </figure>
 
             <h1 className={s.heading}>{title}</h1>
 
@@ -117,13 +117,13 @@ export default function Story({ story, param }) {
                 <ShareComponent data={DEFAULT} />
               </div>
             </div>
-          </main>
-        </Layout>
-      </div>
+          </Container>
+        </div>
+      </Layout>
 
       <style jsx>{``}</style>
       <style jsx global>{``}</style>
-    </div>
+    </>
   );
 }
 

@@ -1,6 +1,10 @@
 @import "src/styles/base";
 
 #header {
+  position: fixed;
+  z-index: $header;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -9,31 +13,37 @@
   background-color: $base-color;
 }
 
+#main {
+  position: relative;
+  z-index: $main;
+  @include mobileFullHeight();
+  background-color: $bg-color;
+}
+
 #footer {
   position: fixed;
   z-index: $footer;
   left: 0;
   bottom: 0;
-  // display: flex;
-  display: none;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 410px;
-  padding: 10px 12px 0;
-  background: url(https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fhome%2Fbg-home-web.jpg?alt=media&token=d5d69207-911f-46ba-9dcf-140548292ccc)
-    center top no-repeat;
+  padding: $gap;
+  background-color: $base-color;
+  font-size: rem(12);
+  font-weight: $font-weight;
   text-align: center;
 
   .links {
     a {
       display: inline-block;
-      margin: 0 20px;
-      font-weight: $font-weight-light;
+      margin-right: $gap * 2;
+      color: $color-white;
     }
   }
   .copy {
-    font-weight: $font-weight-light;
+    color: $color-white;
   }
 }
 
@@ -48,14 +58,13 @@
     background-color: $color-white;
   }
 
+  #main {
+    min-height: auto;
+  }
+
   .drawer {
     button {
       color: $base-color;
     }
-  }
-
-  #footer {
-    display: block;
-    position: fixed;
   }
 }

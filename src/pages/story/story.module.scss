@@ -2,14 +2,14 @@
 
 .story {
   position: relative;
-  height: 100vh;
-  padding-top: 50px;
+
   background-size: cover;
   background-repeat: none;
   background-position: center center;
 
   .banner {
-    display: block;
+    display: flex;
+    max-height: 300px;
     margin-bottom: $gap * 2;
     overflow: hidden;
 
@@ -21,39 +21,8 @@
     }
   }
 
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-
-  &:after {
-    content: "";
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    height: calc(100vh - 50px);
-
-    margin: 0 10px;
-    padding-bottom: 10px;
-    overflow: auto;
-
-    @include scroll-hide();
-  }
-
   h1 {
     margin-top: 0;
-    color: $color-white;
     font-size: rem(32);
     font-weight: $font-weight-black;
   }
@@ -66,7 +35,6 @@
     }
 
     span {
-      color: $color-white;
       font-size: rem(14);
     }
   }
@@ -79,29 +47,13 @@
 
     > div {
       max-width: 120px;
-
-      > div {
-        color: $color-white;
-
-        &:before {
-          border-color: $color-white;
-        }
-        > svg {
-          color: $color-white;
-        }
-      }
-
-      p {
-        color: $color-white;
-      }
     }
   }
 
   .description {
-    margin: 30px 0 50px;
+    margin: ($gap * 3) 0 ($gap * 6);
 
     p {
-      color: $color-white;
       line-height: rem(24);
 
       &:first-child {
@@ -116,28 +68,24 @@
     position: fixed;
     z-index: 1;
     left: 0;
-    bottom: 0;
+    bottom: $footerHeight;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb($color-black, 0.1);
 
     .action {
       display: flex;
-      // display: none;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
 
       button {
-        // color: $color-white;
         margin-left: 10px;
 
         svg {
-          // margin-right: 5px;
-          // font-size: rem(20);
         }
 
         label {
@@ -152,30 +100,12 @@
 @include media-breakpoint-up(md) {
   .story {
     .banner {
-      max-height: 500px;
       margin-bottom: 50px;
     }
 
     &:after {
       position: static;
       background-color: $bg-body;
-    }
-
-    .container {
-      max-width: 100%;
-      height: auto;
-      margin: 0;
-      padding: 0;
-
-      main {
-        position: relative;
-        z-index: 1;
-        max-width: $lg;
-        padding: 0 50px;
-        margin: auto;
-        margin-bottom: 420px;
-        background-color: $color-white;
-      }
     }
 
     h1 {
@@ -224,6 +154,4 @@
 }
 
 @include media-breakpoint-up(lg) {
-  .story {
-  }
 }

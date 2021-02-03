@@ -2,7 +2,7 @@
 
 .neta {
   position: relative;
-  height: 100vh;
+  padding-bottom: 50px;
 
   header {
     position: fixed;
@@ -15,6 +15,7 @@
     position: relative;
     z-index: 1;
     height: 320px;
+    max-height: 320px;
     overflow: hidden;
     background-color: $base-color;
 
@@ -60,7 +61,6 @@
     left: 0;
     z-index: 2;
     width: 100%;
-    padding-bottom: 53px;
     background-color: $bg-color;
     @include transition(fast);
 
@@ -247,17 +247,21 @@
     }
   }
 
+  .notice {
+    margin-top: 350px;
+  }
+
   .bottom {
     position: fixed;
     z-index: 10;
     left: 0;
-    bottom: 0;
+    bottom: $footerHeight;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb($color-black, 0.1);
 
     .action {
       display: flex;
@@ -266,12 +270,9 @@
       align-items: center;
 
       button {
-        color: $base-color;
         margin-left: 10px;
 
         svg {
-          // margin-right: 5px;
-          // font-size: rem(20);
         }
 
         label {
@@ -289,9 +290,7 @@
 @include media-breakpoint-up(sm) {
   .neta {
     .photo {
-      height: 300px;
-      margin-top: 50px;
-
+      height: 150px;
       img {
         width: 100%;
         height: 100%;
@@ -305,15 +304,14 @@
       min-width: $sm;
       max-width: $lg;
       margin: auto;
-      padding: ($gap * 5) 0;
+      padding: ($gap * 5) 0 0;
 
       &::before {
         display: none;
       }
 
       .thumb {
-        // position: relative;
-        left: 0;
+        left: 10px;
         top: -80px;
 
         figure {
@@ -322,7 +320,6 @@
       }
 
       .top {
-        display: flex;
         margin-bottom: $gap * 2;
         text-align: left;
 
@@ -351,6 +348,10 @@
       }
 
       .feature {
+        position: absolute;
+        z-index: 1;
+        top: 25px;
+        right: 0;
         padding: 0;
         margin-bottom: $gap * 3;
         align-items: flex-end;
@@ -476,6 +477,18 @@
           line-height: 0.8;
         }
       }
+    }
+
+    .notice {
+      margin-top: 0;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .neta {
+    .photo {
+      height: 320px;
     }
   }
 }

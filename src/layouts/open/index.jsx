@@ -24,7 +24,7 @@ export default function Layout({ children }) {
         {/* <PWAInstall /> */}
       </header>
 
-      {children}
+      <main id={s.main}>{children}</main>
 
       <footer id={s.footer}>
         <div className={s.links}>

@@ -2,12 +2,8 @@
 @import "./base";
 
 body {
-  .main {
-    position: relative;
-    z-index: $main;
-    padding-bottom: 10px;
-    background-color: $bg-color;
-  }
+  padding-top: $headerHeight;
+  padding-bottom: $footerHeight;
 }
 
 a {
