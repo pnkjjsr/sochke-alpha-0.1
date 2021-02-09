@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import router from "next/router";
 
-import NetaThumb from "@components/Neta/thumb";
+import NetaThumb from "@components/Thumb/neta";
 
 import Info from "./_info";
 import s from "./neta.module.scss";

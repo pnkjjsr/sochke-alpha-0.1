@@ -1,0 +1,56 @@
+@import "src/styles/base";
+
+.thumb {
+  > a {
+    color: $base-color;
+    text-decoration: none;
+  }
+
+  figure {
+    display: flex;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    background-color: $base-color;
+    object-fit: cover;
+    overflow: hidden;
+
+    > img {
+      width: 100%;
+    }
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    margin-bottom: $gap;
+
+    label {
+      margin-right: $gap;
+    }
+
+    span {
+      font-size: rem(14);
+    }
+  }
+
+  .title {
+    margin: 0;
+    font-size: rem(14);
+    font-weight: $font-weight-black;
+    line-height: rem(20);
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .thumb {
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .thumb {
+    figure {
+      height: 300px;
+    }
+  }
+}

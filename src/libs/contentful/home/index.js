@@ -1,5 +1,9 @@
 import { contentfulClient } from "@libs/contentful";
 
+function parseImages(fields) {
+    return fields.fields.file.url
+}
+
 function parseHead({ fields }) {
     return {
         slug: fields.slug,
@@ -22,7 +26,20 @@ function parseTags({ fields }) {
 }
 
 function parseTagsEntries(entries, cb = parseTags) {
-    return entries?.items?.map(cb)
+    return entries?.items?.map(cb);
+}
+
+function parseStoryEntry(entries, cb = parseImages) {
+    let fields = entries?.items[0].fields;
+    let sys = entries?.items[0].sys;
+    return {
+        slug: fields.slug,
+        title: fields.title,
+        image: fields?.image?.map(cb),
+        tag: fields.tag,
+        date: sys.createdAt
+    }
+
 }
 
 export async function getHome(lang) {
@@ -38,8 +55,10 @@ export async function getHome(lang) {
         limit: 10,
     });
 
+
     return {
         head: parseHeadEntries(head)[0],
         tags: parseTagsEntries(tags),
+        story: parseStoryEntry(tags),
     }
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 
-import NetaThumb from "@components/Neta/thumb";
+import NetaThumb from "@components/Thumb/neta";
 
 export default function Thumbs(props) {
   const thumbData = props.data;

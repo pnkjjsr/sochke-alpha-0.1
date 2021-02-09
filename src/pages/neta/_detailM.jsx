@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import NetaThumb from "@components/Neta/thumb";
+import NetaThumb from "@components/Thumb/neta";
 
 import Feature from "./_feature";
 import Info from "./_info";

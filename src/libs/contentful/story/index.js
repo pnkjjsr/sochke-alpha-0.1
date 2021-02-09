@@ -2,7 +2,6 @@ import { contentfulClient } from "@libs/contentful";
 
 function parseImages(fields) {
     return fields.fields.file.url
-
 }
 
 function parseStory({ fields, sys, cb = parseImages }) {

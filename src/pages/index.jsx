@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Container from "@material-ui/core/Container";
 
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 
@@ -8,6 +9,7 @@ import { Session, getLanguage } from "@utils/session";
 import Layout from "@layouts/open/index";
 
 import SubscribeSmall from "@components/Subscribe/small";
+import StoryThumb from "@components/Thumb/story";
 
 import GlobalContext from "@contexts/GlobalContext";
 import { getHome } from "@libs/contentful/home";
@@ -19,7 +21,7 @@ import s from "./home.module.scss";
 export default function Home({ data }) {
   const head = data.head;
   const tags = data.tags;
-  // const ministers = data.minister;
+  const story = data.story;
 
   const { language } = useContext(GlobalContext);
   const [lang, setLang] = useState(language);
@@ -86,6 +88,19 @@ export default function Home({ data }) {
             <span className={s.grn}>leaders</span>.
           </h1>
 
+          {/* Neta */}
+          <div className={s.neta}>
+            <Thumbs data={ministers} />
+          </div>
+
+          {/* Latest Story */}
+          <Container maxWidth="xl">
+            <section className={s.section}>
+              <h2>Latest Story</h2>
+              <StoryThumb data={story} />
+            </section>
+          </Container>
+
           {/* Story Tags */}
           <div className={s.tags}>
             <Tags data={tag} />
@@ -95,11 +110,6 @@ export default function Home({ data }) {
                 <a>Check All Story</a>
               </Link>
             </div>
-          </div>
-
-          {/* Neta */}
-          <div className={s.neta}>
-            <Thumbs data={ministers} />
           </div>
 
           {/* Subscriber */}
@@ -126,9 +136,6 @@ export async function getServerSideProps({ req }) {
     .catch((err) => {
       console.log(err);
     });
-
-  // let minister = await getPromotedMinisters();
-  // Object.assign(data, minister);
 
   return {
     props: { data },
