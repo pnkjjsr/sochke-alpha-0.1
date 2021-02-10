@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LanguageSelect() {
   const classes = useStyles();
-  const { setLanguage } = useContext(GlobalContext);
+  const { language, setLanguage } = useContext(GlobalContext);
 
   let cookie = new Cookie();
-  let langauge = cookie.getCookie("language");
-  const [lang, setLang] = useState(langauge || "en-US");
+  let storeLang = cookie.getCookie("language") || language;
+  const [lang, setLang] = useState(storeLang);
 
   const handleChange = (event) => {
     setLang(event.target.value);

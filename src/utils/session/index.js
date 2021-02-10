@@ -9,9 +9,13 @@ export const getLanguage = (req) => {
     let cookie = isDev ? req.headers.cookie : req.cookies.__session
 
     return new Promise((resolve, reject) => {
-        let name = "language" + "=";
-        if (!cookie) resolve("en-US");
+        let reqLang = req.headers["accept-language"];
+        let arrLang = reqLang.split(',');
+        let lang = arrLang[0] != "hi-IN" ? "en-US" : "hi-IN";
 
+        if (!cookie) return resolve(lang);
+
+        let name = "language" + "=";
         let splitter = isDev ? ";" : "?";
         let ca = cookie.split(splitter);
         ca.map((c, i) => {
@@ -24,7 +28,7 @@ export const getLanguage = (req) => {
             }
         });
 
-        resolve("en-US");
+        resolve(lang);
     });
 }
 

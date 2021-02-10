@@ -5,7 +5,9 @@ import Container from "@material-ui/core/Container";
 
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 
+import { Cookie } from "@utils/session";
 import { Session, getLanguage } from "@utils/session";
+
 import Layout from "@layouts/open/index";
 
 import SubscribeSmall from "@components/Subscribe/small";
@@ -21,11 +23,17 @@ import s from "./home.module.scss";
 export default function Home({ data }) {
   const head = data.head;
   const tags = data.tags;
-  const story = data.story;
+  const latestStory = data.story;
+  const clientLang = data.language;
 
-  const { language } = useContext(GlobalContext);
+  const { language, setLanguage } = useContext(GlobalContext);
+  let cookie = new Cookie();
+  let cookieLang = cookie.getCookie("language");
+  if (!cookieLang) setLanguage(clientLang);
+
   const [lang, setLang] = useState(language);
   const [tag, setTag] = useState(tags);
+  const [story, setStory] = useState(latestStory);
 
   const [d_Subscribed, setd_Subscribed] = useState(true);
   const [title, setTitle] = useState(head.title);
@@ -46,6 +54,7 @@ export default function Home({ data }) {
         setTitle(data.head.title);
         setDesc(data.head.desc);
         setTag(data.tags);
+        setStory(data.story);
       })
       .catch((err) => {
         console.log(err);
@@ -130,8 +139,8 @@ export async function getServerSideProps({ req }) {
 
   await getLanguage(req)
     .then(async (res) => {
-      let language = res;
-      data = await getHome(language);
+      data = await getHome(res);
+      data.language = res;
     })
     .catch((err) => {
       console.log(err);

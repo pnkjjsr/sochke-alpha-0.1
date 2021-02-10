@@ -69,7 +69,8 @@
   }
 
   .tags {
-    margin: 0 $gap $gap;
+    margin: 0 $gap;
+    padding-bottom: $gap;
     text-align: center;
 
     a {
