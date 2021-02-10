@@ -32,7 +32,7 @@ export default function Index({ data }) {
     let formatDate = date.format(story.date, "full");
     return (
       <div className={`${s.thumb} ${s.banner}`}>
-        <Link href={`https://www.sochke.com/story/${story.slug}`}>
+        <Link href={`story/${story.slug}`}>
           <a>
             <Card>
               <CardActionArea>

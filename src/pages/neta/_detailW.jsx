@@ -47,7 +47,7 @@ export default class Detail extends Component {
   }
 
   render() {
-    const { thumb, name } = this.state;
+    const { thumb, name, title } = this.state;
     const { data } = this.props;
 
     return (
@@ -67,8 +67,8 @@ export default class Detail extends Component {
 
         <div className={s.top}>
           <div>
-            <h1>Narendra Modi</h1>
-            <small>Prime Minister</small>
+            <h1>{name}</h1>
+            <small>{title}</small>
           </div>
         </div>
 

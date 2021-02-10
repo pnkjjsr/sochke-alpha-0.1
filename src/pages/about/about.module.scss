@@ -1,25 +1,9 @@
 @import "src/styles/base";
 
 .about {
-  background: $base-color
-    url("https://firebasestorage.googleapis.com/v0/b/nextjs-contentful-firebase.appspot.com/o/cdn%2Fhome%2Fbg-home.png?alt=media&token=436daae2-7180-4f96-be0f-95490704c5ac")
-    center bottom no-repeat;
-  background-attachment: fixed;
-
   main {
-    max-width: $lg;
-    margin: auto;
-    padding: 0 20px 20px;
-    color: $color-white;
   }
 }
 
 @include media-breakpoint-up(sm) {
-  .about {
-    background: none;
-
-    main {
-      color: $base-color;
-    }
-  }
 }
