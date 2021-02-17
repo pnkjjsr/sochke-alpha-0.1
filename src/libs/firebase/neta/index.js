@@ -33,6 +33,7 @@ function parseMinister(fields) {
         bannerUrl: fields.bannerUrl || "",
         party: fields.party,
         partyShort: fields.partyShort,
+        partyLogo: fields.partyLogo,
         titleShort: fields.type,
         title: title,
         constituency: fields.constituency,

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-
+import FlagIcon from "@material-ui/icons/Flag";
 import TextMobileStepper from "./_stepper";
 import s from "./neta.module.scss";
 
@@ -14,49 +14,13 @@ export default class Feature extends Component {
     };
   }
 
-  renderLogo = async () => {
-    const { partyShort } = this.state;
-
-    let img = "";
-    switch (partyShort) {
-      case "BJP":
-        this.setState({
-          imgSrc:
-            "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fparties%2Fbjp.svg?alt=media&token=71e28a82-b1d5-4f92-a9dc-c29040dba548",
-        });
-
-        break;
-      case "INC":
-        this.setState({
-          imgSrc:
-            "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fparties%2Finc.svg?alt=media&token=897342d1-b96d-45e0-8072-ed02e669a319",
-        });
-        break;
-      case "AAP":
-        this.setState({
-          imgSrc:
-            "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fparties%2Faap.svg?alt=media&token=d20ded3e-45d0-4ebd-b278-b8466160e741",
-        });
-
-        break;
-      default:
-        break;
-    }
-
-    return img;
-  };
-
   componentDidMount() {
-    const { data } = this.props;
-    this.setState(
-      {
-        party: data.party,
-        partyShort: data.partyShort,
-      },
-      () => {
-        this.renderLogo();
-      }
-    );
+    const { party, partyShort, partyLogo } = this.props.data;
+    this.setState({
+      party: party,
+      partyShort: partyShort,
+      imgSrc: partyLogo,
+    });
   }
 
   render() {
@@ -78,7 +42,7 @@ export default class Feature extends Component {
           <div className={s.item}>
             <div className={s.symbol}>
               <figure>
-                {!imgSrc ? "" : <img src={imgSrc} alt={imgSrc} />}
+                {!imgSrc ? <FlagIcon /> : <img src={imgSrc} alt={party} />}
               </figure>
             </div>
 

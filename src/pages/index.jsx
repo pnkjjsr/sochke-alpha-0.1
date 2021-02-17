@@ -90,41 +90,46 @@ export default function Home({ data }) {
         </Head>
 
         <div className={s.home}>
-          {/* heading */}
-          <h1>
-            {/* {pageData.title} */}
-            Political networking platform for <span>citizens</span> &amp;{" "}
-            <span className={s.grn}>leaders</span>.
-          </h1>
-
-          {/* Neta */}
-          <div className={s.neta}>
-            <Thumbs data={ministers} />
-          </div>
-
-          {/* Latest Story */}
           <Container maxWidth="xl">
+            {/* heading */}
+            <h1>
+              {/* {pageData.title} */}
+              Political networking platform for <span>citizens</span> &amp;{" "}
+              <span className={s.grn}>leaders</span>.
+            </h1>
+
+            <div className={s.ticket}>
+              Upcoming legislative election April 2021, Assam, Kerala,
+              Puducherry, Tamil Nadu, West Bengal
+            </div>
+
+            {/* Neta */}
             <section className={s.section}>
+              <h2>Trending Leaders</h2>
+              <div className={s.neta}>
+                <Thumbs data={ministers} />
+              </div>
+            </section>
+            {/* Latest Story */}
+            <section className={`${s.section} ${s.card}`}>
               <h2>Latest Story</h2>
               <StoryThumb data={story} />
             </section>
-          </Container>
+            {/* Story Tags */}
+            <div className={s.tags}>
+              <Tags data={tag} />
 
-          {/* Story Tags */}
-          <div className={s.tags}>
-            <Tags data={tag} />
-
-            <div>
-              <Link href="/story">
-                <a>Check All Story</a>
-              </Link>
+              <div>
+                <Link href="/story">
+                  <a>Check All Story</a>
+                </Link>
+              </div>
             </div>
-          </div>
-
-          {/* Subscriber */}
-          <div className={s.subscribe}>
-            {d_Subscribed ? <SubscribeSmall /> : ""}
-          </div>
+            {/* Subscriber */}
+            <div className={s.subscribe}>
+              {d_Subscribed ? <SubscribeSmall /> : ""}
+            </div>
+          </Container>
         </div>
       </Layout>
 

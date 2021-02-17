@@ -41,7 +41,7 @@ export default function Layout({ children }) {
             <a>Cookies</a>
           </Link> */}
         </div>
-        <div className={s.copy}>© 2020 Sochke</div>
+        <div className={s.copy}>© 2021 Sochke</div>
       </footer>
     </>
   );

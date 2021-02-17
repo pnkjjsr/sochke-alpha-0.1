@@ -218,6 +218,11 @@
           img {
             height: 100%;
           }
+
+          > svg {
+            color: $color-light;
+            font-size: rem(64);
+          }
         }
       }
     }

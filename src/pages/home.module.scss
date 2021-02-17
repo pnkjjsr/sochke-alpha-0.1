@@ -26,30 +26,47 @@
     }
   }
 
+  .ticket {
+    max-width: 600px;
+    margin: ($gap * 2) auto;
+    padding: $gap/2 $gap;
+    background-color: $color-green;
+    color: $color-white;
+    font-size: rem(13);
+    text-align: center;
+  }
+
   section.section {
-    position: relative;
     margin-bottom: $gap;
-    @include border-radius(3px);
-    overflow: hidden;
 
     h2 {
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      width: 100%;
       margin: 0;
       padding: $gap/2 $gap $gap;
       color: $color-white;
-      background-color: rgba($color-black, 70%);
       font-size: rem(16);
       font-weight: $font-weight-bold;
+    }
+
+    &.card {
+      position: relative;
+      @include border-radius(3px);
+      overflow: hidden;
+
+      h2 {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: $color-white;
+        background-color: rgba($color-black, 70%);
+      }
     }
   }
 
   .neta {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin-bottom: $gap * 2;
     overflow: auto;
     scroll-behavior: smooth;
@@ -69,7 +86,7 @@
   }
 
   .tags {
-    margin: 0 $gap;
+    margin: 0;
     padding-bottom: $gap;
     text-align: center;
 
@@ -125,9 +142,6 @@
       max-width: 100%;
       padding-top: $gap;
     }
-    .neta {
-      justify-content: center;
-    }
   }
 }
 
@@ -151,6 +165,18 @@
         &.grn {
           color: #42852d;
         }
+      }
+    }
+
+    .ticket {
+      // font-size: rem(13);
+    }
+
+    section.section {
+      h2 {
+        color: $base-color;
+        font-size: rem(20);
+        font-weight: $font-weight;
       }
     }
 
