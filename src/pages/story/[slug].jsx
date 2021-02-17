@@ -14,7 +14,7 @@ import GlobalContext from "@contexts/GlobalContext";
 import { getStory } from "@libs/contentful/story";
 import s from "./story.module.scss";
 
-export default function Story({ story, param }) {
+export default function StoryLanding({ story, param }) {
   const { language } = useContext(GlobalContext);
   const [lang, setLang] = useState(language);
 

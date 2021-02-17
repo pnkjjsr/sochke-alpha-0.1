@@ -1,0 +1,95 @@
+//base variables
+$gutter: "10px";
+$shortTransition: ".4s";
+$mediumTransition: ".8";
+$longTransition: "1.2";
+
+$colorPrimary: "white";
+$colorSecondary: "#26264c";
+$colorAccent: "#5fbe40";
+
+$successColor: "rgb(131, 184, 25)";
+$dangerColor: "red";
+$warningColor: "rgb(244, 158, 0)";
+$infoColor: "#1A9DD9";
+
+$fontSizeBase: "1rem";
+
+$fontText: "Lato";
+$fontTitle: "Lato";
+$fontSub: "Lato";
+
+$fontWeightText: 400;
+$fontWeightHeadline: 700;
+$fontWeightSubline: 500;
+
+$font-family: (
+  text: $fontText,
+  title: $fontTitle,
+  sub: $fontSub,
+);
+
+$font-size: (
+  base: $fontSizeBase,
+  large: math.ceil(($fontSizeBase * 1.25)),
+  small: math.ceil(($fontSizeBase * 0.85)),
+  h1: math.floor(($fontSizeBase * 2.6)),
+  h2: math.floor(($fontSizeBase * 2.15)),
+  h3: math.ceil(($fontSizeBase * 1.7)),
+  h4: math.ceil(($fontSizeBase * 1.25)),
+  h5: $fontSizeBase,
+  h6: math.ceil(($fontSizeBase * 0.85)),
+  title: $fontSizeBase * 2.5,
+  sub: $fontSizeBase * 1.5,
+  text: $fontSizeBase,
+);
+
+$primary: (
+  background: $colorPrimary,
+  text: contrast($colorPrimary),
+  color: contrast($colorPrimary),
+  border: $colorSecondary,
+  hover-background: saturate($colorPrimary, 10%),
+  hover-color: contrast(saturate($colorPrimary, 10%)),
+  focus: desaturate($colorPrimary, 10%),
+  disable: lightness(desaturate($colorPrimary, 100%), 30%),
+  drop: $colorAccent,
+  drag: lightness(desaturate($colorAccent, 100%), 30%),
+  link: $colorSecondary,
+  link-hover: darken($colorSecondary, 20%),
+  placeholder: lighten(contrast($colorPrimary), 20%),
+);
+
+$secondary: (
+  base: $colorSecondary,
+  background: $colorSecondary,
+  background-hover: saturate($colorSecondary, 10%),
+  text: contrast($colorSecondary),
+  color: contrast($colorSecondary),
+  border: contrast($colorSecondary),
+  hover-background: saturate($colorSecondary, 10%),
+  //remove
+  hover-color: contrast(saturate($colorSecondary, 10%)),
+  focus: desaturate($colorSecondary, 10%),
+  disable: lightness(desaturate($colorSecondary, 100%), 30%),
+  drop: $colorAccent,
+  drag: lightness(desaturate($colorAccent, 100%), 30%),
+  link: $colorAccent,
+  link-hover: darken($colorAccent, 20%),
+);
+
+$accent: (
+  background: $colorAccent,
+  color: contrast($colorAccent),
+  text: contrast($colorAccent),
+  background-hover: saturate($colorAccent, 10%),
+  hover-background: saturate($colorAccent, 10%),
+  /*TODO remove */ hover-color: contrast(saturate($colorAccent, 10%)),
+  focus: desaturate($colorAccent, 10%),
+  disable: lightness(desaturate($colorAccent, 100%), 30%),
+  link: $colorPrimary,
+  link-hover: contrast($colorPrimary),
+  drop: $colorPrimary,
+  drag: lightness(desaturate($colorPrimary, 100%), 30%),
+  border: $colorPrimary,
+);

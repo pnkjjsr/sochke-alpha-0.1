@@ -105,16 +105,32 @@ export default function Home({ data }) {
 
             {/* Neta */}
             <section className={s.section}>
-              <h2>Trending Leaders</h2>
+              <div className={s.header}>
+                <h2>Trending Leaders</h2>
+
+                <Link href="/neta">
+                  <a>view all</a>
+                </Link>
+              </div>
+
               <div className={s.neta}>
                 <Thumbs data={ministers} />
               </div>
             </section>
+
             {/* Latest Story */}
             <section className={`${s.section} ${s.card}`}>
-              <h2>Latest Story</h2>
+              <div className={s.header}>
+                <h2>Latest Story</h2>
+
+                <Link href="/story">
+                  <a>view all</a>
+                </Link>
+              </div>
+
               <StoryThumb data={story} />
             </section>
+
             {/* Story Tags */}
             <div className={s.tags}>
               <Tags data={tag} />

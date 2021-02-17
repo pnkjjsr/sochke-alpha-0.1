@@ -14,7 +14,7 @@ import TagStory from "@components/Tag/story";
 import Layout from "@layouts/open/index";
 import s from "./index.module.scss";
 
-export default function Index({ data }) {
+export default function Story({ data }) {
   const head = data.head;
   const stories = data.stories;
 

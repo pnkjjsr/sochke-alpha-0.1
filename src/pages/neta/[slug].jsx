@@ -15,7 +15,7 @@ import DetailW from "./_detailW";
 import Bottom from "./_bottom";
 import s from "./neta.module.scss";
 
-export default function Story(props) {
+export default function NetaLanding(props) {
   const { language } = useContext(GlobalContext);
   const [lang, setLang] = useState(language);
   const [isSmallDevice, setIsSmallDevice] = useState(true);

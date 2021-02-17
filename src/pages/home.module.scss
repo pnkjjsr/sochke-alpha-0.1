@@ -39,12 +39,26 @@
   section.section {
     margin-bottom: $gap;
 
-    h2 {
-      margin: 0;
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       padding: $gap/2 $gap $gap;
-      color: $color-white;
-      font-size: rem(16);
-      font-weight: $font-weight-bold;
+
+      h2 {
+        margin: 0;
+        padding: 0;
+        color: $color-white;
+        font-size: rem(16);
+        font-weight: $font-weight-bold;
+      }
+
+      a {
+        color: $color-green;
+        font-size: rem(14);
+        text-decoration: underline;
+      }
     }
 
     &.card {
@@ -52,14 +66,17 @@
       @include border-radius(3px);
       overflow: hidden;
 
-      h2 {
+      .header {
         position: absolute;
         z-index: 1;
         top: 0;
         left: 0;
         width: 100%;
-        color: $color-white;
         background-color: rgba($color-black, 70%);
+
+        h2 {
+          color: $color-white;
+        }
       }
     }
   }
@@ -173,10 +190,18 @@
     }
 
     section.section {
-      h2 {
-        color: $base-color;
-        font-size: rem(20);
-        font-weight: $font-weight;
+      .header {
+        justify-content: flex-start;
+
+        h2 {
+          color: $base-color;
+          font-size: rem(20);
+          font-weight: $font-weight;
+        }
+
+        a {
+          margin-left: $gap;
+        }
       }
     }
 
