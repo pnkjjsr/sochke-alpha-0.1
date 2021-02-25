@@ -1,12 +1,9 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import Container from "@material-ui/core/Container";
 
-import { getLanguage } from "@utils/session";
-
 import { getPromotedMinisters } from "@libs/firebase/home";
-import { getMinister } from "@libs/firebase/neta";
+import { getMinisters } from "@libs/firebase/neta";
 
 import Layout from "@layouts/open";
 import Thumbs from "@pages/index/_thumbs";
@@ -14,7 +11,9 @@ import Thumbs from "@pages/index/_thumbs";
 import s from "./index.module.scss";
 
 export default function Neta({ data }) {
-  const [ministers, setMinisters] = useState();
+  const [promoted, setPromoted] = useState();
+  const [trending, setTrending] = useState();
+  const [isSmallDevice, setIsSmallDevice] = useState();
 
   const DEFAULT = {
     title:
@@ -24,16 +23,42 @@ export default function Neta({ data }) {
       "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
   };
 
-  const getMinisters = async () => {
+  const renderMinister = () => {
+    if (!trending) return null; //@TODO: 23rd Feb 2021 | LOADER can be added here
+
+    return Object.values(trending).map((arr, i) => {
+      let type = arr[0].type;
+
+      return (
+        <section key={i} className={s.section}>
+          <div className={s.header}>
+            <h2>Delhi Trending {type}s</h2>
+          </div>
+
+          <div className={s.neta}>
+            <Thumbs data={arr} />
+          </div>
+        </section>
+      );
+    });
+  };
+
+  const promotedMinister = async () => {
     let data = await getPromotedMinisters();
-    setMinisters(data.minister);
+    setPromoted(data.minister);
+  };
+
+  const trendingMP = async () => {
+    let data = await getMinisters();
+    setTrending(data);
   };
 
   useEffect(() => {
     let screenWidth = window.innerWidth;
     screenWidth >= 768 ? setIsSmallDevice(false) : null;
 
-    getMinisters();
+    trendingMP();
+    promotedMinister();
   }, []);
 
   return (
@@ -57,13 +82,15 @@ export default function Neta({ data }) {
             {/* Neta */}
             <section className={s.section}>
               <div className={s.header}>
-                <h2>Trending Leaders</h2>
+                <h2>National Trending Leaders</h2>
               </div>
 
               <div className={s.neta}>
-                <Thumbs data={ministers} />
+                <Thumbs data={promoted} />
               </div>
             </section>
+
+            {renderMinister()}
           </Container>
 
           <style jsx>{``}</style>
@@ -72,22 +99,4 @@ export default function Neta({ data }) {
       </Layout>
     </>
   );
-}
-
-export async function getServerSideProps({ req, params }) {
-  let data = {};
-
-  await getLanguage(req)
-    .then(async (res) => {
-      // data = await getHome(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
-  console.log(data);
-
-  return {
-    props: data,
-  };
 }

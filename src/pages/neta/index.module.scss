@@ -11,7 +11,7 @@
   }
 
   section.section {
-    margin-bottom: $gap;
+    margin-bottom: $gap * 4;
 
     .header {
       display: flex;
@@ -43,7 +43,7 @@
     scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
-      height: 0;
+      height: 5;
       background: transparent;
     }
 
@@ -56,6 +56,9 @@
 
       figcaption {
         color: $base-color;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

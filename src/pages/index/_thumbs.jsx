@@ -17,7 +17,7 @@ export default function Thumbs(props) {
     return (
       <Link key={key} href={`/neta/${item.slug}`}>
         <a>
-          <NetaThumb name={item.title} src={item.image} like="999" />
+          <NetaThumb name={item.name} src={item.thumbUrl} like="999" />
         </a>
       </Link>
     );

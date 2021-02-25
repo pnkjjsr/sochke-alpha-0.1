@@ -26,7 +26,7 @@ export default class StoryThumb extends Component {
 
     return (
       <div className={`${s.thumb} ${s.banner}`}>
-        <Link href={`https://www.sochke.com/story/${data.slug}`}>
+        <Link href={`/story/${data.slug}`}>
           <a>
             <Card>
               <CardActionArea>

@@ -3,8 +3,8 @@ import { service } from "@utils/api";
 function parseHead(fields) {
     return {
         slug: fields.userName,
-        title: fields.name,
-        image: fields.photoUrl
+        name: fields.name,
+        thumbUrl: fields.photoUrl
     }
 }
 
