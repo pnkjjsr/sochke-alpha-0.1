@@ -47,16 +47,10 @@ class Head extends React.Component {
             content="X_UAViRRJK8KBMJtpV6wJmolpk-h5vIn8ooaBt7AHL0"
           />
 
-          {/* <meta property="og:url" content={DEFAULT_CONFIG.defaultOGURL} />
-          <meta property="og:title" content={""} />
-          <meta
-            property="og:description"
-            content={DEFAULT_CONFIG.defaultDescription}
-          /> */}
-          {/* <meta name="twitter:site" content={DEFAULT_CONFIG.defaultOGURL} /> */}
           <meta name="twitter:card" content="summary" />
-          {/* <meta name="twitter:image" content={DEFAULT_CONFIG.defaultOGImage} /> */}
-          {/* <meta property="og:image" content={DEFAULT_CONFIG.defaultOGImage} /> */}
+          <meta name="twitter:site" content="@sochkeApp" />
+          <meta name="twitter:creator" content="@sochkeApp" />
+
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
           <meta

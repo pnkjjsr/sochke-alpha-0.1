@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Container from "@material-ui/core/Container";
 
+import { getLanguage } from "@utils/session";
+
 import { getPromotedMinisters } from "@libs/firebase/home";
 import { getMinisters } from "@libs/firebase/neta";
+import { getNetaHead } from "@libs/contentful/neta";
 
 import Layout from "@layouts/open";
 import Thumbs from "@pages/index/_thumbs";
@@ -11,13 +14,16 @@ import Thumbs from "@pages/index/_thumbs";
 import s from "./index.module.scss";
 
 export default function Neta({ data }) {
+  const head = data.head;
+
   const [promoted, setPromoted] = useState();
   const [trending, setTrending] = useState();
   const [isSmallDevice, setIsSmallDevice] = useState();
 
   const DEFAULT = {
-    title:
-      "Sochke | Political Networking | Society | Politics | Societal Issues",
+    title: head.title,
+    desc: head.desc,
+    keyword: head.tags,
     defaultOGURL: `https://sochke.com/neta`,
     defaultOGImage:
       "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
@@ -66,11 +72,12 @@ export default function Neta({ data }) {
       <Layout>
         <Head>
           <title>{DEFAULT.title}</title>
-          <meta property="og:title" content={DEFAULT.title} />
+          <meta name="keywords" content={DEFAULT.keyword}></meta>
+          <meta name="description" content={DEFAULT.desc} />
           <meta property="og:url" content={DEFAULT.defaultOGURL} />
+          <meta property="og:title" content={DEFAULT.title} />
+          <meta property="og:description" content={DEFAULT.desc} />
           <meta property="og:image" content={DEFAULT.defaultOGImage} />
-          <meta name="twitter:title" content={DEFAULT.title} />
-          <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
         </Head>
 
         <div className={s.neta}>
@@ -99,4 +106,20 @@ export default function Neta({ data }) {
       </Layout>
     </>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  let data = {};
+
+  await getLanguage(req)
+    .then(async (res) => {
+      data = await getNetaHead(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return {
+    props: { data },
+  };
 }

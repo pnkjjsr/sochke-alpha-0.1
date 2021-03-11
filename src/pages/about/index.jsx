@@ -2,20 +2,35 @@ import Head from "next/head";
 import Container from "@material-ui/core/Container";
 
 import { contentfulClient, getEntry } from "@libs/contentful";
+import { getLanguage } from "@utils/session";
+
 import Layout from "@layouts/open/index";
 
 import s from "./about.module.scss";
 
 export default function About({ data }) {
-  const pageData = data.items[0].fields;
+  const head = data.items[0].fields;
+
+  const DEFAULT = {
+    title: head.title,
+    defaultOGURL: `https://sochke.com`,
+    defaultOGImage:
+      "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
+  };
 
   return (
     <>
       <Head>
-        <title>{pageData.title}</title>
-        <meta name="description" content={pageData.desc} />
-        <link rel="icon" href="/favicon.ico" />
+        <title>{DEFAULT.title}</title>
+        <meta name="description" content={head.desc} />
+
+        <meta property="og:url" content={DEFAULT.defaultOGURL} />
+        <meta property="og:title" content={DEFAULT.title} />
+        <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
+        <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
+        <meta property="og:image" content={DEFAULT.defaultOGImage} />
       </Head>
+
       <Layout>
         <Container maxWidth="xl">
           <div className={s.about}>

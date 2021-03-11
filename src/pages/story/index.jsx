@@ -21,6 +21,7 @@ export default function Story({ data }) {
   const DEFAULT = {
     title: head.title,
     desc: head.desc,
+    keyword: head.tags,
     defaultOGURL: `https://sochke.com/story`,
     defaultOGImage:
       "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
@@ -96,11 +97,11 @@ export default function Story({ data }) {
     <Layout>
       <Head>
         <title>{DEFAULT.title}</title>
+        <meta name="keywords" content={DEFAULT.keyword}></meta>
         <meta name="description" content={DEFAULT.desc} />
         <meta property="og:url" content={DEFAULT.defaultOGURL} />
         <meta property="og:title" content={DEFAULT.title} />
-        <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
-        <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
+        <meta property="og:description" content={DEFAULT.desc} />
         <meta property="og:image" content={DEFAULT.defaultOGImage} />
       </Head>
 
@@ -133,8 +134,7 @@ export async function getServerSideProps({ req }) {
 
   await getLanguage(req)
     .then(async (res) => {
-      let language = res;
-      data = await getAllStory(language);
+      data = await getAllStory(res);
     })
     .catch((err) => {
       console.log(err);

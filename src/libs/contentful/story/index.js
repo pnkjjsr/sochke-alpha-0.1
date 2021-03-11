@@ -8,6 +8,7 @@ function parseStory({ fields, sys, cb = parseImages }) {
     return {
         slug: fields.slug,
         tag: fields.tag,
+        metatags: fields.metatags,
         image: fields?.image?.map(cb),
         title: fields.title,
         desc: fields.desc.content,

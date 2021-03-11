@@ -21,10 +21,12 @@ export default function StoryLanding({ story, param }) {
   const [title, setTitle] = useState(story.title);
   const [desc, setDesc] = useState(story.desc);
   const [tag, setTag] = useState(story.tag);
+  const [metatags, setMetatags] = useState(story.metatags);
   const [url, setUrl] = useState(`url(${story.image[0]})`);
 
   const DEFAULT = {
     title: title,
+    keyword: metatags,
     defaultOGURL: `https://sochke.com/story/${param}`,
     defaultOGImage: story.image[0],
   };
@@ -36,6 +38,7 @@ export default function StoryLanding({ story, param }) {
         setTitle(data.story.title);
         setDesc(data.story.desc);
         setTag(data.story.tag);
+        setMetatags(data.story.metatags);
       })
       .catch((err) => {
         console.log(err);
@@ -78,11 +81,10 @@ export default function StoryLanding({ story, param }) {
     <>
       <Layout>
         <Head>
-          <title>{title}</title>
+          <title>{DEFAULT.title}</title>
+          <meta name="keywords" content={DEFAULT.keyword}></meta>
           <meta property="og:url" content={DEFAULT.defaultOGURL} />
           <meta property="og:title" content={DEFAULT.title} />
-          <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
-          <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
           <meta property="og:image" content={DEFAULT.defaultOGImage} />
         </Head>
 
