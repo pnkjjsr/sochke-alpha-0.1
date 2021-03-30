@@ -141,6 +141,40 @@ export default function Home({ data }) {
                 </Link>
               </div>
             </div>
+
+            {/* Faq */}
+            <section className={`${s.section}`}>
+              <div className={s.header}>
+                <h2>FAQ's</h2>
+              </div>
+
+              <div className={s.context}>
+                <h3>What is 'Sochke'?</h3>
+                <p>
+                  Sochke is a technology and data-driven platform that enables
+                  citizens to connect with their area minister and minister’s
+                  work, experience and background.
+                </p>
+
+                <h3>What is 'Political Networking Platform'?</h3>
+                <p>
+                  Sochke is a 'political networking platform' that enables users
+                  to connect with other users. And it's a digital platform that
+                  empowers citizens to contribute to their constituencies to
+                  make it a better place.
+                </p>
+
+                <h3>What is 'Story'?</h3>
+                <p>
+                  Sochke (Alpha 0.1), platform helps you get updated with all
+                  the latest political news. We try to provide all the latest
+                  information related to 'Politics' in short and simple manner.
+                  Source of the information is realiable and trusted indian
+                  media (online/offline/paper).
+                </p>
+              </div>
+            </section>
+
             {/* Subscriber */}
             <div className={s.subscribe}>
               {d_Subscribed ? <SubscribeSmall /> : ""}

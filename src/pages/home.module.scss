@@ -149,6 +149,23 @@
     max-width: 300px;
     margin: auto;
   }
+
+  .context {
+    color: $color-white;
+
+    h3 {
+      margin: 0;
+      margin-bottom: $gap/2;
+      font-size: rem(13);
+      font-weight: $font-weight-black;
+    }
+
+    p {
+      margin: 0;
+      margin-bottom: $gap * 2;
+      font-size: rem(13);
+    }
+  }
 }
 
 @include media-breakpoint-up(sm) {
@@ -158,6 +175,18 @@
     h1 {
       max-width: 100%;
       padding-top: $gap;
+    }
+
+    .context {
+      color: $base-color;
+
+      h3 {
+        font-size: rem(16);
+        font-weight: $font-weight-bold;
+      }
+      p {
+        font-size: rem(16);
+      }
     }
   }
 }
