@@ -39,6 +39,10 @@
   section.section {
     margin-bottom: $gap;
 
+    &.mb_0 {
+      margin-bottom: 0;
+    }
+
     .header {
       display: flex;
       flex-direction: row;
@@ -148,9 +152,11 @@
   .subscribe {
     max-width: 300px;
     margin: auto;
+    margin-bottom: $gap * 2;
   }
 
   .context {
+    padding-bottom: $gap;
     color: $color-white;
 
     h3 {

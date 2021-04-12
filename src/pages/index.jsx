@@ -142,8 +142,13 @@ export default function Home({ data }) {
               </div>
             </div>
 
+            {/* Subscriber */}
+            <div className={s.subscribe}>
+              {d_Subscribed ? <SubscribeSmall /> : ""}
+            </div>
+
             {/* Faq */}
-            <section className={`${s.section}`}>
+            <section className={`${s.section} ${s.mb_0}`}>
               <div className={s.header}>
                 <h2>FAQ's</h2>
               </div>
@@ -174,11 +179,6 @@ export default function Home({ data }) {
                 </p>
               </div>
             </section>
-
-            {/* Subscriber */}
-            <div className={s.subscribe}>
-              {d_Subscribed ? <SubscribeSmall /> : ""}
-            </div>
           </Container>
         </div>
       </Layout>
