@@ -26,11 +26,15 @@
     }
   }
 
+  .authAction {
+    text-align: center;
+  }
+
   .ticket {
     max-width: 600px;
     margin: ($gap * 2) auto;
     padding: $gap/2 $gap;
-    background-color: $color-green;
+    background-color: $color-primary;
     color: $color-white;
     font-size: rem(13);
     text-align: center;

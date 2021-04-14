@@ -3,7 +3,6 @@ import Link from "next/link";
 import Head from "@layouts/head";
 import Logo from "@components/Logo";
 import PWAInstall from "./_PWAInstall";
-import AuthAction from "./_authAction";
 
 import Drawer from "./_drawer";
 
@@ -28,7 +27,7 @@ export default function Layout({ children }) {
 
         <div>
           {/* <PWAInstall /> */}
-          <AuthAction />
+          {/* <AuthAction /> */}
         </div>
       </header>
 

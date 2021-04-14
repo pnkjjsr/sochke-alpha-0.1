@@ -18,6 +18,7 @@ import { getHome } from "@libs/contentful/home";
 import { getPromotedMinisters } from "@libs/firebase/home";
 import Tags from "@pages/index/_tags";
 import Thumbs from "@pages/index/_thumbs";
+import AuthAction from "@pages/index/_authAction";
 import s from "./home.module.scss";
 
 export default function Home({ data }) {
@@ -97,6 +98,10 @@ export default function Home({ data }) {
               Political networking platform for <span>citizens</span> &amp;{" "}
               <span className={s.grn}>leaders</span>.
             </h1>
+
+            <div className={s.authAction}>
+              <AuthAction />
+            </div>
 
             <div className={s.ticket}>
               Upcoming legislative election April 2021, Assam, Kerala,
