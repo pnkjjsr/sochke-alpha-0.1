@@ -1,1 +1,9 @@
 @import "src/styles/base";
+
+.loader {
+  z-index: 11;
+
+  > div {
+    height: 4px;
+  }
+}

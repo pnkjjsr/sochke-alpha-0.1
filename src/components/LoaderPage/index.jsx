@@ -3,15 +3,16 @@ import Router from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
+import s from "./LoaderPage.module.scss";
+
 const useStyles = makeStyles({
   root: ({ state }) => ({
     position: "fixed",
-    zIndex: "1",
     top: "0",
     left: "0",
     width: "100%",
-    height: "2px",
     display: state.display,
+    backgroundColor: "#000088",
   }),
 });
 
@@ -55,9 +56,10 @@ export default function LoaderPage() {
 
   return (
     <LinearProgress
-      className={classes.root}
+      className={`${classes.root} ${s.loader}`}
       variant="determinate"
       value={progress}
+      color="secondary"
     />
   );
 }

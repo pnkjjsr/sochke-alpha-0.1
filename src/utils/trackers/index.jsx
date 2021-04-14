@@ -1,3 +1,5 @@
+import "firebase/analytics";
+
 import Firebase from "@libs/firebase";
 
 export default function analytics() {

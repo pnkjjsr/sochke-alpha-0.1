@@ -6,6 +6,15 @@ body {
   padding-bottom: $footerHeight;
 }
 
+h1 {
+  margin: 0;
+
+  > small {
+    display: block;
+    font-size: rem(14);
+  }
+}
+
 a {
   color: $color-primary;
   text-decoration: none;
