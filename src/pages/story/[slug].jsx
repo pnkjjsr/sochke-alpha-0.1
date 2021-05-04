@@ -10,7 +10,7 @@ import ShareComponent from "@components/Social/share";
 import LanguageComponent from "@components/Language/dropdown";
 import { getLanguage } from "@utils/session";
 
-import GlobalContext from "@contexts/GlobalContext";
+import { GlobalContext } from "@contexts/Global";
 import { getStory } from "@libs/contentful/story";
 import s from "./story.module.scss";
 

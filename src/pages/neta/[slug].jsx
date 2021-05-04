@@ -3,7 +3,7 @@ import Head from "next/head";
 import Container from "@material-ui/core/Container";
 
 import { Session, getLanguage } from "@utils/session";
-import GlobalContext from "@contexts/GlobalContext";
+import { GlobalContext } from "@contexts/Global";
 
 import { getMinister } from "@libs/firebase/neta";
 
@@ -21,6 +21,20 @@ export default function NetaLanding(props) {
   const [isSmallDevice, setIsSmallDevice] = useState(true);
   const [minister, setMinister] = useState(props.minister);
 
+  const getNeta = async () => {
+    let data = await getMinister(props.slug);
+    setMinister(data.minister);
+  };
+
+  useEffect(() => {
+    let screenWidth = window.innerWidth;
+    screenWidth >= 768 ? setIsSmallDevice(false) : null;
+
+    getNeta();
+  }, []);
+
+  if (!minister) return "";
+
   const DEFAULT = {
     title: `${minister.name} ${minister.title} ${minister.party}`,
     defaultOGURL: `https://www.sochke.com/neta/${minister.slug}`,
@@ -36,18 +50,6 @@ export default function NetaLanding(props) {
         console.log(err);
       });
   }
-
-  useEffect(() => {
-    let screenWidth = window.innerWidth;
-    screenWidth >= 768 ? setIsSmallDevice(false) : null;
-
-    // getNeta();
-  }, []);
-
-  const getNeta = async () => {
-    let data = await getMinister(params.slug);
-    setMinister(data.minister);
-  };
 
   return (
     <>
@@ -91,20 +93,7 @@ export default function NetaLanding(props) {
 }
 
 export async function getServerSideProps({ req, params }) {
-  let data = {};
-
-  await getLanguage(req)
-    .then(async (res) => {
-      let language = res;
-      // data = await getHome(language); // use @language as parameter and do something language related
-
-      data = await getMinister(params.slug);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
   return {
-    props: data,
+    props: params,
   };
 }

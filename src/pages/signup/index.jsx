@@ -1,15 +1,18 @@
+import React, { useState, useEffect, useContext } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import Container from "@material-ui/core/Container";
 
 import { contentfulClient, getEntry } from "@libs/contentful";
 import { getLanguage } from "@utils/session";
 
 import Layout from "@layouts/open/index";
-import FirebaseAuth from "@components/Firebase/auth";
+import FirebaseUI from "@components/Firebase/FirebaseUI";
 
 import s from "./signup.module.scss";
 
 export default function About({ data }) {
+  const router = useRouter();
   const head = data.items[0].fields;
 
   const DEFAULT = {
@@ -18,6 +21,8 @@ export default function About({ data }) {
     defaultOGImage:
       "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
   };
+
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -43,7 +48,7 @@ export default function About({ data }) {
             </div>
 
             <div className={s.provider}>
-              <FirebaseAuth />
+              <FirebaseUI />
             </div>
           </div>
         </Container>

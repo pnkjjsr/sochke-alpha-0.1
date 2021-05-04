@@ -13,7 +13,7 @@ import Layout from "@layouts/open/index";
 import SubscribeSmall from "@components/Subscribe/small";
 import StoryThumb from "@components/Thumb/story";
 
-import GlobalContext from "@contexts/GlobalContext";
+import { GlobalContext } from "@contexts/Global";
 import { getHome } from "@libs/contentful/home";
 import { getPromotedMinisters } from "@libs/firebase/home";
 import Tags from "@pages/index/_tags";
@@ -26,8 +26,8 @@ export default function Home({ data }) {
   const tags = data.tags;
   const latestStory = data.story;
   const clientLang = data.language;
+  const { language, setLanguage, authenticated } = useContext(GlobalContext);
 
-  const { language, setLanguage } = useContext(GlobalContext);
   let cookie = new Cookie();
   let cookieLang = cookie.getCookie("language");
   if (!cookieLang) setLanguage(clientLang);

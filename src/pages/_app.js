@@ -6,15 +6,13 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "@styles/theme";
 import "@styles/global.scss";
 
-import analytics from "@utils/trackers";
-import LoaderPage from "@components/LoaderPage";
+import { GlobalProvider } from "@contexts/Global";
+import analytics from "@libs/firebase/analytics";
 
-import GlobalContext from "@contexts/GlobalContext"
+import LoaderPage from "@components/LoaderPage";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
-  const [language, setLanguage] = useState("en-US");
-  const value = { language, setLanguage }
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -28,15 +26,14 @@ export default function MyApp(props) {
 
   return (
     <Fragment>
+
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <LoaderPage />
-
-        <GlobalContext.Provider value={value}>
+        <GlobalProvider>
           <Component {...pageProps} />
-        </GlobalContext.Provider>
-
+        </GlobalProvider>
       </ThemeProvider>
     </Fragment>
   );

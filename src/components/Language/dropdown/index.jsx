@@ -7,7 +7,7 @@ import Select from "@material-ui/core/Select";
 
 import { Cookie } from "@utils/session";
 
-import GlobalContext from "@contexts/GlobalContext";
+import { GlobalContext } from "@contexts/Global";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
