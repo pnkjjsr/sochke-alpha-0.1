@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import "firebaseui/dist/firebaseui.css";
 
 import Firebase from "@libs/firebase";
+import { postNewUser } from "@libs/firebase/signup";
+import { AuthContext } from "@contexts/Auth";
 
 export default class FirebaseUI extends Component {
-  componentDidMount() {
-    const firebaseui = require("firebaseui");
+  static contextType = AuthContext;
 
+  componentDidMount() {
+    const { setProfile, setAuthenticated } = this.context;
+
+    const firebaseui = require("firebaseui");
     let ui = null;
     let firebaseApp = new Firebase();
     firebaseApp
@@ -33,15 +38,17 @@ export default class FirebaseUI extends Component {
           callbacks: {
             // Called when the user has been successfully signed in.
             signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-              if (authResult.user) {
-                // console.log(authResult);
+              let isNewUser = authResult.additionalUserInfo.isNewUser;
+              let user = authResult.user.providerData[0];
+
+              setAuthenticated(true);
+              setProfile(user);
+
+              if (isNewUser) postNewUser(user);
+              else {
+                // console.log("Existing User");
               }
-              if (authResult.additionalUserInfo) {
-                let checkUser = authResult.additionalUserInfo.isNewUser
-                  ? "New User"
-                  : "Existing User";
-                // console.log(checkUser);
-              }
+
               // Do not redirect.
               // return false;
             },

@@ -25,9 +25,7 @@ export default function About({ data }) {
       "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
   };
 
-  if (authenticated != auth) {
-    router.push("/");
-  }
+  if (authenticated != auth) router.push("/");
 
   useEffect(() => {}, []);
 
