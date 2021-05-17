@@ -27,6 +27,7 @@
   }
 
   .authAction {
+    margin: ($gap * 2) 0;
     text-align: center;
 
     p {
@@ -273,6 +274,20 @@
 
         &.grn {
           color: #42852d;
+        }
+      }
+    }
+
+    .authAction {
+      p {
+        color: $base-color;
+      }
+
+      .loggedIn {
+        > div {
+          .title {
+            color: $base-color;
+          }
         }
       }
     }

@@ -10,7 +10,8 @@ function parseHead({ fields }) {
         title: fields.title,
         desc: fields.desc,
         tags: fields.tags,
-        image: fields.image.fields.file
+        image: fields.image.fields.file,
+        languages: fields.languages
     }
 }
 
@@ -54,7 +55,6 @@ export async function getHome(lang) {
         locale: lang,
         limit: 10,
     });
-
 
     return {
         head: parseHeadEntries(head)[0],

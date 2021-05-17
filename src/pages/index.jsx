@@ -22,11 +22,11 @@ import AuthAction from "@pages/index/_authAction";
 import s from "./home.module.scss";
 
 export default function Home({ data }) {
+  const { language, setLanguage } = useContext(GlobalContext);
   const head = data.head;
   const tags = data.tags;
   const latestStory = data.story;
   const clientLang = data.language;
-  const { language, setLanguage } = useContext(GlobalContext);
 
   let cookie = new Cookie();
   let cookieLang = cookie.getCookie("language");
@@ -35,6 +35,8 @@ export default function Home({ data }) {
   const [lang, setLang] = useState(language);
   const [tag, setTag] = useState(tags);
   const [story, setStory] = useState(latestStory);
+
+  const [languages, setLanguages] = useState(head.languages);
 
   const [d_Subscribed, setd_Subscribed] = useState(true);
   const [title, setTitle] = useState(head.title);
@@ -103,10 +105,11 @@ export default function Home({ data }) {
               <AuthAction />
             </div>
 
-            <div className={s.ticket}>
-              Upcoming legislative election April 2021, Assam, Kerala,
-              Puducherry, Tamil Nadu, West Bengal
-            </div>
+            {languages?.ticker ? (
+              <div className={s.ticket}>{languages?.ticker}</div>
+            ) : (
+              ""
+            )}
 
             {/* Neta */}
             <section className={s.section}>
