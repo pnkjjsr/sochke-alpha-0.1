@@ -28,6 +28,59 @@
 
   .authAction {
     text-align: center;
+
+    p {
+      margin: 0;
+      margin-top: $gap;
+      color: $color-white;
+      font-size: rem(13);
+    }
+
+    .loggedIn {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      > figure {
+        img {
+          width: 100px;
+          height: 100px;
+          margin-right: $gap;
+          @include border-radius(100%);
+        }
+      }
+
+      > div {
+        .title {
+          margin-bottom: $gap * 0.5;
+          color: $color-white;
+          font-weight: $font-weight-bold;
+          text-align: left;
+
+          small {
+            display: block;
+            font-weight: $font-weight;
+          }
+        }
+
+        .action {
+          text-align: left;
+
+          button {
+            margin-right: $gap;
+            box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.3);
+
+            &:first-child {
+              // background-color: $color-primary;
+
+              span {
+                // color: $color-primary;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   .ticket {

@@ -26,7 +26,7 @@ export default function Home({ data }) {
   const tags = data.tags;
   const latestStory = data.story;
   const clientLang = data.language;
-  const { language, setLanguage, authenticated } = useContext(GlobalContext);
+  const { language, setLanguage } = useContext(GlobalContext);
 
   let cookie = new Cookie();
   let cookieLang = cookie.getCookie("language");

@@ -7,6 +7,7 @@ import theme from "@styles/theme";
 import "@styles/global.scss";
 
 import { GlobalProvider } from "@contexts/Global";
+import { AuthProvider } from "@contexts/Auth";
 import analytics from "@libs/firebase/analytics";
 
 import LoaderPage from "@components/LoaderPage";
@@ -32,7 +33,9 @@ export default function MyApp(props) {
         <CssBaseline />
         <LoaderPage />
         <GlobalProvider>
-          <Component {...pageProps} />
+          <AuthProvider>
+            <Component {...pageProps} />
+          </AuthProvider>
         </GlobalProvider>
       </ThemeProvider>
     </Fragment>

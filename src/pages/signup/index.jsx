@@ -5,6 +5,7 @@ import Container from "@material-ui/core/Container";
 
 import { contentfulClient, getEntry } from "@libs/contentful";
 import { getLanguage } from "@utils/session";
+import { AuthContext } from "@contexts/Auth";
 
 import Layout from "@layouts/open/index";
 import FirebaseUI from "@components/Firebase/FirebaseUI";
@@ -14,6 +15,8 @@ import s from "./signup.module.scss";
 export default function About({ data }) {
   const router = useRouter();
   const head = data.items[0].fields;
+  const { authenticated } = useContext(AuthContext);
+  const [auth, setAuth] = useState(authenticated);
 
   const DEFAULT = {
     title: head.title,
@@ -21,6 +24,10 @@ export default function About({ data }) {
     defaultOGImage:
       "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
   };
+
+  if (authenticated != auth) {
+    router.push("/");
+  }
 
   useEffect(() => {}, []);
 
