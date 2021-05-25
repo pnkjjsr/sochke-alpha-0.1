@@ -4,6 +4,7 @@ import "firebaseui/dist/firebaseui.css";
 import Firebase from "@libs/firebase";
 import { postNewUser } from "@libs/firebase/signup";
 import { AuthContext } from "@contexts/Auth";
+import { service } from "@utils/api";
 
 export default class FirebaseUI extends Component {
   static contextType = AuthContext;
@@ -44,8 +45,23 @@ export default class FirebaseUI extends Component {
               setAuthenticated(true);
               setProfile(user);
 
-              if (isNewUser) postNewUser(user);
-              else {
+              if (isNewUser) {
+                postNewUser(user);
+
+                const emailData = {
+                  email: user.email,
+                  status: "subscribed",
+                };
+
+                service
+                  .post("/subscribe/email-push", emailData)
+                  .then((res) => {
+                    console.log(res);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              } else {
                 // console.log("Existing User");
               }
 
