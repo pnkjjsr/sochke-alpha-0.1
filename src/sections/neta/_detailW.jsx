@@ -4,7 +4,7 @@ import router from "next/router";
 import NetaThumb from "@components/Thumb/neta";
 
 import Info from "./_info";
-import s from "./neta.module.scss";
+import s from "@pages/neta/neta.module.scss";
 
 export default class Detail extends Component {
   constructor(props) {
@@ -12,9 +12,6 @@ export default class Detail extends Component {
     this.state = {
       d_collapse: s.hide,
       t_expand: "expand_less",
-      thumb: "",
-      name: "",
-      title: "",
     };
   }
 
@@ -47,28 +44,22 @@ export default class Detail extends Component {
   }
 
   render() {
-    const { thumb, name, title } = this.state;
     const { data } = this.props;
 
     return (
       <div className={s.detail}>
         <div className={s.thumb}>
-          {!thumb ? (
+          {!data.imageUrl ? (
             ""
           ) : (
-            <NetaThumb
-              // name="Narendra Modi"
-              src={thumb}
-              name={name}
-              like="999"
-            />
+            <NetaThumb src={data.imageUrl} name={data.name} like="999" />
           )}
         </div>
 
         <div className={s.top}>
           <div>
-            <h1>{name}</h1>
-            <small>{title}</small>
+            <h1>{data.name}</h1>
+            <small>{data.title}</small>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import stringModifier from "@utils/modifier/string";
 
-import s from "./neta.module.scss";
+import s from "@pages/neta/neta.module.scss";
 
 export default class Info extends Component {
   constructor(props) {
@@ -34,15 +34,8 @@ export default class Info extends Component {
   }
 
   render() {
-    const {
-      asset,
-      liability,
-      education,
-      constituency,
-      year,
-      cases,
-      age,
-    } = this.state;
+    const { asset, liability, education, constituency, year, cases, age } =
+      this.state;
     const string = new stringModifier();
 
     //let assets = string.currencyFormat(asset);

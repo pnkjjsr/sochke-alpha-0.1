@@ -16,9 +16,9 @@ import StoryThumb from "@components/Thumb/story";
 import { GlobalContext } from "@contexts/Global";
 import { getHome } from "@libs/contentful/home";
 import { getPromotedMinisters } from "@libs/firebase/home";
-import Tags from "@pages/index/_tags";
-import Thumbs from "@pages/index/_thumbs";
-import AuthAction from "@pages/index/_authAction";
+import Tags from "@sections/index/_tags";
+import Thumbs from "@sections/index/_thumbs";
+import AuthAction from "@sections/index/_authAction";
 import s from "./home.module.scss";
 
 export default function Home({ data }) {

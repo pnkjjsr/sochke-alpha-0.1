@@ -1,36 +1,31 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
+
 import Container from "@material-ui/core/Container";
 
-import { Session, getLanguage } from "@utils/session";
 import { GlobalContext } from "@contexts/Global";
-
 import { getMinister } from "@libs/firebase/neta";
+import Wiki from "@libs/wiki";
 
 import Layout from "@layouts/open";
 
-import Photo from "./_photo";
-import DetailM from "./_detailM";
-import DetailW from "./_detailW";
-import Bottom from "./_bottom";
+import Photo from "@sections/neta/_photo";
+import DetailM from "@sections/neta/_detailM";
+import DetailW from "@sections/neta/_detailW";
+import About from "@sections/neta/_about";
+import Bottom from "@sections/neta/_bottom";
 import s from "./neta.module.scss";
 
-export default function NetaLanding(props) {
+export default function NetaLanding({ neta, para }) {
   const { language } = useContext(GlobalContext);
   const [lang, setLang] = useState(language);
   const [isSmallDevice, setIsSmallDevice] = useState(true);
-  const [minister, setMinister] = useState(props.minister);
-
-  const getNeta = async () => {
-    let data = await getMinister(props.slug);
-    setMinister(data.minister);
-  };
+  const [minister, setMinister] = useState(neta);
+  const [paragraph, setParagraph] = useState(para);
 
   useEffect(() => {
     let screenWidth = window.innerWidth;
     screenWidth >= 768 ? setIsSmallDevice(false) : null;
-
-    getNeta();
   }, []);
 
   if (!minister) return "";
@@ -66,24 +61,23 @@ export default function NetaLanding(props) {
         </Head>
 
         <div className={s.neta}>
-          <Photo data={minister} />
+          <Photo data={neta} />
+          {isSmallDevice ? <DetailM data={neta} /> : <DetailW data={neta} />}
 
-          {isSmallDevice ? (
-            <DetailM data={minister} />
-          ) : (
-            <DetailW data={minister} />
-          )}
+          <Container>
+            <p className={`notice ${s.notice}`}>
+              Disclaimer: This information is an archive of the candidate's
+              self-declared affidavit that was filed during the elections. The
+              current status of this information may be different. For the
+              latest available information, please refer to the affidavit filed
+              by the candidate to the Election Commission in the most recent
+              election.
+            </p>
 
-          <p className={`notice ${s.notice}`}>
-            Disclaimer: This information is an archive of the candidate's
-            self-declared affidavit that was filed during the elections. The
-            current status of this information may be different. For the latest
-            available information, please refer to the affidavit filed by the
-            candidate to the Election Commission in the most recent election.
-          </p>
+            <About data={paragraph} />
+          </Container>
 
           <Bottom data={DEFAULT} />
-
           <style jsx>{``}</style>
           <style jsx global>{``}</style>
         </div>
@@ -92,8 +86,13 @@ export default function NetaLanding(props) {
   );
 }
 
-export async function getServerSideProps({ req, params }) {
+export async function getServerSideProps({ params }) {
+  let neta = await getMinister(params.slug);
+
+  let wiki = new Wiki();
+  let para = await wiki.getShortIntro(neta.name);
+
   return {
-    props: params,
+    props: { neta, para },
   };
 }

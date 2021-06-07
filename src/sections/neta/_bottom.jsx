@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import CommonBack from "@components/Common/back";
 import ShareComponent from "@components/Social/share";
 
-import s from "./neta.module.scss";
+import s from "@pages/neta/neta.module.scss";
 
 export default class Bottom extends Component {
   render() {

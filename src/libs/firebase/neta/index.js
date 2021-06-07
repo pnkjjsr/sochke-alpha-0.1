@@ -1,5 +1,7 @@
 import { service } from "@utils/api";
+import { firestore } from "@libs/firebase/firestore";
 
+// Get single minister via slug
 function parseMinister(fields) {
     let title = "";
 
@@ -50,19 +52,37 @@ function parseMinisterEntry(entry, cb = parseMinister) {
     return entry?.map(cb)
 }
 
+
+
 export async function getMinister(slug) {
-    let entry = {};
-    await service
-        .get(`/minister/username/${slug}`)
-        .then((res) => {
-            entry = res.data;
+    let db = await firestore();
+
+    const minister = [];
+
+    let colRef = db.collection("ministers");
+    await colRef
+        .where("userName", "==", slug)
+        .get()
+        .then((snapshot) => {
+            if (snapshot.empty) {
+                return res.json({
+                    code: "minister/empty",
+                    message: "No data is available.",
+                });
+            } else {
+                snapshot.forEach((doc) => {
+                    minister.push(doc.data());
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
         });
 
-    return {
-        minister: parseMinisterEntry(entry)[0]
-    }
+    return parseMinisterEntry(minister)[0];
 }
 
+// Get Promoted and features Ministers List
 function parseMinisters(fields) {
     return {
         id: fields.id,
@@ -103,7 +123,7 @@ function parseMinisterEntries(entries, cb = parseObject) {
     return ministerObj
 }
 
-export async function getMinisters(slug) {
+export async function getMinisters() {
     let entry = {};
 
     await service

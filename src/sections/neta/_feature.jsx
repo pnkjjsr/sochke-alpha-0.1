@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import FlagIcon from "@material-ui/icons/Flag";
 import TextMobileStepper from "./_stepper";
-import s from "./neta.module.scss";
+import s from "@pages/neta/neta.module.scss";
 
 export default class Feature extends Component {
   constructor(props) {

@@ -1,20 +1,23 @@
 {
-  "presets": ["next/babel"],
+  "presets": [
+    "next/babel"
+  ],
   "plugins": [
     [
       "module-resolver",
       {
-        "root": ["."],
+        "root": [
+          "."
+        ],
         "alias": {
           "@contexts": "./src/contexts",
           "@layouts": "./src/layouts",
           "@pages": "./src/pages",
+          "@sections": "./src/sections",
           "@components": "./src/components",
           "@styles": "./src/styles",
-
           "@libs": "./src/libs",
           "@utils": "./src/utils",
-
           "@configs": "./configs"
         }
       }

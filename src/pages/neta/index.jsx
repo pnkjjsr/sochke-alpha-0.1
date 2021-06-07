@@ -9,7 +9,7 @@ import { getMinisters } from "@libs/firebase/neta";
 import { getNetaHead } from "@libs/contentful/neta";
 
 import Layout from "@layouts/open";
-import Thumbs from "@pages/index/_thumbs";
+import Thumbs from "@sections/index/_thumbs";
 
 import s from "./index.module.scss";
 

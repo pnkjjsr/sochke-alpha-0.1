@@ -9,7 +9,7 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
-import s from "./neta.module.scss";
+import s from "@pages/neta/neta.module.scss";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 

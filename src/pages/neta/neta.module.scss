@@ -256,6 +256,15 @@
     margin-top: 350px;
   }
 
+  .about {
+    margin-bottom: $gap * 2;
+
+    p {
+      font-size: rem(15);
+      line-height: rem(30);
+    }
+  }
+
   .bottom {
     position: fixed;
     z-index: 10;

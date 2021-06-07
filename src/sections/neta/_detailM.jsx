@@ -4,49 +4,30 @@ import NetaThumb from "@components/Thumb/neta";
 
 import Feature from "./_feature";
 import Info from "./_info";
-import s from "./neta.module.scss";
+import s from "@pages/neta/neta.module.scss";
 
 export default class Detail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      thumb: "",
-      name: "",
-      title: "",
-    };
-  }
-
-  componentDidMount() {
-    const { data } = this.props;
-    this.setState({
-      thumb: data.imageUrl,
-      name: data.name,
-      title: data.title,
-    });
-  }
-
   render() {
     const { data } = this.props;
-    const { thumb, name, title } = this.state;
 
     return (
       <div className={s.detail}>
         <div className={s.thumb}>
-          {!thumb ? (
+          {!data.imageUrl ? (
             ""
           ) : (
             <NetaThumb
               // name="Narendra Modi"
-              src={thumb}
-              name={name}
+              src={data.imageUrl}
+              name={data.name}
               like="999"
             />
           )}
         </div>
 
         <div className={s.top}>
-          <h1>{name}</h1>
-          <small>{title}</small>
+          <h1>{data.name}</h1>
+          <small>{data.title}</small>
         </div>
 
         <Feature data={data} />
