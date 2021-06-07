@@ -56,10 +56,10 @@ export default class FirebaseUI extends Component {
                 service
                   .post("/subscribe/email-push", emailData)
                   .then((res) => {
-                    console.log(res);
+                    // console.log(res);
                   })
                   .catch((err) => {
-                    console.log(err);
+                    // console.log(err);
                   });
               } else {
                 // console.log("Existing User");

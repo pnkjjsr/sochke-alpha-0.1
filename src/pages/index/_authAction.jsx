@@ -26,13 +26,12 @@ export default function AuthAction() {
   const router = useRouter();
   const { authenticated, setAuthenticated, profile } = useContext(AuthContext);
 
-  const onSignup = (e) => {
-    e.preventDefault();
+  const onSignup = () => {
     router.push("/signup");
   };
 
   const onSetting = () => {
-    console.log("Go on setting page.");
+    router.push("/setting");
   };
 
   const handleLogout = () => {
