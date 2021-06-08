@@ -44,7 +44,8 @@ function parseMinister(fields) {
         age: fields.age,
         asset: fields.assets,
         liability: fields.liabilities,
-        education: fields.education
+        education: fields.education,
+        twitterHandle: fields.twitterHandle,
     }
 }
 
@@ -65,7 +66,7 @@ export async function getMinister(slug) {
         .get()
         .then((snapshot) => {
             if (snapshot.empty) {
-                return res.json({
+                return console.log({
                     code: "minister/empty",
                     message: "No data is available.",
                 });

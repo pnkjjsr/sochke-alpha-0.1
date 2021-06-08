@@ -5,7 +5,8 @@ import Container from "@material-ui/core/Container";
 
 import { GlobalContext } from "@contexts/Global";
 import { getMinister } from "@libs/firebase/neta";
-import Wiki from "@libs/wiki";
+import Wiki from "@utils/openApi/wiki";
+import Youtube from "@utils/openApi/youtube";
 
 import Layout from "@layouts/open";
 
@@ -13,10 +14,11 @@ import Photo from "@sections/neta/_photo";
 import DetailM from "@sections/neta/_detailM";
 import DetailW from "@sections/neta/_detailW";
 import About from "@sections/neta/_about";
+import SocialTabs from "@sections/neta/_socialTabs";
 import Bottom from "@sections/neta/_bottom";
 import s from "./neta.module.scss";
 
-export default function NetaLanding({ neta, para }) {
+export default function NetaLanding({ neta, para, ytSearch }) {
   const { language } = useContext(GlobalContext);
   const [lang, setLang] = useState(language);
   const [isSmallDevice, setIsSmallDevice] = useState(true);
@@ -75,6 +77,8 @@ export default function NetaLanding({ neta, para }) {
             </p>
 
             <About data={paragraph} />
+
+            <SocialTabs twitter={minister.twitterHandle} youtube={ytSearch} />
           </Container>
 
           <Bottom data={DEFAULT} />
@@ -89,10 +93,13 @@ export default function NetaLanding({ neta, para }) {
 export async function getServerSideProps({ params }) {
   let neta = await getMinister(params.slug);
 
+  let yt = new Youtube();
+  let ytSearch = await yt.getSearchList(neta.name);
+
   let wiki = new Wiki();
   let para = await wiki.getShortIntro(neta.name);
 
   return {
-    props: { neta, para },
+    props: { neta, para, ytSearch },
   };
 }

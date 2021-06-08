@@ -41,7 +41,7 @@ export default function Home({ data }) {
   const [d_Subscribed, setd_Subscribed] = useState(true);
   const [title, setTitle] = useState(head.title);
   const [desc, setDesc] = useState(head.desc);
-  const [ministers, setMinisters] = useState();
+  const [ministers, setMinisters] = useState(data.promotedMinisters);
 
   const DEFAULT = {
     title: title,
@@ -64,18 +64,11 @@ export default function Home({ data }) {
       });
   }
 
-  const getMinisters = async () => {
-    let data = await getPromotedMinisters();
-    setMinisters(data.minister);
-  };
-
   useEffect(() => {
     firebaseCloudMessaging.init();
     let session = new Session();
     let isSubscribed = session.getSubscribed();
     if (isSubscribed === "true") setd_Subscribed(false);
-
-    getMinisters();
   }, []);
 
   return (
@@ -208,6 +201,8 @@ export async function getServerSideProps({ req }) {
     .catch((err) => {
       console.log(err);
     });
+
+  data.promotedMinisters = await getPromotedMinisters();
 
   return {
     props: { data },
