@@ -9,10 +9,7 @@ import Box from "@material-ui/core/Box";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 
 import s from "@pages/neta/neta.module.scss";
 
@@ -103,17 +100,26 @@ export default function SocialTabs(props) {
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
           <div className={s.thumbs}>
-            <RenderYtThumb data={props.youtube} />
+            {props.youtube.error ? (
+              <p>Not available yet!</p>
+            ) : (
+              <RenderYtThumb data={props.youtube} />
+            )}
           </div>
         </TabPanel>
+
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <TwitterTimelineEmbed
-            sourceType="timeline"
-            screenName={props.twitter}
-            options={{ height: 600, tweetLimit: 3 }}
-            noHeader
-            noFooter
-          />
+          {!props.twitter ? (
+            <p>Not available yet!</p>
+          ) : (
+            <TwitterTimelineEmbed
+              sourceType="timeline"
+              screenName={props.twitter}
+              options={{ height: 600, tweetLimit: 3 }}
+              noHeader
+              noFooter
+            />
+          )}
         </TabPanel>
       </SwipeableViews>
     </div>

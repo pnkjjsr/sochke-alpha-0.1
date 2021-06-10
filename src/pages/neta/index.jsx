@@ -16,8 +16,8 @@ import s from "./index.module.scss";
 export default function Neta({ data }) {
   const head = data.head;
 
-  const [promoted, setPromoted] = useState();
-  const [trending, setTrending] = useState();
+  const [promoted, setPromoted] = useState(data.promotedMinisters);
+  const [trending, setTrending] = useState(data.trendingMinisters);
   const [isSmallDevice, setIsSmallDevice] = useState();
 
   const DEFAULT = {
@@ -49,22 +49,9 @@ export default function Neta({ data }) {
     });
   };
 
-  const promotedMinister = async () => {
-    let data = await getPromotedMinisters();
-    setPromoted(data.minister);
-  };
-
-  const trendingMP = async () => {
-    let data = await getMinisters();
-    setTrending(data);
-  };
-
   useEffect(() => {
     let screenWidth = window.innerWidth;
     screenWidth >= 768 ? setIsSmallDevice(false) : null;
-
-    trendingMP();
-    promotedMinister();
   }, []);
 
   return (
@@ -118,6 +105,9 @@ export async function getServerSideProps({ req }) {
     .catch((err) => {
       console.log(err);
     });
+
+  data.promotedMinisters = await getPromotedMinisters();
+  data.trendingMinisters = await getMinisters();
 
   return {
     props: { data },

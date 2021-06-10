@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "src/styles/base";
 
 .story {
@@ -10,7 +11,7 @@
   .banner {
     display: flex;
     max-height: 300px;
-    margin-bottom: $gap * 2;
+    margin-bottom: math.div($gap, 2);
     overflow: hidden;
 
     img {

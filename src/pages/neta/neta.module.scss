@@ -270,10 +270,14 @@
 
     .thumbs {
       > div {
-        margin: $gap;
+        margin: $gap auto;
 
-        img {
-          width: 100%;
+        figure {
+          text-align: center;
+
+          img {
+            height: 100%;
+          }
         }
 
         h3,
@@ -525,7 +529,11 @@
         flex-wrap: wrap;
 
         > div {
-          max-width: calc(93% / 2);
+          figure {
+            background-color: $base-color;
+            img {
+            }
+          }
         }
       }
     }

@@ -45,15 +45,13 @@ function parseMinister(fields) {
         asset: fields.assets,
         liability: fields.liabilities,
         education: fields.education,
-        twitterHandle: fields.twitterHandle,
+        twitterHandle: fields.twitterHandle || null,
     }
 }
 
 function parseMinisterEntry(entry, cb = parseMinister) {
     return entry?.map(cb)
 }
-
-
 
 export async function getMinister(slug) {
     let db = await firestore();
@@ -82,6 +80,7 @@ export async function getMinister(slug) {
 
     return parseMinisterEntry(minister)[0];
 }
+
 
 // Get Promoted and features Ministers List
 function parseMinisters(fields) {
@@ -125,13 +124,55 @@ function parseMinisterEntries(entries, cb = parseObject) {
 }
 
 export async function getMinisters() {
-    let entry = {};
+    let db = await firestore();
+    let ministers = {
+        mps: [],
+        mlas: [],
+        councillors: []
+    }
 
-    await service
-        .get(`/minister/trending`)
-        .then((res) => {
-            entry = res.data;
+    let colRef = db.collection("ministers");
+    await colRef
+        .where("type", "==", "MP")
+        .where("trending", ">", 0)
+        .orderBy("trending", "asc")
+        .limit(10)
+        .get().then((snapshot) => {
+            if (snapshot.empty) return null;
+
+            snapshot.forEach((doc) => {
+                ministers.mps.push(doc.data());
+            });
         });
 
-    return parseMinisterEntries(entry)
+    await colRef
+        .where("type", "==", "MLA")
+        .where("trending", ">", 0)
+        .orderBy("trending", "asc")
+        .limit(10)
+        .get().then((snapshot) => {
+            if (snapshot.empty) return null;
+
+            snapshot.forEach((doc) => {
+                ministers.mlas.push(doc.data());
+            });
+        });
+
+    await colRef
+        .where("type", "==", "COUNCILLOR")
+        .where("trending", ">", 0)
+        .orderBy("trending", "asc")
+        .limit(10)
+        .get().then((snapshot) => {
+            if (snapshot.empty) return null;
+
+            snapshot.forEach((doc) => {
+                ministers.councillors.push(doc.data());
+            });
+        });
+
+    return parseMinisterEntries(ministers)
 }
+
+
+// Get all the minister in the collection.

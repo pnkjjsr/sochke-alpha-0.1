@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "src/styles/base";
 
 .home {
@@ -87,7 +88,7 @@
   .ticket {
     max-width: 600px;
     margin: ($gap * 2) auto;
-    padding: $gap/2 $gap;
+    padding: math.div($gap, 2) $gap;
     background-color: $color-primary;
     color: $color-white;
     font-size: rem(13);
@@ -106,7 +107,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding: $gap/2 $gap $gap;
+      padding: math.div($gap, 2) $gap $gap;
 
       h2 {
         margin: 0;
@@ -219,7 +220,7 @@
 
     h3 {
       margin: 0;
-      margin-bottom: $gap/2;
+      margin-bottom: math.div($gap, 2);
       font-size: rem(13);
       font-weight: $font-weight-black;
     }

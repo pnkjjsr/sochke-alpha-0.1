@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $fast: all 0.3s ease;
 $normal: all 0.5s ease;
 $slow: all 1s ease;
@@ -63,7 +65,7 @@ $slow: all 1s ease;
 }
 
 @function rem($pixels, $size: 16) {
-  @return ($pixels / $size) * 1rem;
+  @return math.div($pixels, $size) * 1rem;
 }
 
 @mixin mobileFullHeight() {

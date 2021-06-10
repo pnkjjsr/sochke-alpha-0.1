@@ -77,8 +77,16 @@ export default function NetaLanding({ neta, para, ytSearch }) {
             </p>
 
             <About data={paragraph} />
+            <p className="notice">
+              Disclaimer: About directly getting from wiki page by keyword: "
+              {minister.name}"
+            </p>
 
             <SocialTabs twitter={minister.twitterHandle} youtube={ytSearch} />
+            <p className="notice">
+              Disclaimer: Tweets, directly from twitter widget and youtube data
+              is last search by keyword: "{minister.name} {minister.party}"
+            </p>
           </Container>
 
           <Bottom data={DEFAULT} />
@@ -94,7 +102,7 @@ export async function getServerSideProps({ params }) {
   let neta = await getMinister(params.slug);
 
   let yt = new Youtube();
-  let ytSearch = await yt.getSearchList(neta.name);
+  let ytSearch = await yt.getSearchList(`${neta.name} ${neta.party}`);
 
   let wiki = new Wiki();
   let para = await wiki.getShortIntro(neta.name);
