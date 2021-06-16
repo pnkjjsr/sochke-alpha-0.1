@@ -30,7 +30,6 @@ function parseMinister(fields) {
         id: fields.id,
         slug: fields.userName,
         name: fields.name,
-        bannerUrl: "",
         imageUrl: fields.photoUrl,
         bannerUrl: fields.bannerUrl || "",
         party: fields.party,
@@ -80,7 +79,6 @@ export async function getMinister(slug) {
 
     return parseMinisterEntry(minister)[0];
 }
-
 
 // Get Promoted and features Ministers List
 function parseMinisters(fields) {
@@ -174,5 +172,41 @@ export async function getMinisters() {
     return parseMinisterEntries(ministers)
 }
 
+// Get minister alphabetically
+function parseAlphaMininster(fields) {
+    return {
+        id: fields.id,
+        slug: fields.userName,
+        type: fields.type,
+        name: fields.name,
+        thumbUrl: fields.photoUrl,
+        party: fields.party,
+        partyShort: fields.partyShort,
+        constituency: fields.constituency,
+        year: fields.year
+    }
+}
 
-// Get all the minister in the collection.
+function parseMinisterAlphaEntries(entries, cb = parseAlphaMininster) {
+    return entries?.map(cb);
+}
+
+export async function getMinistersByChar(slug) {
+    let db = await firestore();
+    let ministers = [];
+
+    let colRef = db.collection("ministers");
+    await colRef
+        .orderBy("name", "asc")
+        .get()
+        .then((snapshot) => {
+            if (snapshot.empty) return null;
+
+            snapshot.forEach((doc) => {
+                let char = doc.data().name.charAt(0);
+                if (char == slug || char == slug.toUpperCase()) ministers.push(doc.data());
+            });
+        });
+
+    return parseMinisterAlphaEntries(ministers);
+}

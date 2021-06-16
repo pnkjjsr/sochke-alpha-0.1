@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Head from "next/head";
 import Container from "@material-ui/core/Container";
 
@@ -49,6 +50,30 @@ export default function Neta({ data }) {
     });
   };
 
+  const genCharArray = (charA, charZ) => {
+    var a = [],
+      i = charA.charCodeAt(0),
+      j = charZ.charCodeAt(0);
+    for (; i <= j; ++i) {
+      a.push(String.fromCharCode(i));
+    }
+    return a;
+  };
+
+  const renderAlphabetical = () => {
+    let alpha = genCharArray("a", "z");
+
+    return alpha.map((item, i) => {
+      return (
+        <li key={i}>
+          <Link href={`/neta/alpha/${item}`}>
+            <a>{item}</a>
+          </Link>
+        </li>
+      );
+    });
+  };
+
   useEffect(() => {
     let screenWidth = window.innerWidth;
     screenWidth >= 768 ? setIsSmallDevice(false) : null;
@@ -85,6 +110,16 @@ export default function Neta({ data }) {
             </section>
 
             {renderMinister()}
+
+            <section className={s.section}>
+              <div className={s.header}>
+                <h2>Search your leader alphabetically.</h2>
+              </div>
+
+              <div className={s.alphabet}>
+                <ul>{renderAlphabetical()}</ul>
+              </div>
+            </section>
           </Container>
 
           <style jsx>{``}</style>

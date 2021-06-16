@@ -14,6 +14,7 @@ import s from "./share.module.scss";
 
 export default function ShareComponent(props) {
   const [isSmallDevice, setIsSmallDevice] = useState(true);
+  const [displaySocial, setDisplaySocial] = useState(false);
 
   const handleShare = (e) => {
     const shareData = {

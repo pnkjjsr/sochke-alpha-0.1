@@ -106,6 +106,7 @@ export async function getServerSideProps({ params }) {
 
   let wiki = new Wiki();
   let para = await wiki.getShortIntro(neta.name);
+  if (!para.para) para.para = "Description not available.";
 
   return {
     props: { neta, para, ytSearch },
