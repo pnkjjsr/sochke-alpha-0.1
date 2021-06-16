@@ -194,17 +194,20 @@ function parseMinisterAlphaEntries(entries, cb = parseAlphaMininster) {
 export async function getMinistersByChar(slug) {
     let db = await firestore();
     let ministers = [];
+    let char = slug.toUpperCase();
+    let nextChar = String.fromCharCode(char.charCodeAt(char.length - 1) + 1);
 
     let colRef = db.collection("ministers");
     await colRef
         .orderBy("name", "asc")
+        .startAt(char)
+        .endAt(nextChar)
         .get()
         .then((snapshot) => {
             if (snapshot.empty) return null;
 
             snapshot.forEach((doc) => {
-                let char = doc.data().name.charAt(0);
-                if (char == slug || char == slug.toUpperCase()) ministers.push(doc.data());
+                ministers.push(doc.data());
             });
         });
 
