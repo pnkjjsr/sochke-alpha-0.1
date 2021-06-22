@@ -8,6 +8,7 @@ import { getLanguage } from "@utils/session";
 import { AuthContext } from "@contexts/Auth";
 
 import Layout from "@layouts/open/index";
+import SettingTabs from "@sections/setting/_tabs";
 
 import s from "./setting.module.scss";
 
@@ -24,8 +25,7 @@ export default function Setting({ data }) {
       "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
   };
 
-  if (authenticated != auth) router.push("/");
-
+  // if (authenticated != auth) router.push("/");
   useEffect(() => {}, []);
 
   return (
@@ -51,7 +51,9 @@ export default function Setting({ data }) {
               </h1>
             </div>
 
-            <div className={s.provider}>Setting page</div>
+            <div className={s.tabs}>
+              <SettingTabs />
+            </div>
           </div>
         </Container>
       </Layout>

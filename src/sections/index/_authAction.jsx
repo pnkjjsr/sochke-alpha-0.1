@@ -89,7 +89,7 @@ export default function AuthAction() {
           </div>
 
           <div className={s.action}>
-            {/* <IconButton
+            <IconButton
               className={classes.root}
               variant="contained"
               color="primary"
@@ -98,7 +98,7 @@ export default function AuthAction() {
               onClick={onSetting}
             >
               <SettingsIcon />
-            </IconButton> */}
+            </IconButton>
 
             <Button
               className={classes.root}

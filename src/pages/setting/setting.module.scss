@@ -1,9 +1,65 @@
 @import "src/styles/base";
 
 .setting {
+  padding-bottom: $gap * 2;
+
   .header {
   }
 
-  .provider {
+  .tabs {
+    margin-top: $gap * 3;
+  }
+
+  .photo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: $gap * 2;
+  }
+
+  .section {
+    max-width: 400px;
+
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: $gap * 2;
+      padding-bottom: $gap;
+      border-bottom: 1px solid $color-light;
+
+      h3 {
+        margin: 0;
+        font-size: rem(18);
+        font-weight: $font-weight;
+        line-height: rem(13);
+      }
+
+      button {
+        min-width: 50px;
+        padding: 1px 0;
+      }
+    }
+
+    .form {
+      div {
+        margin-bottom: $gap;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .setting {
+    .section {
+      .header {
+        margin-bottom: $gap * 3;
+        h3 {
+          font-size: rem(24);
+          font-weight: $font-weight-light;
+        }
+      }
+    }
   }
 }
