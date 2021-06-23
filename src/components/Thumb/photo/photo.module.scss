@@ -1,50 +1,31 @@
 @import "src/styles/base";
 
 .thumb {
-  width: 125px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  margin: auto;
+  margin-bottom: 10px;
+  border-radius: 100%;
+  // background-color: $color-white;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 
-  figure {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90px;
-    height: 90px;
-    margin: auto;
-    margin-bottom: 10px;
-    border-radius: 100%;
-    // background-color: $color-white;
-    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
-
-    overflow: hidden;
-
-    i {
-      color: $color-gray-light;
-      font-size: 50px;
-    }
-    img {
-      height: 100%;
-      overflow: hidden;
-    }
+  i {
+    color: $color-gray-light;
+    font-size: 50px;
   }
-
-  figcaption {
-    color: $color-lightest;
-    font-size: rem(14);
+  img {
+    height: 100%;
+    overflow: hidden;
   }
 }
 
 @include media-breakpoint-up(md) {
   .thumb {
-    width: 200px;
-
-    figure {
-      width: 150px;
-      height: 150px;
-    }
-    figcaption {
-      color: $base-color;
-      font-size: rem(16);
-    }
+    width: 150px;
+    height: 150px;
   }
 }

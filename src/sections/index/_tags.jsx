@@ -14,7 +14,7 @@ export default function Tags(props) {
 
   return tagData.map((item, key) => {
     return (
-      <Link key={key} href={`story/${item.slug}`}>
+      <Link key={key} href={`/story/${item.slug}`}>
         <a>
           <TagStory value={item.tag} />
         </a>

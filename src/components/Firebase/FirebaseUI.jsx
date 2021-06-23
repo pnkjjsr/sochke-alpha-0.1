@@ -6,6 +6,8 @@ import { postNewUser } from "@libs/firebase/signup";
 import { AuthContext } from "@contexts/Auth";
 import { service } from "@utils/api";
 
+import { login } from "@utils/session";
+
 export default class FirebaseUI extends Component {
   static contextType = AuthContext;
 
@@ -44,6 +46,8 @@ export default class FirebaseUI extends Component {
 
               setAuthenticated(true);
               setProfile(user);
+
+              login(user.uid);
 
               if (isNewUser) {
                 postNewUser(user);

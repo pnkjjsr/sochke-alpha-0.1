@@ -10,6 +10,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 
 import { AuthContext } from "@contexts/Auth";
 import Firebase from "@libs/firebase";
+import { logout } from "@utils/session";
 
 import s from "@pages/home.module.scss";
 
@@ -24,7 +25,8 @@ export default function AuthAction() {
   const classes = useStyles();
 
   const router = useRouter();
-  const { authenticated, setAuthenticated, profile } = useContext(AuthContext);
+  const { authenticated, setAuthenticated, profile, setProfile } =
+    useContext(AuthContext);
 
   const onSignup = () => {
     router.push("/signup");
@@ -45,6 +47,8 @@ export default function AuthAction() {
           .then(() => {
             // console.log("Sign-out successful.");
             setAuthenticated(false);
+            setProfile(null);
+            logout();
           })
           .catch((error) => {
             console.log(error);

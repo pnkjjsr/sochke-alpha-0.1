@@ -2,11 +2,10 @@ import Link from "next/link";
 
 import Head from "@layouts/head";
 import Logo from "@components/Logo";
-import AuthAction from "@layouts/_authAction";
 
-import Drawer from "@layouts/_drawer";
+import Drawer from "@layouts/setting/_drawer";
 
-import s from "./open.module.scss";
+import s from "./setting.module.scss";
 
 export default function Layout({ children }) {
   return (
@@ -25,8 +24,9 @@ export default function Layout({ children }) {
           <Logo />
         </div>
 
-        <div className={s.authAction}>
-          <AuthAction />
+        <div>
+          {/* <PWAInstall /> */}
+          {/* <AuthAction /> */}
         </div>
       </header>
 

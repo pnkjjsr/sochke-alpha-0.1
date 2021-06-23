@@ -1,5 +1,4 @@
 import axios from "axios";
-import isPlainObject from "is-plain-object";
 import "firebase/auth";
 import firebase from "firebase/app";
 
@@ -16,12 +15,6 @@ export default class Service {
     this.requestBaseurl = process.env.NEXT_PUBLIC_REQUEST_BASEURL;
     this.requestBaseurlLocal = process.env.NEXT_PUBLIC_REQUEST_BASEURL_LOCAL;
     this.xAccessKey = process.env.NEXT_PUBLIC_X_ACCESS_KEY;
-
-    if (!isPlainObject(axiosConfig)) {
-      throw new TypeError(
-        "Invalid data type of axios config. It must be a plain object."
-      );
-    }
 
     this.axiosConfig = axiosConfig;
 

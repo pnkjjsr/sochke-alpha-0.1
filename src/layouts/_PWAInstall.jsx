@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 
-import s from "./open.module.scss";
-
 const PWAInstall = () => {
   const [supportsPWA, setSupportsPWA] = useState(false);
   const [promptInstall, setPromptInstall] = useState(null);

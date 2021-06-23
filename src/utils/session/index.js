@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 // we export respective utils here for both client and server
 export { default as Session } from './sessionStorage';
 export { default as Local } from './localStorage';
@@ -16,19 +18,70 @@ export const getLanguage = (req) => {
         if (!cookie) return resolve(lang);
 
         let name = "language" + "=";
-        let splitter = isDev ? ";" : "?";
+        let splitter = "?";
         let ca = cookie.split(splitter);
         ca.map((c, i) => {
-            while (c.charAt(0) == " ") {
-                c = c.substring(1);
-            }
-
-            if (c.indexOf(name) == 0) {
-                resolve(c.substring(name.length, c.length));
-            }
+            while (c.charAt(0) == " ") { c = c.substring(1); }
+            if (c.indexOf(name) == 0) { resolve(c.substring(name.length, c.length)); }
         });
 
         resolve(lang);
     });
 }
 
+export const isLoggedIn = (req) => {
+    let cookie = req.cookies.__session;
+    if (!cookie) return false;
+
+    let name = "token=";
+    let splitter = "?";
+    let ca = cookie.split(splitter);
+
+    for (const c of ca) {
+        while (c.charAt(0) == " ") { c = c.substring(1); }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+
+    return false;
+}
+
+export const login = (uid) => {
+    let cookie = Cookies.get("__session");
+    if (!cookie) Cookies.set("__session", `token=${uid}?`);
+    else {
+        let splitter = "?";
+        let ca = cookie.split(splitter);
+
+        let filtered = ca.filter((item) => {
+            return item != "";
+        });
+
+        filtered.push(`token=${uid}?`);
+        let cookieString = filtered.join(splitter);
+
+        Cookies.set("__session", cookieString);
+    }
+}
+
+export const logout = () => {
+    let cookie = Cookies.get("__session");
+
+    let name = "token=";
+    let splitter = "?";
+    let ca = cookie.split(splitter);
+
+    let newCa = [];
+    for (const c of ca) {
+        while (c.charAt(0) == " ") { c = c.substring(1); }
+        if (c.indexOf(name) != 0) newCa.push(c);
+    }
+
+    let filtered = newCa.filter((item) => {
+        return item != "";
+    });
+
+    let cookieString = filtered.join(splitter);
+    Cookies.set("__session", cookieString);
+}

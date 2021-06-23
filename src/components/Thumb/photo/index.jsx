@@ -14,11 +14,7 @@ export default class PhotoThumb extends Component {
   render() {
     const { src, name, like } = this.props;
 
-    return (
-      <div className={s.thumb}>
-        <figure>{this.renderImage()}</figure>
-      </div>
-    );
+    return <figure className={s.thumb}>{this.renderImage()}</figure>;
   }
 }
 
