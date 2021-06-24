@@ -5,7 +5,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
-import { Cookie } from "@utils/session";
+import { setLanguage as cookieLanguage } from "@utils/session";
 
 import { GlobalContext } from "@contexts/Global";
 
@@ -18,19 +18,14 @@ const useStyles = makeStyles((theme) => ({
 export default function LanguageSelect() {
   const classes = useStyles();
   const { language, setLanguage } = useContext(GlobalContext);
-
-  let cookie = new Cookie();
-  let storeLang = cookie.getCookie("language") || language;
-  const [lang, setLang] = useState(storeLang);
+  const [lang, setLang] = useState(language);
 
   const handleChange = (event) => {
     setLang(event.target.value);
     setLanguage(event.target.value);
 
-    let cookie = new Cookie();
-    cookie.setCookie("language", event.target.value);
     //@TODO: firebase won't accept other than __session as cookie
-    cookie.setCookie("__session", `language=${event.target.value}?`);
+    cookieLanguage(event.target.value);
   };
 
   return (

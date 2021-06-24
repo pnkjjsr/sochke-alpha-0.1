@@ -29,6 +29,37 @@ export const getLanguage = (req) => {
     });
 }
 
+const hasCookieAndRefresh = (ca, name) => {
+    let newCa = [];
+    for (const c of ca) {
+        while (c.charAt(0) == " ") { c = c.substring(1); }
+        if (c.indexOf(name) != 0) newCa.push(c);
+    }
+
+    let filtered = newCa.filter((item) => {
+        return item != "";
+    });
+
+    return filtered;
+}
+
+export const setLanguage = (language) => {
+    let cookie = Cookies.get("__session");
+    if (!cookie) Cookies.set("__session", `language=${language}?`);
+    else {
+        let name = "language=";
+        let splitter = "?";
+        let ca = cookie.split(splitter);
+
+        let filtered = hasCookieAndRefresh(ca, name);
+        filtered.push(`language=${language}?`);
+
+        let cookieString = filtered.join(splitter);
+        Cookies.set("__session", cookieString);
+    }
+}
+
+
 export const isLoggedIn = (req) => {
     let cookie = req.cookies.__session;
     if (!cookie) return false;
@@ -72,15 +103,7 @@ export const logout = () => {
     let splitter = "?";
     let ca = cookie.split(splitter);
 
-    let newCa = [];
-    for (const c of ca) {
-        while (c.charAt(0) == " ") { c = c.substring(1); }
-        if (c.indexOf(name) != 0) newCa.push(c);
-    }
-
-    let filtered = newCa.filter((item) => {
-        return item != "";
-    });
+    let filtered = hasCookieAndRefresh(ca, name);
 
     let cookieString = filtered.join(splitter);
     Cookies.set("__session", cookieString);
