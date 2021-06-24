@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Container from "@material-ui/core/Container";
 
 import { contentfulClient, getEntry } from "@libs/contentful";
-import { getLanguage } from "@utils/session";
+import { getLanguage, isLoggedIn } from "@utils/session";
 import { AuthContext } from "@contexts/Auth";
 
 import Layout from "@layouts/open/index";
@@ -64,7 +64,18 @@ export default function About({ data }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req }) {
+  let isAuth = await isLoggedIn(req);
+
+  if (isAuth) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
   let data = await contentfulClient.getEntries({
     content_type: "pageHead",
     locale: "en-US",
