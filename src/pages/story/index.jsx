@@ -33,7 +33,7 @@ export default function Story({ data }) {
     let formatDate = date.format(story.date, "full");
     return (
       <div className={`${s.thumb} ${s.banner}`}>
-        <Link href={`story/${story.slug}`}>
+        <Link href={`/story/${story.slug}`}>
           <a>
             <Card>
               <CardActionArea>
@@ -68,7 +68,7 @@ export default function Story({ data }) {
       let formatDate = date.format(story.date, "full");
       return (
         <div key={i} className={s.thumb}>
-          <Link href={`story/${story.slug}`}>
+          <Link href={`/story/${story.slug}`}>
             <a>
               <Card>
                 <CardActionArea>

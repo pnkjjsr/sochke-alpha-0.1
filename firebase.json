@@ -7,11 +7,15 @@
         "function": "nextApp"
       }
     ],
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
   },
   "functions": {
     "source": ".",
-    "predeploy": [
+    "disable_predeploy": [
       "npm --prefix \"$PROJECT_DIR\" install",
       "npm --prefix \"$PROJECT_DIR\" run build"
     ]
