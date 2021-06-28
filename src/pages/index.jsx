@@ -28,14 +28,9 @@ export default function Home({ data }) {
   const latestStory = data.story;
   const clientLang = data.language;
 
-  let cookie = new Cookie();
-  let cookieLang = cookie.getCookie("language");
-  if (!cookieLang) setLanguage(clientLang);
-
   const [lang, setLang] = useState(language);
   const [tag, setTag] = useState(tags);
   const [story, setStory] = useState(latestStory);
-
   const [languages, setLanguages] = useState(head.languages);
 
   const [d_Subscribed, setd_Subscribed] = useState(true);
@@ -58,6 +53,7 @@ export default function Home({ data }) {
         setDesc(data.head.desc);
         setTag(data.tags);
         setStory(data.story);
+        setLanguages(data.head.languages);
       })
       .catch((err) => {
         console.log(err);
@@ -65,6 +61,8 @@ export default function Home({ data }) {
   }
 
   useEffect(() => {
+    setLanguage(clientLang);
+
     firebaseCloudMessaging.init();
     let session = new Session();
     let isSubscribed = session.getSubscribed();

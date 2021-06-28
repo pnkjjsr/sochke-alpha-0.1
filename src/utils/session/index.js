@@ -6,9 +6,8 @@ export { default as Local } from './localStorage';
 export { default as Cookie } from './cookie';
 
 export const getLanguage = (req) => {
-    const isDev = process.env.NODE_ENV !== "production";
     //@TODO: firebase only pass special cookie name "__session".  Othe than that key cookie not available on server.
-    let cookie = isDev ? req.headers.cookie : req.cookies.__session
+    let cookie = req.cookies.__session;
 
     return new Promise((resolve, reject) => {
         let reqLang = req.headers["accept-language"];

@@ -17,7 +17,7 @@ const nextConfig = {
     runtimeCaching,
   },
 
-  // webpack5: false,
+  webpack5: false,
 };
 
 module.exports = pwa(nextConfig)
