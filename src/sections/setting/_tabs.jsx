@@ -33,7 +33,7 @@ function a11yProps(index) {
   };
 }
 
-export default function SettingTabs() {
+export default function SettingTabs(props) {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -52,21 +52,21 @@ export default function SettingTabs() {
             label="Citizen"
             {...a11yProps(0)}
           />
-          <Tab icon={<PersonIcon />} label="Leader" {...a11yProps(1)} />
+          {/* <Tab icon={<PersonIcon />} label="Leader" {...a11yProps(1)} /> */}
         </Tabs>
       </AppBar>
 
       <TabPanel value={value} index={0}>
         <p>As a citizen you can update your profile here!</p>
-        <Photo />
-        <SettingAccordian />
+        <Photo data={props.data.photoURL} />
+        <SettingAccordian data={props.data} />
       </TabPanel>
 
-      <TabPanel value={value} index={1}>
+      {/* <TabPanel value={value} index={1}>
         <p>
           As a leader you can update your work for society and be seen to world.
         </p>
-      </TabPanel>
+      </TabPanel> */}
     </>
   );
 }

@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 
 import s from "@pages/setting/setting.module.scss";
 
-export default function Address() {
+export default function Address(props) {
   return (
     <div className={s.section}>
       {/* <div className={s.header}>
@@ -15,11 +15,36 @@ export default function Address() {
 
       <div className={s.form}>
         <form noValidate autoComplete="off">
-          <TextField variant="outlined" fullWidth label="Address" />
-          <TextField variant="outlined" fullWidth label="Pincode" />
-          <TextField variant="outlined" fullWidth label="Area" />
-          <TextField variant="outlined" fullWidth label="State" />
-          <TextField variant="outlined" fullWidth label="Nationality" />
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Nationality"
+            defaultValue={props.data.country}
+          />
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="State"
+            defaultValue={props.data.state}
+          />
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Pincode"
+            defaultValue={props.data.pincode}
+          />
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Area"
+            defaultValue={props.data.area}
+          />
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Address"
+            defaultValue={props.data.address}
+          />
           <Button variant="contained" color="primary">
             Save
           </Button>

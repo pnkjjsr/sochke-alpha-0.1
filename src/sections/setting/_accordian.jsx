@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleAccordion() {
+export default function SimpleAccordion(props) {
   const classes = useStyles();
 
   return (
@@ -32,7 +32,7 @@ export default function SimpleAccordion() {
           <Typography className={classes.heading}>Profile</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Profile />
+          <Profile data={props.data} />
         </AccordionDetails>
       </Accordion>
 
@@ -44,7 +44,7 @@ export default function SimpleAccordion() {
           <Typography className={classes.heading}>Address</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Address />
+          <Address data={props.data} />
         </AccordionDetails>
       </Accordion>
     </div>

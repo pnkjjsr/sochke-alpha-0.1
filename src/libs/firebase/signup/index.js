@@ -1,12 +1,12 @@
 import { firestore } from "@libs/firebase/firestore";
 
-export async function postNewUser(newUser) {
+export async function postNewUser(newUser, uid) {
     let db = await firestore();
 
-    let userName = `${newUser.email.match(/^(.+)@/)[1]}-${newUser.uid}`;
+    let userName = `${newUser.email.match(/^(.+)@/)[1]}-${uid}`;
     let data = {
         createdAt: new Date().toISOString(),
-        id: newUser.uid,
+        id: uid,
         userType: "citizen", //citizen, leader, etc
         email: newUser.email,
         emailVerified: false,
@@ -16,6 +16,7 @@ export async function postNewUser(newUser) {
         phoneVerified: false,
         displayName: newUser.displayName,
         photoURL: newUser.photoURL,
+        address: "",
         area: "",
         district: "",
         division: "",
@@ -27,7 +28,7 @@ export async function postNewUser(newUser) {
         believerCount: 0,
     };
 
-    db.doc(`/users/${data.id}`)
+    db.doc(`/users/${uid}`)
         .set(data)
         .then(() => {
             // console.log("New user registered successfully.");

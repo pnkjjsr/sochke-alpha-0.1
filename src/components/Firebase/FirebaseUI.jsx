@@ -47,10 +47,10 @@ export default class FirebaseUI extends Component {
               setAuthenticated(true);
               setProfile(user);
 
-              login(user.uid);
+              login(authResult.user.uid);
 
               if (isNewUser) {
-                postNewUser(user);
+                postNewUser(user, authResult.user.uid);
 
                 const emailData = {
                   email: user.email,

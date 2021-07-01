@@ -13,8 +13,15 @@
   .photo {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
     margin-bottom: $gap * 2;
+
+    figure {
+      min-width: 90px;
+      margin: 0;
+      margin-right: $gap * 2;
+    }
   }
 
   .section {
