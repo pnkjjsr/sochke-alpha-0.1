@@ -35,33 +35,53 @@ export async function getUser(id) {
 // Post User Photo
 export async function patchUserPhoto(data) {
     let db = await firestore();
+    let result = {};
 
     await db.doc(`/users/${data.id}`)
         .update({
             photoURL: data.photoURL
         })
         .then(() => {
-            // console.log("Document successfully updated!");
+            result = {
+                code: "user-photo/updated",
+                message: "User profile photo successfully updated!"
+            };
+
         }).catch(err => {
-            // console.log(err);
+            result = {
+                code: "user-photo/error",
+                message: "User profile photo not updated!",
+                error: err
+            };
         });
+
+    return result;
 }
 
 // Post User Profile
 export async function patchUserProfile(data) {
     let db = await firestore();
+    let result = {};
 
     await db.doc(`/users/${data.id}`)
         .update({
             displayName: data.displayName,
-            email: data.email,
             phoneNumber: data.phoneNumber,
         })
         .then(() => {
-            console.log("Document successfully updated!");
+            result = {
+                code: "user-profile/updated",
+                message: "User profile info successfully updated!"
+            };
         }).catch(err => {
-            console.log(err);
+            result = {
+                code: "user-profile/error",
+                message: "User profile info not updated!",
+                error: err
+            };
         });
+
+    return result;
 }
 
 export async function traceUserName(data) {

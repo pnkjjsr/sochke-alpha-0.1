@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+import MuiSnackbar from "@components/Mui/Snackbar";
 import { AuthContext } from "@contexts/Auth";
 import { patchUserProfile, traceUserName } from "@libs/firebase/setting";
 
@@ -13,9 +14,12 @@ export default function Profile(props) {
   const [state, setState] = useState({
     // userName: props.data.userName,
     fullName: props.data.displayName,
-    email: props.data.email,
+    // email: props.data.email,
     mobile: props.data.phoneNumber,
   });
+  const [nValue, setNvalue] = useState("Saved!");
+  const [nOpen, setNopen] = useState(false);
+  const [nType, setNtype] = useState("success");
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -24,14 +28,20 @@ export default function Profile(props) {
       id: profile.id,
       // userName: state.userName,
       displayName: state.fullName,
-      email: state.email,
+      // email: state.email,
       phoneNumber: state.mobile,
     };
 
     // if (state.username == props.data.username || allowSubmit) {
     //   await patchUserProfile(payload);
     // }
-    await patchUserProfile(payload);
+
+    let res = await patchUserProfile(payload);
+
+    if (res.code == "user-profile/updated") {
+      setNvalue(res.message);
+      setNopen(true);
+    }
   };
 
   const onChange = async (e) => {
@@ -56,6 +66,12 @@ export default function Profile(props) {
     }
   };
 
+  const handleSnackbar = () => {
+    setNvalue("");
+    setNopen(false);
+    setNtype("success");
+  };
+
   return (
     <div className={s.section}>
       <div className={s.form}>
@@ -77,14 +93,14 @@ export default function Profile(props) {
             name="fullName"
             onChange={onChange}
           />
-          <TextField
+          {/* <TextField
             variant="outlined"
             fullWidth
             label="Email"
             defaultValue={state.email}
             name="email"
             onChange={onChange}
-          />
+          /> */}
           <TextField
             variant="outlined"
             fullWidth
@@ -98,6 +114,13 @@ export default function Profile(props) {
           </Button>
         </form>
       </div>
+
+      <MuiSnackbar
+        value={nValue}
+        open={nOpen}
+        type={nType}
+        action={handleSnackbar}
+      />
     </div>
   );
 }

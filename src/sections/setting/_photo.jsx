@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 
+import MuiSnackbar from "@components/Mui/Snackbar";
 import { AuthContext } from "@contexts/Auth";
 import { patchUserPhoto } from "@libs/firebase/setting";
 import PhotoThumb from "@components/Thumb/photo";
@@ -24,6 +25,9 @@ export default function Photo(props) {
   const classes = useStyles();
   const { profile, setProfile } = useContext(AuthContext);
   const [base64, setBase64] = useState(props.data);
+  const [nValue, setNvalue] = useState("Saved!");
+  const [nOpen, setNopen] = useState(false);
+  const [nType, setNtype] = useState("success");
 
   const photoUpload = (e) => {
     e.preventDefault();
@@ -45,7 +49,18 @@ export default function Photo(props) {
       photoURL: base64,
     };
 
-    await patchUserPhoto(payload);
+    let res = await patchUserPhoto(payload);
+
+    if (res.code == "user-photo/updated") {
+      setNvalue(res.message);
+      setNopen(true);
+    }
+  };
+
+  const handleSnackbar = () => {
+    setNvalue("");
+    setNopen(false);
+    setNtype("success");
   };
 
   return (
@@ -82,6 +97,13 @@ export default function Photo(props) {
           </label>
         </div>
       </form>
+
+      <MuiSnackbar
+        value={nValue}
+        open={nOpen}
+        type={nType}
+        action={handleSnackbar}
+      />
     </div>
   );
 }
