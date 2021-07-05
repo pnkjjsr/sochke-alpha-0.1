@@ -50,8 +50,8 @@
     }
 
     .form {
-      div {
-        margin-bottom: $gap;
+      form > div {
+        margin-bottom: $gap * 2;
       }
     }
   }

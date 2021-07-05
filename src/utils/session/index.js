@@ -44,7 +44,9 @@ const hasCookieAndRefresh = (ca, name) => {
 
 export const setLanguage = (language) => {
     let cookie = Cookies.get("__session");
-    if (!cookie) Cookies.set("__session", `language=${language}?`);
+    if (!cookie) Cookies.set("__session", `language=${language}?`, {
+        expires: 7
+    });
     else {
         let name = "language=";
         let splitter = "?";
