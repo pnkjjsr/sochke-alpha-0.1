@@ -9,8 +9,12 @@ function parseUser(fields) {
         displayName: fields.displayName,
         email: fields.email,
         phoneNumber: fields.phoneNumber,
+        address: fields.address,
         area: fields.area,
+        division: fields.division,
+        district: fields.district,
         state: fields.state,
+        city: fields.city,
         pincode: fields.pincode,
         country: fields.country,
     }
@@ -77,6 +81,40 @@ export async function patchUserProfile(data) {
             result = {
                 code: "user-profile/error",
                 message: "User profile info not updated!",
+                error: err
+            };
+        });
+
+    return result;
+}
+
+// Post User Address
+export async function patchUserAddress(data) {
+    let db = await firestore();
+    let result = {};
+
+    await db.doc(`/users/${data.id}`)
+        .update({
+            country: data.country,
+            countryShortName: data.countryShortName,
+            countryCode: data.countryCode,
+            state: data.state,
+            city: data.city,
+            pincode: data.pincode,
+            area: data.area,
+            district: data.district,
+            division: data.division,
+            address: data.address,
+        })
+        .then(() => {
+            result = {
+                code: "user-address/updated",
+                message: "User address info successfully updated!"
+            };
+        }).catch(err => {
+            result = {
+                code: "user-address/error",
+                message: "User address info not updated!",
                 error: err
             };
         });

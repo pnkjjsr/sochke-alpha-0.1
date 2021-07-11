@@ -74,4 +74,27 @@ export default class Universal {
 
         return result;
     }
+
+    async getCity(state) {
+        let authToken = await this.getAuthToken();
+
+        let link = `https://www.universal-tutorial.com/api/cities/${state}`
+        let config = {
+            headers: {
+                "Authorization": `Bearer ${authToken}`,
+                "Accept": "application/json"
+            }
+        }
+
+        let result = [];
+        await axios.get(link, config).then(res => {
+            let data = res.data;
+            result = data;
+
+        }).catch(err => {
+            console.log(err);
+        });
+
+        return result;
+    }
 }

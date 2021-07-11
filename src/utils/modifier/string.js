@@ -1,34 +1,42 @@
-class stringModifier {
-  constructor(props) {}
+export default class StringModifier {
+  constructor(props) { }
 
-  removeWord = (e, words) => {
+  removeWord = async (string, words) => {
+    let name = "";
+    let nameBefore = i.officename;
+
+
+    await words.map((word) => {
+      let index = nameBefore.search(word);
+      if (index != -1) name = nameBefore.slice(0, index);
+    });
+
+    return name;
+  }
+
+  removeWordInArr = (e, words) => {
     let arr = [];
+
     e.map(async (i) => {
       let nameBefore = i.officename;
-      let name = i.officename;
+      let name = "";
 
       await words.map((word) => {
         let index = nameBefore.search(word);
         if (index != -1) name = nameBefore.slice(0, index);
       });
 
-      let taluk = i.taluk;
-      let state = i.statename;
-      let district = i.districtname;
-      let division = i.divisionname;
-      let regionName = i.regionname;
-      let circleName = i.circleName;
-
       arr.push({
-        area: name.trim(),
-        division: division,
-        district: district,
-        state: state,
-        taluk: taluk,
-        regionName: regionName,
-        circleName: circleName,
+        office: name.trim(),
+        division: i.divisionname,
+        district: i.districtname,
+        state: i.statename,
+        taluk: i.taluk,
+        region: i.regionname,
+        circle: i.circlename,
       });
     });
+
     return arr;
   };
 
@@ -59,5 +67,3 @@ class stringModifier {
     return string;
   };
 }
-
-export default stringModifier;
