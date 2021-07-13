@@ -17,6 +17,7 @@ function parseUser(fields) {
         city: fields.city,
         pincode: fields.pincode,
         country: fields.country,
+        userType: fields.userType,
     }
 }
 
@@ -146,6 +147,33 @@ export async function traceUserName(data) {
             console.log(err);
         });
 
+
+    return result;
+}
+
+
+// Post User Profile
+export async function patchLeaderProfile(data) {
+    let db = await firestore();
+    let result = {};
+
+    await db.doc(`/users/${data.id}`)
+        .update({
+            userType: data.userType,
+            userTypeOther: data.userTypeOther,
+        })
+        .then(() => {
+            result = {
+                code: "user-leaderInfo/updated",
+                message: "User leader info successfully updated!"
+            };
+        }).catch(err => {
+            result = {
+                code: "user-leaderInfo/error",
+                message: "User leader info not updated!",
+                error: err
+            };
+        });
 
     return result;
 }

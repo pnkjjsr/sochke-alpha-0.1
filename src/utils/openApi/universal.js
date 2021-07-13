@@ -15,17 +15,18 @@ export default class Universal {
 
         let session = new Session();
         let token = session.get("universalToken");
+        let authToken;
 
         if (token) return token;
         else {
-            axios.get(link, config).then(res => {
-                let authToken = res.data.auth_token;
-                if (!token) session.set("universalToken", authToken);
-                return authToken;
-
+            await axios.get(link, config).then(res => {
+                authToken = res.data.auth_token;
+                session.set("universalToken", authToken);
             }).catch(err => {
                 console.log(err);
             });
+
+            return authToken;
         }
     }
 

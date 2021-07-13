@@ -9,6 +9,7 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 
 import Photo from "@sections/setting/_photo";
 import SettingAccordian from "@sections/setting/_accordian";
+import LeaderType from "@sections/setting/_leaderType";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,7 +53,7 @@ export default function SettingTabs(props) {
             label="Citizen"
             {...a11yProps(0)}
           />
-          {/* <Tab icon={<PersonIcon />} label="Leader" {...a11yProps(1)} /> */}
+          <Tab icon={<PersonIcon />} label="Leader" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
 
@@ -62,11 +63,12 @@ export default function SettingTabs(props) {
         <SettingAccordian data={props.data} />
       </TabPanel>
 
-      {/* <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={1}>
         <p>
           As a leader you can update your work for society and be seen to world.
         </p>
-      </TabPanel> */}
+        <LeaderType data={props.data} />
+      </TabPanel>
     </>
   );
 }
