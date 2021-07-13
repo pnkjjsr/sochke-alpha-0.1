@@ -82,7 +82,7 @@ export default function LeaderType(props) {
               <MenuItem value="citizen">
                 I'm awake &amp; aware Citizen!
               </MenuItem>
-              <MenuItem value="politician">Politicians</MenuItem>
+              <MenuItem value="politician">Politician</MenuItem>
               <MenuItem value="socialWorker">Social Worker</MenuItem>
               <MenuItem value="individual">Individual</MenuItem>
               <MenuItem value="other">Others</MenuItem>
