@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
@@ -178,6 +179,13 @@ export default function Home({ data }) {
                 </p>
               </div>
             </section>
+
+            {/* Hidden Context */}
+            <Box component="div" display="none">
+              <Link href="/citizen">
+                <a className="d-none">Citizen</a>
+              </Link>
+            </Box>
           </Container>
         </div>
       </Layout>
