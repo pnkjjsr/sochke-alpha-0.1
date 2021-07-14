@@ -7,7 +7,7 @@ import { getHome } from "@libs/contentful/home";
 import { getCitizensByChar } from "@libs/firebase/citizen";
 
 import Layout from "@layouts/open";
-import Thumbs from "@sections/index/_thumbs";
+import Thumbs from "@sections/citizen/_thumbs";
 
 import s from "../index.module.scss";
 
