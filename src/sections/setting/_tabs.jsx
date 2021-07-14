@@ -43,22 +43,19 @@ export default function SettingTabs(props) {
   return (
     <>
       <AppBar position="static">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="simple tabs example"
-        >
+        <Tabs value={value} onChange={handleChange} aria-label="Setting Tab">
           <Tab
             icon={<SupervisorAccountIcon />}
-            label="Citizen"
+            label="Citizen Profile"
             {...a11yProps(0)}
           />
-          <Tab icon={<PersonIcon />} label="Leader" {...a11yProps(1)} />
+          <Tab icon={<PersonIcon />} label="Leader Profile" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
 
       <TabPanel value={value} index={0}>
         <p>As a citizen you can update your profile here!</p>
+
         <Photo data={props.data.photoURL} />
         <SettingAccordian data={props.data} />
       </TabPanel>
