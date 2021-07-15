@@ -1,2 +1,9 @@
+# *
 User-agent: *
-Sitemap: https://sochke.com/sitemap.xml
+Allow: /
+
+# Host
+Host: https://www.sochke.com
+
+# Sitemaps
+Sitemap: https://www.sochke.com/sitemap.xml
