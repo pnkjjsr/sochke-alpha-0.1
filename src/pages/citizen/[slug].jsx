@@ -4,9 +4,10 @@ import Head from "next/head";
 import Container from "@material-ui/core/Container";
 
 import { GlobalContext } from "@contexts/Global";
-import { getMinister } from "@libs/firebase/neta";
 
 import Layout from "@layouts/open";
+
+import Thumbs from "@sections/citizen/_thumbs";
 
 import s from "./citizen.module.scss";
 
@@ -51,16 +52,7 @@ export default function CitizenPublicProfile({ citizen }) {
         </Head>
 
         <div className={s.citizen}>
-          <Container>
-            <p className={`notice ${s.notice}`}>
-              Disclaimer: This information is an archive of the candidate's
-              self-declared affidavit that was filed during the elections. The
-              current status of this information may be different. For the
-              latest available information, please refer to the affidavit filed
-              by the candidate to the Election Commission in the most recent
-              election.
-            </p>
-          </Container>
+          <Container>{/* <Thumbs data={citizens} /> */}</Container>
 
           {/* <Bottom data={DEFAULT} /> */}
           <style jsx>{``}</style>
