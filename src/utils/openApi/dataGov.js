@@ -16,4 +16,21 @@ export default class DataGov {
 
         return result;
     }
+
+    // http://www.postalpincode.in/Api-Details
+    async getAreaByPincode(pincode) {
+        let result;
+        let link = `https://api.postalpincode.in/pincode/${pincode}`
+        console.log(link);
+
+        await axios.get(link)
+            .then(res => {
+                result = res.data[0].PostOffice
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        return result;
+    }
 }

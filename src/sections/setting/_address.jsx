@@ -71,13 +71,14 @@ export default function Address(props) {
 
         if (val.length != 6) return;
 
-        let areaArr = await dataGov.getLocation(val);
-        let newArr = await modifier.removeWordInArr(areaArr, [
-          "S.O",
-          "B.O",
-          "H.O",
-        ]);
-        setAreas(newArr);
+        let areaArr = await dataGov.getAreaByPincode(val);
+
+        // let newArr = await modifier.removeWordInArr(areaArr, [
+        //   "S.O",
+        //   "B.O",
+        //   "H.O",
+        // ]);
+        setAreas(areaArr);
         break;
       case "area":
         let district = e.currentTarget.dataset.district;
@@ -149,14 +150,14 @@ export default function Address(props) {
           );
         });
         break;
-      case "office":
+      case "Name":
         return arr.map((item, i) => {
           return (
             <MenuItem
               key={i}
               value={item[name]}
-              data-district={item.district}
-              data-division={item.division}
+              data-district={item.District}
+              data-division={item.Division}
             >
               {item[name]}
             </MenuItem>
@@ -258,7 +259,7 @@ export default function Address(props) {
               name="area"
               onChange={onChange}
             >
-              {renderMenuItem(areas, "office")}
+              {renderMenuItem(areas, "Name")}
             </Select>
           </FormControl>
 
