@@ -12,7 +12,6 @@ import Thumbs from "@sections/citizen/_thumbs";
 import s from "../index.module.scss";
 
 export default function CitizenAlphabetic({ citizens, slug, head, language }) {
-  console.log(citizens);
   const [lang, setLang] = useState(language);
   const [isSmallDevice, setIsSmallDevice] = useState(true);
 

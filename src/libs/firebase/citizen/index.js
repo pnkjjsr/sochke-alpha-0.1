@@ -1,75 +1,39 @@
-import { service } from "@utils/api";
 import { firestore } from "@libs/firebase/firestore";
 
 // Get single minister via slug
-function parseMinister(fields) {
-    let title = "";
-
-    switch (fields.type) {
-        case "PM":
-            title = "Prime Minister";
-            break;
-        case "CM":
-            title = "Chief Minister";
-            break;
-        case "MP":
-            title = "Member of Parliament";
-            break;
-        case "MLA":
-            title = "Minister of Legislative Assembly";
-            break;
-        case "Councillor":
-            title = "Councillor";
-            break;
-        default:
-            title = "Minister";
-            break;
-    }
-
+function parseCitizen(fields) {
     return {
         id: fields.id,
         slug: fields.userName,
-        name: fields.name,
-        imageUrl: fields.photoUrl,
-        bannerUrl: fields.bannerUrl || "",
-        party: fields.party,
-        partyShort: fields.partyShort,
-        partyLogo: fields.partyLogo || null,
-        titleShort: fields.type,
-        title: title,
-        constituency: fields.constituency,
-        year: fields.year,
-        cases: fields.cases,
-        age: fields.age,
-        asset: fields.assets,
-        liability: fields.liabilities,
-        education: fields.education,
-        twitterHandle: fields.twitterHandle || null,
+        name: fields.displayName,
+        photoURL: fields.photoURL,
+        area: fields.area,
+        country: fields.country,
     }
 }
 
-function parseMinisterEntry(entry, cb = parseMinister) {
+function parseCitizenEntry(entry, cb = parseCitizen) {
     return entry?.map(cb)
 }
 
-export async function getMinister(slug) {
+export async function getCitizen(slug) {
     let db = await firestore();
 
-    const minister = [];
+    const citizen = [];
 
-    let colRef = db.collection("ministers");
+    let colRef = db.collection("users");
     await colRef
         .where("userName", "==", slug)
         .get()
         .then((snapshot) => {
             if (snapshot.empty) {
                 return console.log({
-                    code: "minister/empty",
+                    code: "citizen/empty",
                     message: "No data is available.",
                 });
             } else {
                 snapshot.forEach((doc) => {
-                    minister.push(doc.data());
+                    citizen.push(doc.data());
                 });
             }
         })
@@ -77,99 +41,7 @@ export async function getMinister(slug) {
             console.log(err);
         });
 
-    return parseMinisterEntry(minister)[0];
-}
-
-// Get Promoted and features Ministers List
-function parseMinisters(fields) {
-    return {
-        id: fields.id,
-        slug: fields.userName,
-        type: fields.type,
-        name: fields.name,
-        thumbUrl: fields.photoUrl,
-        constituency: fields.constituency,
-        year: fields.year
-    }
-}
-
-function parseObject(entry) {
-    return parseMinisters(entry);
-}
-
-function parseMinisterEntries(entries, cb = parseObject) {
-    let ministerObj = {};
-    let objArr = Object.values(entries);
-
-    for (const ministers of objArr) {
-        let type = ministers[0]?.type;
-        switch (type) {
-            case "MP":
-                ministerObj.mps = ministers?.map(cb);
-                break;
-            case "MLA":
-                ministerObj.mlas = ministers?.map(cb);
-                break;
-            case "COUNCILLOR":
-                ministerObj.councillors = ministers?.map(cb);
-                break;
-            default:
-                break;
-        }
-    }
-
-    return ministerObj
-}
-
-export async function getMinisters() {
-    let db = await firestore();
-    let ministers = {
-        mps: [],
-        mlas: [],
-        councillors: []
-    }
-
-    let colRef = db.collection("ministers");
-    await colRef
-        .where("type", "==", "MP")
-        .where("trending", ">", 0)
-        .orderBy("trending", "asc")
-        .limit(10)
-        .get().then((snapshot) => {
-            if (snapshot.empty) return null;
-
-            snapshot.forEach((doc) => {
-                ministers.mps.push(doc.data());
-            });
-        });
-
-    await colRef
-        .where("type", "==", "MLA")
-        .where("trending", ">", 0)
-        .orderBy("trending", "asc")
-        .limit(10)
-        .get().then((snapshot) => {
-            if (snapshot.empty) return null;
-
-            snapshot.forEach((doc) => {
-                ministers.mlas.push(doc.data());
-            });
-        });
-
-    await colRef
-        .where("type", "==", "COUNCILLOR")
-        .where("trending", ">", 0)
-        .orderBy("trending", "asc")
-        .limit(10)
-        .get().then((snapshot) => {
-            if (snapshot.empty) return null;
-
-            snapshot.forEach((doc) => {
-                ministers.councillors.push(doc.data());
-            });
-        });
-
-    return parseMinisterEntries(ministers)
+    return parseCitizenEntry(citizen)[0];
 }
 
 // Get minister alphabetically
