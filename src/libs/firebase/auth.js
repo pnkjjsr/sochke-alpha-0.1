@@ -1,5 +1,4 @@
 import "firebase/auth";
-
 import Firebase from "@libs/firebase";
 
 export default class firebaseAuth {
