@@ -197,7 +197,7 @@ export default function Address(props) {
       </div>
 
       <div className={s.form}>
-        <form noValidate autoComplete="off" onSubmit={onSubmit}>
+        <form autoComplete="off" onSubmit={onSubmit} required>
           <FormControl variant="outlined" fullWidth>
             <InputLabel id="country-label">Nationality</InputLabel>
             <Select
@@ -207,6 +207,8 @@ export default function Address(props) {
               label="Nationality"
               name="country"
               onChange={onChange}
+              required
+              autoComplete="off"
             >
               {renderMenuItem(countries, "country_name")}
             </Select>
@@ -215,12 +217,15 @@ export default function Address(props) {
           <FormControl variant="outlined" fullWidth>
             <InputLabel id="state-label">State</InputLabel>
             <Select
+              required
               labelId="state-label"
               id="state"
               value={state.state}
               label="State"
               name="state"
               onChange={onChange}
+              required
+              autoComplete="off"
             >
               {renderMenuItem(states, "state_name")}
             </Select>
@@ -229,47 +234,59 @@ export default function Address(props) {
           <FormControl variant="outlined" fullWidth>
             <InputLabel id="city-label">City</InputLabel>
             <Select
+              required
               labelId="city-label"
               id="city"
               value={state.city}
               label="City"
               name="city"
               onChange={onChange}
+              required
+              autoComplete="off"
             >
               {renderMenuItem(cities, "city_name")}
             </Select>
           </FormControl>
 
           <TextField
+            required
             variant="outlined"
             fullWidth
             label="Pincode"
             name="pincode"
             defaultValue={state.pincode}
             onChange={onChange}
+            required
+            autoComplete="off"
           />
 
           <FormControl variant="outlined" fullWidth>
             <InputLabel id="area-label">Area</InputLabel>
             <Select
+              required
               labelId="area-label"
               id="area"
               value={state.area}
               label="Area"
               name="area"
               onChange={onChange}
+              required
+              autoComplete="off"
             >
               {renderMenuItem(areas, "Name")}
             </Select>
           </FormControl>
 
           <TextField
+            required
             variant="outlined"
             fullWidth
             label="Address"
             name="address"
             defaultValue={state.address}
             onChange={onChange}
+            required
+            autoComplete="off"
           />
 
           <Button type="submit" variant="contained" color="primary">
