@@ -41,8 +41,7 @@ export default class Service {
   }
 
   getBaseURL() {
-    // const api = `/api`;
-    const api = ``;
+    const api = `/api`;
 
     // construct base URL when is on server side
     if (NODE) return `${this.apiProtocol}://${this.requestBaseurl}${api}`;

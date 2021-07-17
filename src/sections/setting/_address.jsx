@@ -26,9 +26,9 @@ export default function Address(props) {
     countryCode: "",
     state: "",
     city: "",
-    pincode: props.data.pincode,
+    pincode: "",
     area: "",
-    address: props.data.address,
+    address: "",
     district: "",
     division: "",
   });

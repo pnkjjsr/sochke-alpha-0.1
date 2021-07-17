@@ -83,20 +83,6 @@ export default class SubscribeSmall extends Component {
             d_notification: s.show,
           });
         }, 2000);
-
-        // push new subscriber email
-        const emailData = {
-          email: email,
-          status: "subscribed",
-        };
-        service
-          .post("/subscribe/email-push", emailData)
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err.json);
-          });
       })
       .catch((err) => {
         console.log(err.json);
