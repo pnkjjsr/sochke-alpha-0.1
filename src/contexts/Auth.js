@@ -15,7 +15,10 @@ export const AuthProvider = ({ children }) => {
         auth
             .currentUser()
             .then((user) => {
-                setProfile(user.providerData[0]);
+                let data = user.providerData[0];
+                data.id = user.uid;
+
+                setProfile(data);
                 setAuthenticated(true);
             })
             .catch((err) => {

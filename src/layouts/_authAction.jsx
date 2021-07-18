@@ -41,8 +41,11 @@ export default function AuthAction() {
     let el = event.currentTarget;
     let type = el.getAttribute("name");
 
-    if (type == "setting") router.push("/setting");
-    else if (type == "logout") handleLogout();
+    if (type == "logout") handleLogout();
+    else {
+      let link = `/${type}`;
+      router.push(link);
+    }
 
     setAnchorEl(null);
     handleMobileMenuClose();

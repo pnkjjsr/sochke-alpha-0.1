@@ -6,8 +6,7 @@ import Container from "@material-ui/core/Container";
 
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
 
-import { Cookie } from "@utils/session";
-import { Session, getLanguage } from "@utils/session";
+import { Session, getLanguage, isLoggedIn } from "@utils/session";
 
 import Layout from "@layouts/open/index";
 

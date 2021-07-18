@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 
 import { AuthContext } from "@contexts/Auth";
 import firebaseAuth from "@libs/firebase/auth";
-import { getUser } from "@libs/firebase/setting";
+import { getUser } from "@libs/firebase/users";
 import { contentfulClient, getEntry } from "@libs/contentful";
 import { isLoggedIn } from "@utils/session";
 
@@ -32,7 +32,6 @@ export default function Setting({ data }) {
       .then(async (user) => {
         let token = user.uid;
         let userData = await getUser(token);
-
         setUser(userData);
         setProfile(userData);
       })

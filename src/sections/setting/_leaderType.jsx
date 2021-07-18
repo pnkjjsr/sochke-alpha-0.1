@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 
 import MuiSnackbar from "@components/Mui/Snackbar";
 import { AuthContext } from "@contexts/Auth";
-import { patchLeaderProfile } from "@libs/firebase/setting";
+import { patchLeaderProfile } from "@libs/firebase/users";
 
 import s from "@pages/setting/setting.module.scss";
 

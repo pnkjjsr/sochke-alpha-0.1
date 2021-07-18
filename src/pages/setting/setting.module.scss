@@ -8,6 +8,12 @@
 
   .tabs {
     margin-top: $gap * 3;
+
+    p {
+      a {
+        text-decoration: underline;
+      }
+    }
   }
 
   .photo {

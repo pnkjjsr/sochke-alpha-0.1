@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Link from "next/link";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -54,7 +55,12 @@ export default function SettingTabs(props) {
       </AppBar>
 
       <TabPanel value={value} index={0}>
-        <p>As a citizen you can update your profile here!</p>
+        <p>
+          As a citizen you can update your profile here!{" "}
+          <Link href={`citizen/${props.data.userName}`}>
+            <a>View your public profile</a>
+          </Link>
+        </p>
 
         <Photo data={props.data.photoURL} />
         <SettingAccordian data={props.data} />
