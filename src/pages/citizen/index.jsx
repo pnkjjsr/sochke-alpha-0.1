@@ -4,24 +4,13 @@ import Head from "next/head";
 import Container from "@material-ui/core/Container";
 
 import { getLanguage } from "@utils/session";
-import { getNetaHead } from "@libs/contentful/neta";
 
 import Layout from "@layouts/open";
 
 import s from "./index.module.scss";
 
-export default function Citizen({ data }) {
-  const head = data.head;
+export default function Citizen() {
   const [isSmallDevice, setIsSmallDevice] = useState();
-
-  const DEFAULT = {
-    title: head.title,
-    desc: head.desc,
-    keyword: head.tags,
-    defaultOGURL: `https://sochke.com/neta`,
-    defaultOGImage:
-      "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
-  };
 
   const genCharArray = (charA, charZ) => {
     var a = [],
@@ -55,16 +44,6 @@ export default function Citizen({ data }) {
   return (
     <>
       <Layout>
-        <Head>
-          <title>{DEFAULT.title}</title>
-          <meta name="keywords" content={DEFAULT.keyword}></meta>
-          <meta name="description" content={DEFAULT.desc} />
-          <meta property="og:url" content={DEFAULT.defaultOGURL} />
-          <meta property="og:title" content={DEFAULT.title} />
-          <meta property="og:description" content={DEFAULT.desc} />
-          <meta property="og:image" content={DEFAULT.defaultOGImage} />
-        </Head>
-
         <div className={s.citizen}>
           <Container maxWidth="xl">
             <div className={s.header}>
@@ -88,20 +67,4 @@ export default function Citizen({ data }) {
       </Layout>
     </>
   );
-}
-
-export async function getServerSideProps({ req }) {
-  let data = {};
-
-  await getLanguage(req)
-    .then(async (res) => {
-      data = await getNetaHead(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
-  return {
-    props: { data },
-  };
 }

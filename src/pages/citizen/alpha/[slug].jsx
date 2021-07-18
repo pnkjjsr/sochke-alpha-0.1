@@ -1,9 +1,7 @@
 import { useState, useEffect, useContext } from "react";
-import Head from "next/head";
+
 import Container from "@material-ui/core/Container";
 
-import { getLanguage } from "@utils/session";
-import { getHome } from "@libs/contentful/home";
 import { getCitizensByChar } from "@libs/firebase/citizen";
 
 import Layout from "@layouts/open";
@@ -12,7 +10,6 @@ import Thumbs from "@sections/citizen/_thumbs";
 import s from "../index.module.scss";
 
 export default function CitizenAlphabetic({ citizens, slug, head, language }) {
-  const [lang, setLang] = useState(language);
   const [isSmallDevice, setIsSmallDevice] = useState(true);
 
   useEffect(() => {
@@ -20,27 +17,9 @@ export default function CitizenAlphabetic({ citizens, slug, head, language }) {
     screenWidth >= 768 ? setIsSmallDevice(false) : null;
   }, []);
 
-  const DEFAULT = {
-    title: head.title,
-    desc: head.desc,
-    keyword: head.tags,
-    defaultOGURL: `https://sochke.com`,
-    defaultOGImage:
-      "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
-  };
-
   return (
     <>
       <Layout>
-        <Head>
-          {/* <title>{DEFAULT.title}</title>
-          <meta property="og:title" content={DEFAULT.title} />
-          <meta property="og:url" content={DEFAULT.defaultOGURL} />
-          <meta property="og:image" content={DEFAULT.defaultOGImage} />
-          <meta name="twitter:title" content={DEFAULT.title} />
-          <meta name="twitter:image" content={DEFAULT.defaultOGImage} /> */}
-        </Head>
-
         <div className={s.citizen}>
           <Container maxWidth="xl">
             <div className={s.header}>
@@ -71,21 +50,10 @@ export default function CitizenAlphabetic({ citizens, slug, head, language }) {
 }
 
 export async function getServerSideProps({ req, params }) {
-  let head = "";
-  let language = "";
   let slug = params.slug;
   let citizens = await getCitizensByChar(params.slug);
 
-  await getLanguage(req)
-    .then(async (res) => {
-      head = await getHome(res);
-      language = res;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
   return {
-    props: { head, language, citizens, slug },
+    props: { citizens, slug },
   };
 }

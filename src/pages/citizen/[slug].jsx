@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
-import { GlobalContext } from "@contexts/Global";
 import { getCitizen } from "@libs/firebase/citizen";
 import { isLoggedIn } from "@utils/session";
 
@@ -17,14 +16,12 @@ import s from "./citizen.module.scss";
 
 export default function CitizenPublicProfile({ citizen, token }) {
   const router = useRouter();
-  const { language } = useContext(GlobalContext);
-  const [lang, setLang] = useState(language);
   const [isSmallDevice, setIsSmallDevice] = useState(true);
   const [sliceName, setSliceName] = useState(citizen.slug.split("-")[0]);
   const [dSignup, setDSignup] = useState("none");
 
   const DEFAULT = {
-    title: `${citizen.name || sliceName} | responsible citizen of ${
+    title: `${citizen.name || sliceName} | Responsible citizen of ${
       citizen.country
     }`,
     defaultOGURL: `https://www.sochke.com/neta/${citizen.slug}`,
@@ -37,16 +34,6 @@ export default function CitizenPublicProfile({ citizen, token }) {
 
     if (token == false) setDSignup("block");
   }, []);
-
-  if (language != lang) {
-    getHome(language)
-      .then((data) => {
-        setLang(language);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   const handleSignup = () => {
     router.push("/signup");
@@ -74,7 +61,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
           <Container>
             <div className={s.details}>
               <div className={s.header}>
-                <h2>{citizen.name || sliceName}</h2>
+                <h1>{citizen.name || sliceName}</h1>
                 <small>I'm responsible citizen of {citizen.country}</small>
               </div>
 
