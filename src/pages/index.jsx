@@ -7,7 +7,7 @@ import Container from "@material-ui/core/Container";
 import { GlobalContext } from "@contexts/Global";
 import { Session, getLanguage, isLoggedIn } from "@utils/session";
 import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
-import { getHome } from "@libs/contentful/pages/home";
+import { getHome } from "@libs/contentful/head/home";
 import { getPromotedMinisters } from "@libs/firebase/home";
 
 import Layout from "@layouts/open/index";

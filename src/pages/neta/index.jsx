@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Container from "@material-ui/core/Container";
 
+import { GlobalContext } from "@contexts/Global";
 import { getLanguage } from "@utils/session";
 
+import { getNetaHead } from "@libs/contentful/head/neta";
 import { getPromotedMinisters } from "@libs/firebase/home";
 import { getMinisters } from "@libs/firebase/neta";
-import { getNetaHead } from "@libs/contentful/neta";
 
 import Layout from "@layouts/open";
 import Thumbs from "@sections/index/_thumbs";
@@ -15,20 +16,34 @@ import Thumbs from "@sections/index/_thumbs";
 import s from "./index.module.scss";
 
 export default function Neta({ data }) {
-  const head = data.head;
+  const { language } = useContext(GlobalContext);
+  const [lang, setLang] = useState(language);
+  const [title, setTitle] = useState(data.head.title);
+  const [desc, setDesc] = useState(data.head.desc);
 
   const [promoted, setPromoted] = useState(data.promotedMinisters);
   const [trending, setTrending] = useState(data.trendingMinisters);
   const [isSmallDevice, setIsSmallDevice] = useState();
 
   const DEFAULT = {
-    title: head.title,
-    desc: head.desc,
-    keyword: head.tags,
+    title: title,
+    desc: desc,
+    keyword: data.head.tags,
     defaultOGURL: `https://sochke.com/neta`,
-    defaultOGImage:
-      "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
+    defaultOGImage: data.head.image,
   };
+
+  if (language != lang) {
+    getNetaHead(language)
+      .then((data) => {
+        setLang(language);
+        setTitle(data.head.title);
+        setDesc(data.head.desc);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const renderMinister = () => {
     if (!trending) return null; //@TODO: 23rd Feb 2021 | LOADER can be added here

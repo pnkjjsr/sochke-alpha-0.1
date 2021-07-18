@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 
 import { GlobalContext } from "@contexts/Global";
 import { getLanguage } from "@utils/session";
-import { getHead } from "@libs/contentful/pages/about";
+import { getHead } from "@libs/contentful/head/about";
 
 import Layout from "@layouts/open/index";
 import s from "./about.module.scss";

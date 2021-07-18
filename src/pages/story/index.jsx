@@ -1,3 +1,4 @@
+import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Card from "@material-ui/core/Card";
@@ -5,8 +6,10 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 
-import Date from "@utils/date";
+import { GlobalContext } from "@contexts/Global";
 import { getLanguage } from "@utils/session";
+import Date from "@utils/date";
+
 import { getAllStory } from "@libs/contentful/story";
 
 import TagStory from "@components/Tag/story";
@@ -15,17 +18,31 @@ import Layout from "@layouts/open/index";
 import s from "./index.module.scss";
 
 export default function Story({ data }) {
-  const head = data.head;
+  const { language } = useContext(GlobalContext);
+  const [lang, setLang] = useState(language);
+  const [title, setTitle] = useState(data.head.title);
+  const [desc, setDesc] = useState(data.head.desc);
   const stories = data.stories;
 
   const DEFAULT = {
-    title: head.title,
-    desc: head.desc,
-    keyword: head.tags,
+    title: title,
+    desc: desc,
+    keyword: data.head.tags,
     defaultOGURL: `https://sochke.com/story`,
-    defaultOGImage:
-      "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
+    defaultOGImage: data.head.image,
   };
+
+  if (language != lang) {
+    getAllStory(language)
+      .then((data) => {
+        setLang(language);
+        setTitle(data.head.title);
+        setDesc(data.head.desc);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const renderLatestStory = () => {
     let story = stories[0];

@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 
 import { GlobalContext } from "@contexts/Global";
 import { getLanguage } from "@utils/session";
-import { getHead } from "@libs/contentful/pages/privacy";
+import { getHead } from "@libs/contentful/head/privacy";
 
 import Layout from "@layouts/open/index";
 import s from "./privacy.module.scss";
@@ -21,8 +21,6 @@ export default function About({ data }) {
     defaultOGURL: `https://sochke.com/privacy`,
     defaultOGImage: data.head.image,
   };
-
-  console.log(DEFAULT);
 
   if (language != lang) {
     getHead(language)
