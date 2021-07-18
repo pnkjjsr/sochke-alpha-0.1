@@ -1,37 +1,38 @@
+import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Container from "@material-ui/core/Container";
 
-import { contentfulClient, getEntry } from "@libs/contentful";
+import { GlobalContext } from "@contexts/Global";
 import { getLanguage } from "@utils/session";
+import { getHead } from "@libs/contentful/pages/about";
 
 import Layout from "@layouts/open/index";
-
 import s from "./about.module.scss";
 
 export default function About({ data }) {
-  const head = data.items[0].fields;
+  console.log(data);
+  const { language, setLanguage } = useContext(GlobalContext);
 
   const DEFAULT = {
-    title: head.title,
-    defaultOGURL: `https://sochke.com`,
-    defaultOGImage:
-      "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media",
+    title: data.head.title,
+    defaultOGURL: `https://sochke.com/about`,
+    defaultOGImage: data.head.desc,
   };
 
   return (
     <>
-      <Head>
-        <title>{DEFAULT.title}</title>
-        <meta name="description" content={head.desc} />
-
-        <meta property="og:url" content={DEFAULT.defaultOGURL} />
-        <meta property="og:title" content={DEFAULT.title} />
-        <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
-        <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
-        <meta property="og:image" content={DEFAULT.defaultOGImage} />
-      </Head>
-
       <Layout>
+        <Head>
+          <title>{DEFAULT.title}</title>
+          <meta name="description" content={DEFAULT.desc} />
+
+          <meta property="og:url" content={DEFAULT.defaultOGURL} />
+          <meta property="og:title" content={DEFAULT.title} />
+          <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
+          <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
+          <meta property="og:image" content={DEFAULT.defaultOGImage} />
+        </Head>
+
         <Container maxWidth="xl">
           <div className={s.about}>
             <main>
@@ -89,12 +90,17 @@ export default function About({ data }) {
   );
 }
 
-export async function getStaticProps() {
-  let data = await contentfulClient.getEntries({
-    content_type: "pageHead",
-    locale: "en-US",
-    "fields.slug": "about",
-  });
+export async function getServerSideProps({ req }) {
+  let data = {};
+
+  await getLanguage(req)
+    .then(async (res) => {
+      data = await getHead(res);
+      data.language = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   return {
     props: { data },

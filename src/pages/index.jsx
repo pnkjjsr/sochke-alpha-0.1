@@ -4,18 +4,16 @@ import Link from "next/link";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 
-import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
-
+import { GlobalContext } from "@contexts/Global";
 import { Session, getLanguage, isLoggedIn } from "@utils/session";
+import { firebaseCloudMessaging } from "@libs/firebase/cloudMessaging";
+import { getHome } from "@libs/contentful/pages/home";
+import { getPromotedMinisters } from "@libs/firebase/home";
 
 import Layout from "@layouts/open/index";
-
 import SubscribeSmall from "@components/Subscribe/small";
 import StoryThumb from "@components/Thumb/story";
 
-import { GlobalContext } from "@contexts/Global";
-import { getHome } from "@libs/contentful/home";
-import { getPromotedMinisters } from "@libs/firebase/home";
 import Tags from "@sections/index/_tags";
 import Thumbs from "@sections/index/_thumbs";
 import AuthAction from "@sections/index/_authAction";
