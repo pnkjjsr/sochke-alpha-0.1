@@ -10,14 +10,29 @@ import Layout from "@layouts/open/index";
 import s from "./about.module.scss";
 
 export default function About({ data }) {
-  console.log(data);
-  const { language, setLanguage } = useContext(GlobalContext);
+  const { language } = useContext(GlobalContext);
+  const [lang, setLang] = useState(language);
+  const [title, setTitle] = useState(data.head.title);
+  const [desc, setDesc] = useState(data.head.desc);
 
   const DEFAULT = {
-    title: data.head.title,
+    title: title,
+    desc: desc,
     defaultOGURL: `https://sochke.com/about`,
-    defaultOGImage: data.head.desc,
+    defaultOGImage: data.head.image,
   };
+
+  if (language != lang) {
+    getHead(language)
+      .then((data) => {
+        setLang(language);
+        setTitle(data.head.title);
+        setDesc(data.head.desc);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <>
@@ -84,6 +99,7 @@ export default function About({ data }) {
           </div>
         </Container>
       </Layout>
+
       <style jsx>{``}</style>
       <style jsx global>{``}</style>
     </>

@@ -86,8 +86,10 @@ export default function Home({ data }) {
             {/* heading */}
             <h1>
               {/* {pageData.title} */}
-              Political networking platform for <span>citizens</span> &amp;{" "}
-              <span className={s.grn}>leaders</span>.
+              Sochke, political networking platform for <span>
+                citizens
+              </span>{" "}
+              &amp; <span className={s.grn}>leaders</span>.
             </h1>
 
             <div className={s.authAction}>

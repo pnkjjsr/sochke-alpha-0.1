@@ -1,21 +1,55 @@
+import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
-import { contentfulClient, getEntry } from "@libs/contentful";
-import Layout from "@layouts/open/index";
 import Container from "@material-ui/core/Container";
 
+import { GlobalContext } from "@contexts/Global";
+import { getLanguage } from "@utils/session";
+import { getHead } from "@libs/contentful/pages/privacy";
+
+import Layout from "@layouts/open/index";
 import s from "./privacy.module.scss";
 
 export default function About({ data }) {
-  const pageData = data.items[0].fields;
+  const { language } = useContext(GlobalContext);
+  const [lang, setLang] = useState(language);
+  const [title, setTitle] = useState(data.head.title);
+  const [desc, setDesc] = useState(data.head.desc);
+
+  const DEFAULT = {
+    title: title,
+    desc: desc,
+    defaultOGURL: `https://sochke.com/privacy`,
+    defaultOGImage: data.head.image,
+  };
+
+  console.log(DEFAULT);
+
+  if (language != lang) {
+    getHead(language)
+      .then((data) => {
+        setLang(language);
+        setTitle(data.head.title);
+        setDesc(data.head.desc);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <>
-      <Head>
-        <title>{pageData.title}</title>
-        <meta name="description" content={pageData.desc} />
-      </Head>
-
       <Layout>
+        <Head>
+          <title>{DEFAULT.title}</title>
+          <meta name="description" content={DEFAULT.desc} />
+
+          <meta property="og:url" content={DEFAULT.defaultOGURL} />
+          <meta property="og:title" content={DEFAULT.title} />
+          <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
+          <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
+          <meta property="og:image" content={DEFAULT.defaultOGImage} />
+        </Head>
+
         <Container maxWidth="xl">
           <div className={s.privacy}>
             <main>
@@ -61,12 +95,17 @@ export default function About({ data }) {
   );
 }
 
-export async function getStaticProps() {
-  let data = await contentfulClient.getEntries({
-    content_type: "pageHead",
-    locale: "en-US",
-    "fields.slug": "home",
-  });
+export async function getServerSideProps({ req }) {
+  let data = {};
+
+  await getLanguage(req)
+    .then(async (res) => {
+      data = await getHead(res);
+      data.language = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   return {
     props: { data },
