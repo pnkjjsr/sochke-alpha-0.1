@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import PersonIcon from "@material-ui/icons/Person";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 
+import Banner from "@sections/setting/_banner";
 import Photo from "@sections/setting/_photo";
 import SettingAccordian from "@sections/setting/_accordian";
 import LeaderType from "@sections/setting/_leaderType";
@@ -61,6 +62,8 @@ export default function SettingTabs(props) {
             <a>View your public profile</a>
           </Link>
         </p>
+
+        <Banner data={props.data.bannerUrl} />
 
         <Photo data={props.data.photoURL} />
         <SettingAccordian data={props.data} />

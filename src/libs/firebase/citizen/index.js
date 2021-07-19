@@ -7,6 +7,7 @@ function parseCitizen(fields) {
         slug: fields.userName,
         name: fields.displayName,
         photoURL: fields.photoURL,
+        bannerUrl: fields.bannerUrl,
         area: fields.area,
         country: fields.country,
     }

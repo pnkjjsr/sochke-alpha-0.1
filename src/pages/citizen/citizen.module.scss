@@ -5,21 +5,33 @@
   padding-bottom: 50px;
 
   .banner {
-    height: 130px;
+    height: 200px;
     background-color: $base-color;
 
     div {
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 100%;
 
       figure {
-        position: absolute;
-        z-index: 1;
-        left: $gap;
-        bottom: -$gap * 4;
-        width: 120px;
-        height: 120px;
-        background-color: $color-white;
+        &:first-child {
+          height: 100%;
+
+          img {
+            height: 100%;
+          }
+        }
+        &:last-child {
+          position: absolute;
+          z-index: 1;
+          left: $gap;
+          bottom: -$gap * 4;
+          width: 120px;
+          height: 120px;
+          background-color: $color-white;
+        }
       }
     }
   }
@@ -52,11 +64,12 @@
 }
 
 @include media-breakpoint-up(sm) {
-  .citizen {
-  }
 }
 
 @include media-breakpoint-up(md) {
   .citizen {
+    .banner {
+      height: 250px;
+    }
   }
 }

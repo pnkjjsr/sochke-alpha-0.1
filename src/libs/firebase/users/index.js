@@ -5,6 +5,7 @@ function parseUser(fields) {
     return {
         id: fields.id,
         photoURL: fields.photoURL,
+        bannerUrl: fields.bannerUrl,
         userName: fields.userName,
         displayName: fields.displayName,
         email: fields.email,
@@ -56,6 +57,32 @@ export async function patchUserPhoto(data) {
             result = {
                 code: "user-photo/error",
                 message: "User profile photo not updated!",
+                error: err
+            };
+        });
+
+    return result;
+}
+
+// Post User Photo
+export async function patchUserBanner(data) {
+    let db = await firestore();
+    let result = {};
+
+    await db.doc(`/users/${data.id}`)
+        .update({
+            bannerUrl: data.bannerUrl
+        })
+        .then(() => {
+            result = {
+                code: "user-banner/updated",
+                message: "User banner successfully updated!"
+            };
+
+        }).catch(err => {
+            result = {
+                code: "user-banner/error",
+                message: "User banner not updated!",
                 error: err
             };
         });
