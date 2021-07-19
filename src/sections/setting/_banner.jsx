@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Photo(props) {
+export default function Banner(props) {
   const classes = useStyles();
   const { profile, setProfile } = useContext(AuthContext);
   const [base64, setBase64] = useState(props.data);
@@ -74,14 +74,14 @@ export default function Photo(props) {
       <form className={s.form} onSubmit={(e) => onFileSubmit(e)}>
         <div className={classes.root}>
           <input
-            id="contained-button-file"
+            id="banner-file"
             className={classes.input}
             accept="image/*"
             multiple
             type="file"
             onChange={photoUpload}
           />
-          <label htmlFor="contained-button-file">
+          <label htmlFor="banner-file">
             <ButtonGroup aria-label="outlined primary button group">
               <Button variant="contained" component="span">
                 Add your banner

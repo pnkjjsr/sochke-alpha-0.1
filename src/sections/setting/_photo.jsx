@@ -70,14 +70,14 @@ export default function Photo(props) {
       <form onSubmit={(e) => onFileSubmit(e)}>
         <div className={classes.root}>
           <input
-            id="contained-button-file"
+            id="photo-file"
             className={classes.input}
             accept="image/*"
             multiple
             type="file"
             onChange={photoUpload}
           />
-          <label htmlFor="contained-button-file">
+          <label htmlFor="photo-file">
             <ButtonGroup
               color="primary"
               aria-label="outlined primary button group"

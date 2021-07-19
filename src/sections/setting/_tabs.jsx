@@ -64,7 +64,6 @@ export default function SettingTabs(props) {
         </p>
 
         <Banner data={props.data.bannerUrl} />
-
         <Photo data={props.data.photoURL} />
         <SettingAccordian data={props.data} />
       </TabPanel>
