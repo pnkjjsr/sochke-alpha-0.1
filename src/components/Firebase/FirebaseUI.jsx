@@ -54,11 +54,11 @@ export default class FirebaseUI extends Component {
 
                 const emailData = {
                   email: user.email,
-                  status: "subscribed",
+                  type: "new-user",
                 };
 
                 service
-                  .post("/subscribe/email-push", emailData)
+                  .post("/subscribe", emailData)
                   .then((res) => {
                     // console.log(res);
                   })
