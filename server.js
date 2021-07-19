@@ -59,7 +59,7 @@ app.prepare().then(() => {
   }
 });
 
-exports.nextApp = https.onRequest((req, res) => {
+exports.website = https.onRequest((req, res) => {
   return app.prepare().then(() => handle(req, res));
 });
 

@@ -176,6 +176,28 @@ export default function Address(props) {
     }
   };
 
+  const renderCurrentAddress = () => {
+    if (props.data.address && props.data.city && props.data.pincode) {
+      return (
+        <div className={s.header}>
+          <h3>
+            <small>
+              <b>Current Address</b>
+            </small>
+            <br />
+            {state.address || props.data.address},
+            <br />
+            {state.city || props.data.city},{" "}
+            {state.country || props.data.country} -{" "}
+            {state.pincode || props.data.pincode}
+          </h3>
+        </div>
+      );
+    } else {
+      return "";
+    }
+  };
+
   useEffect(async () => {
     let countriesArr = await universal.getCountries();
     setCountries(countriesArr);
@@ -183,18 +205,7 @@ export default function Address(props) {
 
   return (
     <div className={s.section}>
-      <div className={s.header}>
-        <h3>
-          <small>
-            <b>Current Address</b>
-          </small>
-          <br />
-          {state.address || props.data.address},
-          <br />
-          {state.city || props.data.city}, {state.country || props.data.country}{" "}
-          - {state.pincode || props.data.pincode}
-        </h3>
-      </div>
+      {renderCurrentAddress()}
 
       <div className={s.form}>
         <form autoComplete="off" onSubmit={onSubmit} required>

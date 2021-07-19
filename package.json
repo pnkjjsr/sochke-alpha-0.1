@@ -15,7 +15,8 @@
     "prod": "NODE_ENV=production node server.js",
     "serve": "npm run build && firebase emulators:start --only functions,hosting",
     "shell": "npm run build && firebase functions:shell",
-    "clean": "rimraf .next && rimraf package-lock.json && rimraf .firebase && rimraf yarn.lock && rimraf ui-debug.log"
+    "clean": "rimraf .next && rimraf package-lock.json && rimraf .firebase && rimraf yarn.lock && rimraf ui-debug.log",
+    "rmnode": "rimraf node_modules"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
