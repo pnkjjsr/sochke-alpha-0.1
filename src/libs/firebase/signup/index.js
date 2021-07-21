@@ -16,6 +16,7 @@ export async function postNewUser(newUser, uid) {
         phoneVerified: false,
         displayName: newUser.displayName,
         photoURL: newUser.photoURL,
+        bannerUrl: "",
         address: "",
         area: "",
         district: "",

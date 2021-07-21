@@ -55,10 +55,14 @@ export default function CitizenPublicProfile({ citizen, token }) {
           <div className={s.banner}>
             <Container>
               <figure>
-                <img
-                  src={citizen.bannerUrl}
-                  alt={`${citizen.name} profile banner`}
-                />
+                {citizen.bannerUrl ? (
+                  <img
+                    src={citizen.bannerUrl}
+                    alt={`${citizen.name} profile banner`}
+                  />
+                ) : (
+                  ""
+                )}
               </figure>
               <ThumbPhoto src={citizen.photoURL} name={citizen.name} />
             </Container>

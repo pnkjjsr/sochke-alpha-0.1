@@ -22,8 +22,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Banner(props) {
   const classes = useStyles();
+  let dummyImage =
+    "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fglobal%2Fdummy-banner.png?alt=media&token=9c7cd2e2-95cd-454d-839f-54641fed6168";
   const { profile, setProfile } = useContext(AuthContext);
-  const [base64, setBase64] = useState(props.data);
+  const [base64, setBase64] = useState(props.data || dummyImage);
   const [nValue, setNvalue] = useState("Saved!");
   const [nOpen, setNopen] = useState(false);
   const [nType, setNtype] = useState("success");
