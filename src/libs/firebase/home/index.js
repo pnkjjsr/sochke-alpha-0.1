@@ -12,7 +12,6 @@ function parseMinisterEntries(entries, cb = parseHead) {
     return entries?.map(cb)
 }
 
-
 export async function getPromotedMinisters() {
     let db = await firestore();
 

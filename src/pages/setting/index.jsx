@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 
 import { AuthContext } from "@contexts/Auth";
 import firebaseAuth from "@libs/firebase/auth";
-import { getUser } from "@libs/firebase/users";
+import { getUser } from "@libs/firebase/user";
 import { contentfulClient, getEntry } from "@libs/contentful";
 import { isLoggedIn } from "@utils/session";
 

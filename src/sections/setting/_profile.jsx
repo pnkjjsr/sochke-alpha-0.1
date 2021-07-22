@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 
 import MuiSnackbar from "@components/Mui/Snackbar";
 import { AuthContext } from "@contexts/Auth";
-import { patchUserProfile, traceUserName } from "@libs/firebase/users";
+import { patchUserProfile, traceUserName } from "@libs/firebase/user";
 
 import s from "@pages/setting/setting.module.scss";
 

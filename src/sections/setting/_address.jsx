@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 
 import MuiSnackbar from "@components/Mui/Snackbar";
 import { AuthContext } from "@contexts/Auth";
-import { patchUserAddress } from "@libs/firebase/users";
+import { patchUserAddress } from "@libs/firebase/user";
 import Universal from "@utils/openApi/universal";
 import DataGov from "@utils/openApi/dataGov";
 import StringModifier from "@utils/modifier/string";

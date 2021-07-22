@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 
 import MuiSnackbar from "@components/Mui/Snackbar";
 import { AuthContext } from "@contexts/Auth";
-import { patchUserPhoto } from "@libs/firebase/users";
+import { patchUserPhoto } from "@libs/firebase/user";
 import PhotoThumb from "@components/Thumb/photo";
 
 import s from "@pages/setting/setting.module.scss";

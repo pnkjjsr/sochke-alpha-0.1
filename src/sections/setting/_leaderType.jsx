@@ -8,8 +8,9 @@ import Button from "@material-ui/core/Button";
 
 import MuiSnackbar from "@components/Mui/Snackbar";
 import { AuthContext } from "@contexts/Auth";
-import { patchLeaderProfile } from "@libs/firebase/users";
+import { patchLeaderProfile } from "@libs/firebase/user";
 
+import FormPolotician from "@sections/setting/_formPolotician";
 import s from "@pages/setting/setting.module.scss";
 
 export default function LeaderType(props) {
@@ -63,6 +64,41 @@ export default function LeaderType(props) {
     setNtype("success");
   };
 
+  const renderPoliticalForm = () => {
+    return (
+      <div className={s.form}>
+        <TextField
+          style={{ display: viewOther }}
+          variant="outlined"
+          fullWidth
+          label="Your leadership type"
+          placeholder="What type of Leader you are?"
+          defaultValue={state.typeOther}
+          name="typeOther"
+          onChange={onChange}
+        />
+
+        <FormControl variant="outlined" fullWidth>
+          <InputLabel id="type-label">What type of leader you are?</InputLabel>
+          <Select
+            labelId="type-label"
+            id="type"
+            value={state.type}
+            label="What type of leader you are?"
+            name="type"
+            onChange={onChange}
+          >
+            <MenuItem value="citizen">I'm awake &amp; aware Citizen!</MenuItem>
+            <MenuItem value="politician">Politician</MenuItem>
+            <MenuItem value="socialWorker">Social Worker</MenuItem>
+            <MenuItem value="individual">Individual</MenuItem>
+            <MenuItem value="other">Others</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+    );
+  };
+
   return (
     <div className={s.section}>
       <div className={s.form}>
@@ -105,6 +141,8 @@ export default function LeaderType(props) {
           </Button>
         </form>
       </div>
+
+      {props.data.userType ? <FormPolotician profile={profile} /> : ""}
 
       <MuiSnackbar
         value={nValue}
