@@ -1,0 +1,15 @@
+@use "sass:math";
+@import "src/styles/base";
+
+.index {
+}
+
+@include media-breakpoint-up(sm) {
+  .index {
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .index {
+  }
+}

@@ -12,7 +12,7 @@ import { AuthContext } from "@contexts/Auth";
 import Firebase from "@libs/firebase";
 import { logout } from "@utils/session";
 
-import s from "@pages/home.module.scss";
+import s from "@pages/home/home.module.scss";
 
 const useStyles = makeStyles((theme) => ({
   root: {
