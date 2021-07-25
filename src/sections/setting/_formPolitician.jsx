@@ -136,7 +136,7 @@ export default function FormPolotician(props) {
           />
 
           <Button type="submit" variant="contained" color="primary">
-            Save
+            Save your leader profile
           </Button>
         </form>
       </div>

@@ -5,13 +5,16 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
 import MuiSnackbar from "@components/Mui/Snackbar";
 import { AuthContext } from "@contexts/Auth";
 import { patchLeaderProfile } from "@libs/firebase/user";
+import { postNewPolitician } from "@libs/firebase/leader";
 
-import FormPolotician from "@sections/setting/_formPolotician";
+import FormPolotician from "@sections/setting/_formPolitician";
 import s from "@pages/setting/setting.module.scss";
+import { SdCard } from "@material-ui/icons";
 
 export default function LeaderType(props) {
   const { profile, setProfile } = useContext(AuthContext);
@@ -38,6 +41,12 @@ export default function LeaderType(props) {
       setNvalue(res.message);
       setNopen(true);
     }
+
+    let payloadPolitician = {
+      ...payload,
+      userName: profile.userName,
+    };
+    await postNewPolitician(payloadPolitician);
   };
 
   const onChange = async (e) => {
@@ -64,85 +73,59 @@ export default function LeaderType(props) {
     setNtype("success");
   };
 
-  const renderPoliticalForm = () => {
-    return (
-      <div className={s.form}>
-        <TextField
-          style={{ display: viewOther }}
-          variant="outlined"
-          fullWidth
-          label="Your leadership type"
-          placeholder="What type of Leader you are?"
-          defaultValue={state.typeOther}
-          name="typeOther"
-          onChange={onChange}
-        />
-
-        <FormControl variant="outlined" fullWidth>
-          <InputLabel id="type-label">What type of leader you are?</InputLabel>
-          <Select
-            labelId="type-label"
-            id="type"
-            value={state.type}
-            label="What type of leader you are?"
-            name="type"
-            onChange={onChange}
-          >
-            <MenuItem value="citizen">I'm awake &amp; aware Citizen!</MenuItem>
-            <MenuItem value="politician">Politician</MenuItem>
-            <MenuItem value="socialWorker">Social Worker</MenuItem>
-            <MenuItem value="individual">Individual</MenuItem>
-            <MenuItem value="other">Others</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
-    );
-  };
-
   return (
     <div className={s.section}>
-      <div className={s.form}>
-        <form noValidate autoComplete="off" onSubmit={onSubmit}>
-          <FormControl variant="outlined" fullWidth>
-            <InputLabel id="type-label">
-              What type of leader you are?
-            </InputLabel>
-            <Select
-              labelId="type-label"
-              id="type"
-              value={state.type}
-              label="What type of leader you are?"
-              name="type"
-              onChange={onChange}
-            >
-              <MenuItem value="citizen">
-                I'm awake &amp; aware Citizen!
-              </MenuItem>
-              <MenuItem value="politician">Politician</MenuItem>
-              <MenuItem value="socialWorker">Social Worker</MenuItem>
-              <MenuItem value="individual">Individual</MenuItem>
-              <MenuItem value="other">Others</MenuItem>
-            </Select>
-          </FormControl>
+      <Grid container spacing={5}>
+        <Grid item xs={12} md={6}>
+          <div className={s.form}>
+            <form noValidate autoComplete="off" onSubmit={onSubmit}>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="type-label">
+                  What type of leader you are?
+                </InputLabel>
+                <Select
+                  labelId="type-label"
+                  id="type"
+                  value={state.type}
+                  label="What type of leader you are?"
+                  name="type"
+                  onChange={onChange}
+                >
+                  <MenuItem value="citizen">
+                    I'm awake &amp; aware Citizen!
+                  </MenuItem>
+                  <MenuItem value="politician">Politician</MenuItem>
+                  <MenuItem value="socialWorker">Social Worker</MenuItem>
+                  <MenuItem value="individual">Individual</MenuItem>
+                  <MenuItem value="other">Others</MenuItem>
+                </Select>
+              </FormControl>
 
-          <TextField
-            style={{ display: viewOther }}
-            variant="outlined"
-            fullWidth
-            label="Your leadership type"
-            placeholder="What type of Leader you are?"
-            defaultValue={state.typeOther}
-            name="typeOther"
-            onChange={onChange}
-          />
+              <TextField
+                style={{ display: viewOther }}
+                variant="outlined"
+                fullWidth
+                label="Your leadership type"
+                placeholder="What type of Leader you are?"
+                defaultValue={state.typeOther}
+                name="typeOther"
+                onChange={onChange}
+              />
 
-          <Button type="submit" variant="contained" color="primary">
-            Save
-          </Button>
-        </form>
-      </div>
-
-      {props.data.userType ? <FormPolotician profile={profile} /> : ""}
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+            </form>
+          </div>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          {state.type == "politician" ? (
+            <FormPolotician profile={profile} />
+          ) : (
+            ""
+          )}
+        </Grid>
+      </Grid>
 
       <MuiSnackbar
         value={nValue}
