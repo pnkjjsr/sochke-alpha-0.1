@@ -70,7 +70,10 @@ export default function SettingTabs(props) {
 
       <TabPanel value={value} index={1}>
         <p>
-          As a leader you can update your work for society and be seen to world.
+          As a leader you can update your work for society and be seen to world.{" "}
+          <Link href={`leader/${props.data.userName}`}>
+            <a>View your leader profile</a>
+          </Link>
         </p>
         <LeaderType data={props.data} />
       </TabPanel>

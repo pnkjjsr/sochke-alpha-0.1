@@ -40,24 +40,18 @@ export async function postNewPolitician(payload) {
     let db = await firestore();
     let result = {};
     let data = {
-        address: "",
         age: "",
         assets: "",
-        bannerUrl: "",
         cases: "",
         createdate: new Date().toISOString(),
         constituency: "",
         education: "",
         liabilities: "",
-        name: "",
         party: "",
         partyLogo: "",
         partyShort: "",
-        photoUrl: "",
-        pincode: "",
-        promoted: "",
+        promoted: -1,
         searchTags: "",
-        state: "",
         twitterHandle: "",
         type: payload.userType,
         otherType: payload.userTypeOther,
@@ -106,4 +100,12 @@ export async function postNewPolitician(payload) {
         });
 
     return result;
+}
+
+// Get leader data
+export async function getPolitician(payload) {
+    let db = await firestore();
+    const result = [];
+
+    let colRef = db.collection("leaders");
 }

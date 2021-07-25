@@ -7,7 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 import { AuthContext } from "@contexts/Auth";
-import { getLeaderTypes, postNewPolitician } from "@libs/firebase/leader";
+import { getLeaderTypes, getPolitician } from "@libs/firebase/leader";
 import MuiSnackbar from "@components/Mui/Snackbar";
 
 import s from "@pages/setting/setting.module.scss";
@@ -29,18 +29,17 @@ export default function FormPolotician(props) {
     e.preventDefault();
 
     let payload = {
-      uid: profile.id,
+      leaderId: profile.leaderId,
       type: state.type,
       typeShort: state.typeShort,
       userTypeOther: state.typeOther,
     };
-    console.log(payload);
 
-    // let res = await postNewPolitician(payload);
-    // if (res.code == "user-leaderInfo/updated") {
-    //   setNvalue(res.message);
-    //   setNopen(true);
-    // }
+    let res = await getPolitician(payload);
+    if (res.code == "leader/updated") {
+      setNvalue(res.message);
+      setNopen(true);
+    }
   };
 
   const onChange = async (e) => {
