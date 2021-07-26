@@ -99,6 +99,8 @@ export async function patchUserProfile(data) {
         .update({
             displayName: data.displayName,
             phoneNumber: data.phoneNumber,
+            dateOfBirth: data.dateOfBirth,
+            education: data.education,
         })
         .then(() => {
             result = {

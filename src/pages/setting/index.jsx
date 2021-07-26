@@ -9,7 +9,9 @@ import { contentfulClient, getEntry } from "@libs/contentful";
 import { isLoggedIn } from "@utils/session";
 
 import Layout from "@layouts/open/index";
-import SettingTabs from "@sections/setting/_tabs";
+import Banner from "@sections/setting/_banner";
+import Photo from "@sections/setting/_photo";
+import SettingAccordian from "@sections/setting/_accordian";
 
 import s from "./setting.module.scss";
 
@@ -63,9 +65,15 @@ export default function Setting({ data }) {
               </h1>
             </div>
 
-            <div className={s.tabs}>
-              {!user ? "Loading.." : <SettingTabs data={user} />}
-            </div>
+            {user ? (
+              <>
+                <Banner data={user.bannerUrl} />
+                <Photo data={user.photoURL} />
+                <SettingAccordian data={user} />
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </Container>
       </Layout>

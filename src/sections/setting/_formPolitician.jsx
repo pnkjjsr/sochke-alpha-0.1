@@ -134,6 +134,81 @@ export default function FormPolotician(props) {
             onChange={onChange}
           />
 
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="type-label">Party</InputLabel>
+            <Select
+              labelId="party-label"
+              id="party"
+              value={state.party}
+              label="Party"
+              name="party"
+              onChange={onChange}
+            >
+              {/* {renderMenuItem(leaderTypes, "name")} */}
+              <MenuItem value="other">Others</MenuItem>
+            </Select>
+          </FormControl>
+
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Assets"
+            placeholder=""
+            defaultValue={state.assets}
+            name="assets"
+            onChange={onChange}
+          />
+
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Liabilities"
+            placeholder=""
+            defaultValue={state.liabilities}
+            name="liabilities"
+            onChange={onChange}
+          />
+
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Cases"
+            placeholder=""
+            defaultValue={state.cases}
+            name="cases"
+            onChange={onChange}
+          />
+
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Education"
+            placeholder=""
+            defaultValue={state.education}
+            name="education"
+            onChange={onChange}
+          />
+
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Twitter Handle"
+            placeholder=""
+            defaultValue={state.twitterHandle}
+            name="twitterHandle"
+            onChange={onChange}
+          />
+
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Facebook Handle"
+            placeholder=""
+            defaultValue={state.facebookHandle}
+            name="facebookHandle"
+            onChange={onChange}
+          />
+
           <Button type="submit" variant="contained" color="primary">
             Save your leader profile
           </Button>
