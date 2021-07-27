@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
+import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Thumb from "@components/Thumb/photo";
@@ -17,7 +19,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
-  useEffect(() => {}, []);
+  const router = useRouter();
+  const handleProfile = () => {
+    router.push(`/citizen/${props.user.slug}`);
+  };
 
   return (
     <>
@@ -30,14 +35,16 @@ export default function Header(props) {
           </a>
         </Link>
 
-        {/* <IconButton
+        <IconButton
           className={classes.root}
           color="primary"
           variant="contained"
           aria-label="delete"
+          onClick={handleProfile}
         >
-          <EditIcon />
-        </IconButton> */}
+          {/* <EditIcon /> */}
+          <OpenInNewIcon />
+        </IconButton>
       </div>
     </>
   );
