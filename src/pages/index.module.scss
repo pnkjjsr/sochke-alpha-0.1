@@ -2,6 +2,47 @@
 @import "src/styles/base";
 
 .index {
+  padding-top: 20px;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $gap * 2;
+    padding: 20px;
+    background-color: $base-color;
+    border-radius: 20px;
+
+    a {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    figure {
+      margin: 0;
+      width: 50px;
+      height: 50px;
+    }
+
+    h1 {
+      padding-left: $gap;
+      flex-grow: 1;
+      color: $color-white;
+      font-size: rem(20);
+      font-weight: $font-weight;
+    }
+
+    button {
+      box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .notice {
+    text-align: center;
+  }
 }
 
 @include media-breakpoint-up(sm) {

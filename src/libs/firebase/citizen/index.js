@@ -60,6 +60,7 @@ function parseCitizenAlphaEntries(entries, cb = parseAlphaCitizen) {
     return entries?.map(cb);
 }
 
+// Get citizen by Char
 export async function getCitizensByChar(slug) {
     let db = await firestore();
     let citizens = [];
@@ -81,4 +82,37 @@ export async function getCitizensByChar(slug) {
         });
 
     return parseCitizenAlphaEntries(citizens);
+}
+
+// Get User by UID
+function parseUser(fields) {
+    return {
+        id: fields.id,
+        slug: fields.userName,
+        name: fields.displayName,
+        photoURL: fields.photoURL,
+        type: fields.type
+    }
+}
+
+function parseUserEntry(entry, cb = parseUser) {
+    return entry?.map(cb)
+}
+
+export async function getUser(id) {
+    let db = await firestore();
+    const user = [];
+
+    let colRef = db.collection("users");
+    await colRef.doc(id)
+        .get()
+        .then((doc) => {
+            let userData = doc.data();
+            user.push(userData);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    return parseUserEntry(user)[0];
 }

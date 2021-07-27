@@ -1,45 +1,96 @@
 import React, { useState, useEffect, useContext } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import Paper from "@material-ui/core/Paper";
 
-import { getHome } from "@libs/contentful/head";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+
 import { isLoggedIn } from "@utils/session";
+import { getUser } from "@libs/firebase/citizen";
 
 import Layout from "@layouts/open/index";
+import Header from "@sections/index/header";
 
 import s from "./index.module.scss";
+import { CenterFocusWeak } from "@material-ui/icons";
 
-export default function Home({ head }) {
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+    padding: 20,
+    marginBottom: 30,
+    textAlign: "center",
+  },
+});
+
+export default function Home({ user }) {
+  const classes = useStyles();
+  const router = useRouter();
+
   const DEFAULT = {
-    title: head.title,
-    desc: head.desc,
-    defaultOGURL: `https://sochke.com`,
-    defaultOGImage: head.image,
+    title: "Sochke",
+    defaultOGURL: `https://www.sochke.com/citizen/${user.slug}`,
+    defaultOGImage: user.photoURL,
   };
 
-  useEffect(() => {}, []);
+  const handleSetting = () => {
+    router.push("/setting");
+  };
 
   return (
     <>
-      <Head>
-        <title>{DEFAULT.title}</title>
-        <meta name="description" content={DEFAULT.desc} />
-
-        <meta property="og:url" content={DEFAULT.defaultOGURL} />
-        <meta property="og:title" content={DEFAULT.title} />
-        <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
-        <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
-        <meta property="og:image" content={DEFAULT.defaultOGImage} />
-      </Head>
-
       <Layout>
+        <Head>
+          <title>{DEFAULT.title}</title>
+          <meta property="og:url" content={DEFAULT.defaultOGURL} />
+          <meta property="og:title" content={DEFAULT.title} />
+          <meta name="twitter:site" content={DEFAULT.defaultOGURL} />
+          <meta name="twitter:image" content={DEFAULT.defaultOGImage} />
+          <meta property="og:image" content={DEFAULT.defaultOGImage} />
+        </Head>
+
         <Container maxWidth="xl">
           <div className={s.index}>
-            <div className={s.header}>
-              <h1>
-                Dashboard
-                <small>Need to create Dashboard for user/leader.</small>
-              </h1>
+            <Header user={user} />
+
+            <Paper className={classes.root} elevation={4}>
+              <Typography variant="body2" component="p">
+                Update profile &amp; address in the setting.
+              </Typography>
+              <br />
+
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={handleSetting}
+              >
+                Update Your Profile
+              </Button>
+            </Paper>
+
+            <div className={s.notice}>
+              I'm working on the "<b>Contribution</b>" board. Let's joint hand
+              in development.
+              <br />
+              <br />
+              Here, you can easily share your work, progress, development,
+              problems, and hurdles as a <b>LEADER</b>.
+              <br />
+              <br />
+              And appreciation, thoughts, wishes, complaints, anger, and rant as{" "}
+              <b>CITIZEN</b>.
+              <br />
+              <br />
+              <b>You have the idea!</b>
+              <br />
+              share with me on email:{" "}
+              <a href="mailto:contact@sochke.com">contact@sochke.com</a>
             </div>
           </div>
         </Container>
@@ -63,9 +114,9 @@ export async function getServerSideProps({ req }) {
     };
   }
 
-  let head = await getHome();
+  let user = await getUser(token);
 
   return {
-    props: { head },
+    props: { user },
   };
 }

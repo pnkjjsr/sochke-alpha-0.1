@@ -11,7 +11,7 @@ import { getPromotedMinisters } from "@libs/firebase/home";
 import { getMinisters } from "@libs/firebase/neta";
 
 import Layout from "@layouts/open";
-import Thumbs from "@sections/index/_thumbs";
+import Thumbs from "@sections/home/_thumbs";
 
 import s from "./index.module.scss";
 
