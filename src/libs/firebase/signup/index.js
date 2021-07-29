@@ -7,7 +7,7 @@ export async function postNewUser(newUser, uid) {
     let data = {
         createdAt: new Date().toISOString(),
         id: uid,
-        userType: "citizen", //citizen, leader, etc
+        type: "citizen", //citizen, leader, etc
         email: newUser.email,
         emailVerified: false,
         password: "",
