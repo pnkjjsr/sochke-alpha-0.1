@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
-
+// import base64Img from "base64-img";
 import Container from "@material-ui/core/Container";
 
 import { GlobalContext } from "@contexts/Global";
@@ -9,7 +9,6 @@ import Wiki from "@utils/openApi/wiki";
 import Youtube from "@utils/openApi/youtube";
 
 import Layout from "@layouts/open";
-
 import Photo from "@sections/neta/_photo";
 import DetailM from "@sections/neta/_detailM";
 import DetailW from "@sections/neta/_detailW";
@@ -32,10 +31,14 @@ export default function NetaLanding({ neta, para, ytSearch }) {
 
   if (!minister) return "";
 
+  let imageUrl =
+    neta.photo ||
+    "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media";
+
   const DEFAULT = {
     title: `${minister.name} ${minister.title} ${minister.party}`,
     defaultOGURL: `https://www.sochke.com/neta/${minister.slug}`,
-    defaultOGImage: `${minister.imageUrl}`,
+    defaultOGImage: `${imageUrl}`,
   };
 
   if (language != lang) {
@@ -107,6 +110,14 @@ export async function getServerSideProps({ params }) {
   let wiki = new Wiki();
   let para = await wiki.getShortIntro(neta.name);
   if (!para.para) para.para = "Description not available.";
+
+  // if (neta.imageUrl.startsWith("data:")) {
+  //   let photoName = neta.slug.split("-")[0];
+  //   let path = base64Img.imgSync(neta.imageUrl, "public/cache", photoName);
+  //   let arr = path.split("/");
+  //   let publicPath = `/${arr[1]}/${arr[2]}`;
+  //   neta.photo = publicPath;
+  // }
 
   return {
     props: { neta, para, ytSearch },

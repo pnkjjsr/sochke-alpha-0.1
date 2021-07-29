@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+// import base64Img from "base64-img";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -20,12 +21,16 @@ export default function CitizenPublicProfile({ citizen, token }) {
   const [sliceName, setSliceName] = useState(citizen.slug.split("-")[0]);
   const [dSignup, setDSignup] = useState("none");
 
+  let imageUrl =
+    citizen.photo ||
+    "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media";
+
   const DEFAULT = {
     title: `${citizen.name || sliceName} | Responsible citizen of ${
       citizen.country
     }`,
     defaultOGURL: `https://www.sochke.com/neta/${citizen.slug}`,
-    defaultOGImage: `${citizen.photoURL}`,
+    defaultOGImage: `${imageUrl}`,
   };
 
   useEffect(() => {
@@ -103,6 +108,14 @@ export default function CitizenPublicProfile({ citizen, token }) {
 export async function getServerSideProps({ req, params }) {
   let citizen = await getCitizen(params.slug);
   let token = await isLoggedIn(req);
+
+  // if (citizen.photoURL.startsWith("data:")) {
+  //   let photoName = citizen.slug.split("-")[0];
+  //   let path = base64Img.imgSync(citizen.photoURL, "public/cache", photoName);
+  //   let arr = path.split("/");
+  //   let publicPath = `/${arr[1]}/${arr[2]}`;
+  //   citizen.photo = publicPath;
+  // }
 
   return {
     props: { citizen, token },

@@ -5,8 +5,7 @@ import { string } from "prop-types";
 
 const DEFAULT_CONFIG = {
   title: "Sochke | Political Networking | Society | Politics | Societal Issues",
-  desc:
-    "Sochke | SochKeApp, a political networking platform to enable citizens contribute societal issues, connect political leaders digitally & build a healthy democracy.",
+  desc: "Sochke | SochKeApp, a political networking platform to enable citizens contribute societal issues, connect political leaders digitally & build a healthy democracy.",
   keyword:
     "Sochke,SochkeApp,Neta,Society Issues,Leaders,Politics,Political,Politician,Political Networking,Minister,Election,Vote,Citizne,Problem,Issue,Development,India,Growth,Agenda,Propganda",
   defaultOGURL: "https://www.sochke.com",
@@ -58,9 +57,9 @@ class Head extends React.Component {
             content="black-translucent"
           />
 
-          <link rel="icon" sizes="192x192" href="graphics/icon-192.png" />
+          <link rel="icon" sizes="192x192" href="/graphics/icon-192.png" />
           <link rel="apple-touch-icon" href="/touch-icon.png" />
-          <link rel="mask-icon" href="graphics/icon-32.png" color="#49B882" />
+          <link rel="mask-icon" href="/graphics/icon-32.png" color="#49B882" />
           <link
             href="graphics/icon-32.png"
             rel="icon"

@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+// import base64Img from "base64-img";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
-
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
@@ -18,7 +16,6 @@ import Layout from "@layouts/open/index";
 import Header from "@sections/index/header";
 
 import s from "./index.module.scss";
-import { CenterFocusWeak } from "@material-ui/icons";
 
 const useStyles = makeStyles({
   root: {
@@ -33,10 +30,14 @@ export default function Home({ user }) {
   const classes = useStyles();
   const router = useRouter();
 
+  let imageUrl =
+    user.photo ||
+    "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media";
+
   const DEFAULT = {
     title: "Sochke",
     defaultOGURL: `https://www.sochke.com/citizen/${user.slug}`,
-    defaultOGImage: user.photoURL,
+    defaultOGImage: `${imageUrl}`,
   };
 
   const handleSetting = () => {
@@ -115,6 +116,14 @@ export async function getServerSideProps({ req }) {
   }
 
   let user = await getUser(token);
+
+  // if (user.photoURL.startsWith("data:")) {
+  //   let photoName = user.slug.split("-")[0];
+  //   let path = base64Img.imgSync(user.photoURL, "public/cache", photoName);
+  //   let arr = path.split("/");
+  //   let publicPath = `/${arr[1]}/${arr[2]}`;
+  //   user.photo = publicPath;
+  // }
 
   return {
     props: { user },

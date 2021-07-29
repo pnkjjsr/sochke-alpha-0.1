@@ -1,4 +1,4 @@
-export const base64intoimage = (b64Data) => {
+export const base64toblobimage = (b64Data) => {
     var block = b64Data.split(";");
     var contentType = block[0].split(":")[1] || '';
     var realData = block[1].split(",")[1];
@@ -21,5 +21,6 @@ export const base64intoimage = (b64Data) => {
     }
 
     var blob = new Blob(byteArrays, { type: contentType });
-    return blob;
+    var blobUrl = URL.createObjectURL(blob);
+    return blobUrl;
 }

@@ -36,13 +36,13 @@ function TabPanel(props) {
 function RenderYtThumb(props) {
   let arr = props.data;
 
-  return arr.map((item) => {
+  return arr.map((item, i) => {
     let thumbUrl = item.snippet.thumbnails;
     let title = item.snippet.title;
     let description = item.snippet.description;
 
     return (
-      <Card>
+      <Card key={i}>
         <figure>
           <picture>
             <source media="(min-width:768px)" srcSet={thumbUrl.high.url} />
