@@ -91,7 +91,7 @@ function parseUser(fields) {
         slug: fields.userName,
         name: fields.displayName,
         photoURL: fields.photoURL,
-        type: fields.type
+        type: fields.type || fields.userType
     }
 }
 
