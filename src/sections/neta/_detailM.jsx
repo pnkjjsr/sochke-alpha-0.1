@@ -8,7 +8,7 @@ import s from "@pages/neta/neta.module.scss";
 
 export default class Detail extends Component {
   render() {
-    const { data } = this.props;
+    const { data, about } = this.props;
 
     return (
       <div className={s.detail}>
@@ -28,6 +28,8 @@ export default class Detail extends Component {
         <div className={s.top}>
           <h1>{data.name}</h1>
           <small>{data.title}</small>
+          <br />
+          <small>{about.para}</small>
         </div>
 
         <Feature data={data} />

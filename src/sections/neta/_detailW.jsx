@@ -44,7 +44,7 @@ export default class Detail extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, about } = this.props;
 
     return (
       <div className={s.detail}>
@@ -60,6 +60,8 @@ export default class Detail extends Component {
           <div>
             <h1>{data.name}</h1>
             <small>{data.title}</small>
+            <br />
+            <small>{about.para}</small>
           </div>
         </div>
 

@@ -12,7 +12,7 @@ import Layout from "@layouts/open";
 import Photo from "@sections/neta/_photo";
 import DetailM from "@sections/neta/_detailM";
 import DetailW from "@sections/neta/_detailW";
-import About from "@sections/neta/_about";
+// import About from "@sections/neta/_about";
 import SocialTabs from "@sections/neta/_socialTabs";
 import Bottom from "@sections/neta/_bottom";
 import s from "./neta.module.scss";
@@ -67,9 +67,17 @@ export default function NetaLanding({ neta, para, ytSearch }) {
 
         <div className={s.neta}>
           <Photo data={neta} />
-          {isSmallDevice ? <DetailM data={neta} /> : <DetailW data={neta} />}
+          {isSmallDevice ? (
+            <DetailM data={neta} about={paragraph} />
+          ) : (
+            <DetailW data={neta} about={paragraph} />
+          )}
 
           <Container>
+            {/* <About data={paragraph} /> */}
+
+            <SocialTabs twitter={minister.twitterHandle} youtube={ytSearch} />
+
             <p className={`notice ${s.notice}`}>
               Disclaimer: This information is an archive of the candidate's
               self-declared affidavit that was filed during the elections. The
@@ -77,18 +85,12 @@ export default function NetaLanding({ neta, para, ytSearch }) {
               latest available information, please refer to the affidavit filed
               by the candidate to the Election Commission in the most recent
               election.
-            </p>
-
-            <About data={paragraph} />
-            <p className="notice">
-              Disclaimer: About directly getting from wiki page by keyword: "
-              {minister.name}"
-            </p>
-
-            <SocialTabs twitter={minister.twitterHandle} youtube={ytSearch} />
-            <p className="notice">
-              Disclaimer: Tweets, directly from twitter widget and youtube data
-              is last search by keyword: "{minister.name} {minister.party}"
+              <br />
+              About directly getting from wiki page by keyword: "{minister.name}
+              "
+              <br />
+              Tweets, directly from twitter widget and youtube data is last
+              search by keyword: "{minister.name} {minister.party}"
             </p>
           </Container>
 
