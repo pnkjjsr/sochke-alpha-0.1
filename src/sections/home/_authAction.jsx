@@ -12,6 +12,8 @@ import { AuthContext } from "@contexts/Auth";
 import Firebase from "@libs/firebase";
 import { logout } from "@utils/session";
 
+import PhotoThumb from "@components/Thumb/photo";
+
 import s from "@pages/home/home.module.scss";
 
 const useStyles = makeStyles((theme) => ({
@@ -82,9 +84,7 @@ export default function AuthAction() {
   } else {
     return (
       <div className={s.loggedIn}>
-        <figure>
-          <img src={profile.photoURL} alt={profile.displayName} />
-        </figure>
+        <PhotoThumb src={profile.photoURL} name={profile.displayName} />
 
         <div>
           <div className={s.title}>

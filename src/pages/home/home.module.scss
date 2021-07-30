@@ -42,17 +42,21 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
+      align-items: center;
 
       > figure {
+        width: 100px;
+        height: 100px;
+        margin: 0;
+        background-color: $color-white;
+
         img {
-          width: 100px;
-          height: 100px;
-          margin-right: $gap;
           @include border-radius(100%);
         }
       }
 
       > div {
+        margin-left: $gap * 2;
         .title {
           margin-bottom: $gap * 0.5;
           color: $color-white;
