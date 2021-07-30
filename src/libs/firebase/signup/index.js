@@ -3,7 +3,14 @@ import { firestore } from "@libs/firebase/firestore";
 export async function postNewUser(newUser, uid) {
     let db = await firestore();
 
-    let userName = `${newUser.email.match(/^(.+)@/)[1]}-${uid}`;
+    let userName = "";
+    if (newUser.signupType == "phone") {
+        userName = uid
+    }
+    else {
+        userName = `${newUser.email.match(/^(.+)@/)[1]}-${uid}`;
+    }
+
     let data = {
         createdAt: new Date().toISOString(),
         id: uid,
@@ -15,7 +22,7 @@ export async function postNewUser(newUser, uid) {
         phoneNumber: newUser.phoneNumber,
         phoneVerified: false,
         displayName: newUser.displayName,
-        photoURL: newUser.photoURL,
+        photoURL: newUser.photoURL || "",
         bannerUrl: "",
         address: "",
         area: "",

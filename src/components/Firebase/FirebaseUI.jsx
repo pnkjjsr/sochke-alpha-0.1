@@ -30,9 +30,15 @@ export default class FirebaseUI extends Component {
           signInSuccessUrl: "/",
           signInFlow: "popup",
           signInOptions: [
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             firebase.auth.FacebookAuthProvider.PROVIDER_ID,
             firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            "yahoo.com",
+            firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            {
+              provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+              defaultCountry: "IN",
+            },
           ],
           // Terms of service url.
           tosUrl: "/privacy",
@@ -43,6 +49,10 @@ export default class FirebaseUI extends Component {
             signInSuccessWithAuthResult: function (authResult, redirectUrl) {
               let isNewUser = authResult.additionalUserInfo.isNewUser;
               let user = authResult.user.providerData[0];
+
+              if (authResult.additionalUserInfo.providerId == "phone") {
+                user.signupType = "phone";
+              }
 
               setAuthenticated(true);
               setProfile(user);
