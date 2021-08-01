@@ -7,42 +7,61 @@
 
   .banner {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    background-color: $base-color;
-    border-radius: 20px;
 
-    .action {
+    > figure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $base-color;
+      overflow: hidden;
+      height: 200px;
+      border-radius: 20px;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    > .action {
       position: absolute;
       right: 1px;
       top: 1px;
+      padding: 5px 10px;
       background-color: $color-white;
       border-top-right-radius: 20px;
       border-bottom-left-radius: 20px;
-      color: $base-color;
+      color: $color-primary;
+      cursor: pointer;
     }
 
-    figure {
-      &:first-child {
-        height: 100%;
-        border-radius: 20px;
-        overflow: hidden;
+    .thumb {
+      position: absolute;
+      z-index: 1;
+      left: calc(50% - 45px);
+      bottom: -$gap * 5;
 
-        img {
-          height: 100%;
-        }
-      }
-
-      &:last-child {
-        position: absolute;
-        z-index: 1;
-        left: calc(50% - 45px);
-        bottom: -$gap * 5;
+      figure {
         width: 90px;
         height: 90px;
         background-color: $color-white;
+      }
+
+      .action {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+        color: $color-primary;
+        background-color: $color-white;
+        border-radius: 100%;
+        box-shadow: 2px 3px 3px rgb(0 0 0 / 20%);
+        cursor: pointer;
+
+        svg {
+          display: block;
+          font-size: rem(16);
+        }
       }
     }
   }
@@ -80,7 +99,9 @@
 @include media-breakpoint-up(md) {
   .citizen {
     .banner {
-      height: 250px;
+      figure {
+        height: 250px;
+      }
     }
   }
 }

@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 // import base64Img from "base64-img";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 import { getCitizen } from "@libs/firebase/citizen";
 import { isLoggedIn } from "@utils/session";
@@ -24,6 +26,10 @@ export default function CitizenPublicProfile({ citizen, token }) {
   let imageUrl =
     citizen.photo ||
     "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fintro%2Fsochke.jpg?alt=media";
+
+  let bannerUrl =
+    citizen.bannerUrl ||
+    "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fglobal%2Fsochke-banner.png?alt=media&token=6da487e1-3b49-43db-bd6e-bc6f2ba609cc";
 
   const DEFAULT = {
     title: `${citizen.name || sliceName} | Responsible citizen of ${
@@ -59,34 +65,37 @@ export default function CitizenPublicProfile({ citizen, token }) {
         <div className={s.citizen}>
           <Container>
             <div className={s.banner}>
-              <Button
-                className={s.action}
-                color="primary"
-                variant="contained"
-                size="small"
-              >
-                Upload Banner
-              </Button>
-
               <figure>
-                {citizen.bannerUrl ? (
-                  <img
-                    src={citizen.bannerUrl}
-                    alt={`${citizen.name} profile banner`}
-                  />
+                <img src={bannerUrl} alt={`${citizen.name} profile banner`} />
+              </figure>
+
+              {token ? (
+                <Link href="/setting">
+                  <a className={s.action}>Upload Banner</a>
+                </Link>
+              ) : (
+                ""
+              )}
+
+              <div className={s.thumb}>
+                {token ? (
+                  <Link href="/setting">
+                    <a className={s.action}>
+                      <PhotoCameraIcon />
+                    </a>
+                  </Link>
                 ) : (
                   ""
                 )}
-              </figure>
-              <ThumbPhoto src={citizen.photoURL} name={citizen.name} />
-            </div>
-          </Container>
 
-          <Container>
+                <ThumbPhoto src={citizen.photoURL} name={citizen.name} />
+              </div>
+            </div>
+
             <div className={s.details}>
               <div className={s.header}>
                 <h1>{citizen.name || sliceName}</h1>
-                <small>I'm responsible citizen of {citizen.country}</small>
+                <small>A responsible citizen of {citizen.country}</small>
               </div>
 
               <Box component="div" display={dSignup}>
