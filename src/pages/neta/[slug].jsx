@@ -78,7 +78,7 @@ export default function NetaLanding({ neta, para, ytSearch }) {
 
             <SocialTabs twitter={minister.twitterHandle} youtube={ytSearch} />
 
-            <p className={`notice ${s.notice}`}>
+            <small className={`notice ${s.notice}`}>
               Disclaimer: This information is an archive of the candidate's
               self-declared affidavit that was filed during the elections. The
               current status of this information may be different. For the
@@ -91,7 +91,7 @@ export default function NetaLanding({ neta, para, ytSearch }) {
               <br />
               Tweets, directly from twitter widget and youtube data is last
               search by keyword: "{minister.name} {minister.party}"
-            </p>
+            </small>
           </Container>
 
           <Bottom data={DEFAULT} />

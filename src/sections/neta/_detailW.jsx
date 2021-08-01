@@ -61,7 +61,7 @@ export default class Detail extends Component {
             <h1>{data.name}</h1>
             <small>{data.title}</small>
             <br />
-            <small>{about.para}</small>
+            <p>{about.para}</p>
           </div>
         </div>
 
