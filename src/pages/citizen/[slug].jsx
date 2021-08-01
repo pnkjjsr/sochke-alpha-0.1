@@ -57,8 +57,17 @@ export default function CitizenPublicProfile({ citizen, token }) {
         </Head>
 
         <div className={s.citizen}>
-          <div className={s.banner}>
-            <Container>
+          <Container>
+            <div className={s.banner}>
+              <Button
+                className={s.action}
+                color="primary"
+                variant="contained"
+                size="small"
+              >
+                Upload Banner
+              </Button>
+
               <figure>
                 {citizen.bannerUrl ? (
                   <img
@@ -70,8 +79,8 @@ export default function CitizenPublicProfile({ citizen, token }) {
                 )}
               </figure>
               <ThumbPhoto src={citizen.photoURL} name={citizen.name} />
-            </Container>
-          </div>
+            </div>
+          </Container>
 
           <Container>
             <div className={s.details}>
