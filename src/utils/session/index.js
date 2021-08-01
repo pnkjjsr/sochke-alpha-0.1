@@ -80,8 +80,9 @@ export const isLoggedIn = (req) => {
 }
 
 export const login = (uid) => {
+    let cookieTimeout = { expires: 2, path: "/" };
     let cookie = Cookies.get("__session");
-    if (!cookie) Cookies.set("__session", `token=${uid}?`);
+    if (!cookie) Cookies.set("__session", `token=${uid}?`, cookieTimeout);
     else {
         let splitter = "?";
         let ca = cookie.split(splitter);
@@ -93,7 +94,7 @@ export const login = (uid) => {
         filtered.push(`token=${uid}?`);
         let cookieString = filtered.join(splitter);
 
-        Cookies.set("__session", cookieString);
+        Cookies.set("__session", cookieString, cookieTimeout);
     }
 }
 
