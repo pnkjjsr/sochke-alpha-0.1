@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 // import base64Img from "base64-img";
 
@@ -13,7 +14,7 @@ import { isLoggedIn } from "@utils/session";
 import { getUser } from "@libs/firebase/citizen";
 
 import Layout from "@layouts/open/index";
-import Header from "@sections/index/header";
+import UserBar from "@sections/index/userBar";
 
 import s from "./index.module.scss";
 
@@ -58,7 +59,7 @@ export default function Home({ user }) {
 
         <Container maxWidth="xl">
           <div className={s.index}>
-            <Header user={user} />
+            <UserBar user={user} />
 
             <Paper className={classes.root} elevation={4}>
               <Typography variant="body2" component="p">

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header(props) {
+export default function UserBar(props) {
   const classes = useStyles();
   const router = useRouter();
   const handleProfile = () => {
@@ -26,7 +26,7 @@ export default function Header(props) {
 
   return (
     <>
-      <div className={s.header}>
+      <div className={s.userbar}>
         <Link href={`/citizen/${props.user.slug}`}>
           <a>
             <Thumb src={props.user.photoURL} />
