@@ -53,8 +53,8 @@ export async function postNewPolitician(payload) {
         promoted: -1,
         searchTags: "",
         twitterHandle: "",
-        type: payload.userType,
-        otherType: payload.userTypeOther,
+        type: payload.type,
+        typeOther: payload.typeOther,
         userName: payload.userName,
         userId: payload.id,
         winner: "",
@@ -70,8 +70,8 @@ export async function postNewPolitician(payload) {
                 snapshot.forEach(doc => {
                     let leaderData = doc.data();
                     colRef.doc(leaderData.id).update({
-                        type: payload.userType,
-                        typeOther: payload.userTypeOther
+                        type: data.type,
+                        typeOther: data.typeOther
                     })
                 });
 

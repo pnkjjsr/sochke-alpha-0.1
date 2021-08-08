@@ -188,8 +188,8 @@ export async function patchLeaderProfile(data) {
 
     await db.doc(`/users/${data.id}`)
         .update({
-            userType: data.userType,
-            userTypeOther: data.userTypeOther,
+            type: data.type,
+            typeOther: data.typeOther,
         })
         .then(() => {
             result = {

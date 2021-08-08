@@ -2,35 +2,25 @@ import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-// import base64Img from "base64-img";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
-import EditIcon from "@material-ui/icons/Edit";
 
 import { getCitizen } from "@libs/firebase/citizen";
 import { isLoggedIn } from "@utils/session";
 
 import Layout from "@layouts/open";
 import ThumbPhoto from "@components/Thumb/photo";
-import SimpleDialog from "@components/Mui/Dialog";
 
-import FormType from "@sections/citizen/_formType";
-import s from "./citizen.module.scss";
+import s from "./index.module.scss";
 
 export default function CitizenPublicProfile({ citizen, token }) {
   const router = useRouter();
-  const [openDialog, setOpenDialog] = useState(false);
-  const [dialogChildren, setDialogChildren] = useState();
   const [isSmallDevice, setIsSmallDevice] = useState(true);
   const [sliceName, setSliceName] = useState(citizen.slug.split("-")[0]);
   const [dSignup, setDSignup] = useState("none");
-
-  const [state, setState] = useState({
-    type: citizen.type,
-  });
 
   let imageUrl =
     citizen.photo ||
@@ -48,37 +38,17 @@ export default function CitizenPublicProfile({ citizen, token }) {
     defaultOGImage: `${imageUrl}`,
   };
 
-  const handleSignup = () => {
-    router.push("/signup");
-  };
-
-  const handleDialogOpen = (type) => {
-    setOpenDialog(true);
-    setDialogChildren(type);
-  };
-
-  const handleDialogClose = (value) => {
-    setOpenDialog(false);
-
-    if (!value) return;
-    setState({ type: value });
-  };
-
-  const renderChildren = () => {
-    switch (dialogChildren) {
-      case "type":
-        return <FormType user={citizen} close={handleDialogClose} />;
-      default:
-        "";
-    }
-  };
-
   useEffect(() => {
     let screenWidth = window.innerWidth;
     screenWidth >= 768 ? setIsSmallDevice(false) : null;
 
     if (token == false) setDSignup("block");
   }, []);
+
+  const handleSignup = () => {
+    router.push("/signup");
+  };
+
   return (
     <>
       <Layout>
@@ -98,7 +68,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
                 <img src={bannerUrl} alt={`${citizen.name} profile banner`} />
               </figure>
 
-              {token == citizen.id ? (
+              {token ? (
                 <Link href="/setting">
                   <a className={s.action}>Upload Banner</a>
                 </Link>
@@ -107,7 +77,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
               )}
 
               <div className={s.thumb}>
-                {token == citizen.id ? (
+                {token ? (
                   <Link href="/setting">
                     <a className={s.action}>
                       <PhotoCameraIcon />
@@ -123,21 +93,8 @@ export default function CitizenPublicProfile({ citizen, token }) {
 
             <div className={s.details}>
               <div className={s.header}>
-                <small>
-                  {state.type}
-
-                  {token == citizen.id ? (
-                    <span
-                      className={s.action}
-                      onClick={() => handleDialogOpen("type")}
-                    >
-                      <EditIcon />
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </small>
                 <h1>{citizen.name || sliceName}</h1>
+                <small>A responsible citizen of {citizen.country}</small>
               </div>
 
               <Box component="div" display={dSignup}>
@@ -157,10 +114,6 @@ export default function CitizenPublicProfile({ citizen, token }) {
             </div>
           </Container>
 
-          <SimpleDialog open={openDialog} onClose={(e) => handleDialogClose(e)}>
-            {renderChildren()}
-          </SimpleDialog>
-
           <style jsx>{``}</style>
           <style jsx global>{``}</style>
         </div>
@@ -171,15 +124,8 @@ export default function CitizenPublicProfile({ citizen, token }) {
 
 export async function getServerSideProps({ req, params }) {
   let citizen = await getCitizen(params.slug);
-  let token = await isLoggedIn(req);
 
-  // if (citizen.photoURL.startsWith("data:")) {
-  //   let photoName = citizen.slug.split("-")[0];
-  //   let path = base64Img.imgSync(citizen.photoURL, "public/cache", photoName);
-  //   let arr = path.split("/");
-  //   let publicPath = `/${arr[1]}/${arr[2]}`;
-  //   citizen.photo = publicPath;
-  // }
+  let token = await isLoggedIn(req);
 
   return {
     props: { citizen, token },

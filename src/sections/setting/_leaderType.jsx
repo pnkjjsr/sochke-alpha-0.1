@@ -14,7 +14,6 @@ import { postNewPolitician } from "@libs/firebase/leader";
 
 import FormPolotician from "@sections/setting/_formPolitician";
 import s from "@pages/setting/setting.module.scss";
-import { SdCard } from "@material-ui/icons";
 
 export default function LeaderType(props) {
   const { profile, setProfile } = useContext(AuthContext);
