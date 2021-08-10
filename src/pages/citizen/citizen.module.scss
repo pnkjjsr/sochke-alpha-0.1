@@ -66,12 +66,13 @@
     }
   }
 
-  .details {
+  .top {
     margin-top: $gap * 5;
+    margin-bottom: $gap * 3;
     text-align: center;
 
     .header {
-      margin-bottom: $gap * 5;
+      margin-bottom: $gap * 3;
 
       small {
         position: relative;
@@ -109,6 +110,29 @@
 
     button {
       margin-bottom: $gap;
+    }
+  }
+
+  .section {
+    margin-bottom: $gap * 3;
+
+    > div {
+      max-width: 280px;
+      height: 80px;
+      margin: auto;
+      margin-bottom: $gap;
+      padding: $gap * 2;
+      background: $base-color url("/images/bg-updatebox.png") center center
+        no-repeat;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    > p {
+      margin: 0;
+      font-size: rem(18);
+      font-weight: $font-weight-light;
+      text-align: center;
     }
   }
 }

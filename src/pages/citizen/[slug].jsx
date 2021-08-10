@@ -18,6 +18,7 @@ import ThumbPhoto from "@components/Thumb/photo";
 import SimpleDialog from "@components/Mui/Dialog";
 
 import FormType from "@sections/citizen/_formType";
+import FormAddress from "@sections/citizen/_formAddress";
 import s from "./citizen.module.scss";
 
 export default function CitizenPublicProfile({ citizen, token }) {
@@ -68,6 +69,8 @@ export default function CitizenPublicProfile({ citizen, token }) {
     switch (dialogChildren) {
       case "type":
         return <FormType user={citizen} close={handleDialogClose} />;
+      case "address":
+        return <FormAddress user={citizen} close={handleDialogClose} />;
       default:
         "";
     }
@@ -121,7 +124,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
               </div>
             </div>
 
-            <div className={s.details}>
+            <div className={s.top}>
               <div className={s.header}>
                 <small>
                   {state.type}
@@ -155,6 +158,29 @@ export default function CitizenPublicProfile({ citizen, token }) {
                 </Typography>
               </Box>
             </div>
+
+            {token == citizen.id && !citizen.area ? (
+              <div className={s.section}>
+                <div>
+                  <Button
+                    size="large"
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleDialogOpen("address")}
+                  >
+                    Add Your Address
+                  </Button>
+                </div>
+                <p>
+                  Always get updated! Know more about your ‘Locality’.
+                  <br />
+                  Share, discuss and review together about what is best and
+                  worst in your locality.
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
           </Container>
 
           <SimpleDialog open={openDialog} onClose={(e) => handleDialogClose(e)}>

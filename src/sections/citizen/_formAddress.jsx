@@ -13,9 +13,9 @@ import Universal from "@utils/openApi/universal";
 import DataGov from "@utils/openApi/dataGov";
 import StringModifier from "@utils/modifier/string";
 
-import s from "@pages/setting/setting.module.scss";
+import s from "@pages/citizen/citizen.module.scss";
 
-export default function Address(props) {
+export default function FormAddress({ user, close }) {
   const { profile, setProfile } = useContext(AuthContext);
   const [nValue, setNvalue] = useState("Saved!");
   const [nOpen, setNopen] = useState(false);
@@ -27,8 +27,8 @@ export default function Address(props) {
     state: "",
     city: "",
     pincode: "",
-    area: "",
     address: "",
+    area: "",
     block: "",
     branchtype: "",
     circle: "",
@@ -77,11 +77,6 @@ export default function Address(props) {
 
         let areaArr = await dataGov.getAreaByPincode(val);
 
-        // let newArr = await modifier.removeWordInArr(areaArr, [
-        //   "S.O",
-        //   "B.O",
-        //   "H.O",
-        // ]);
         setAreas(areaArr);
         break;
       case "area":
@@ -113,15 +108,15 @@ export default function Address(props) {
     e.preventDefault();
 
     let payload = {
-      id: profile.id,
+      id: user.id,
       country: state.country,
       countryShortName: state.countryShortName,
       countryCode: state.countryCode,
       state: state.state,
       city: state.city,
       pincode: state.pincode,
-      area: state.area,
       address: state.address,
+      area: state.area,
       block: state.block,
       branchtype: state.branchtype,
       circle: state.circle,
@@ -135,6 +130,10 @@ export default function Address(props) {
       setNvalue(res.message);
       setNopen(true);
     }
+
+    setTimeout(() => {
+      close();
+    }, 1000);
   };
 
   const handleSnackbar = () => {
@@ -225,8 +224,8 @@ export default function Address(props) {
   }, []);
 
   return (
-    <div className={s.section}>
-      {renderCurrentAddress()}
+    <>
+      {/* {renderCurrentAddress()} */}
 
       <div className={s.form}>
         <form autoComplete="off" onSubmit={onSubmit} required>
@@ -333,6 +332,6 @@ export default function Address(props) {
         type={nType}
         action={handleSnackbar}
       />
-    </div>
+    </>
   );
 }

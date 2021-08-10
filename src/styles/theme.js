@@ -63,6 +63,7 @@ const theme = createTheme({
     MuiButton: {
       root: {
         // padding: "10px"
+        borderRadius: 20
       },
 
       label: {

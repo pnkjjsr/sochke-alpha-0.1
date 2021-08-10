@@ -131,10 +131,14 @@ export async function patchUserAddress(data) {
             state: data.state,
             city: data.city,
             pincode: data.pincode,
+            address: data.address,
             area: data.area,
+            block: data.block,
+            branchType: data.branchtype,
+            circle: data.circle,
             district: data.district,
             division: data.division,
-            address: data.address,
+            region: data.region,
         })
         .then(() => {
             result = {

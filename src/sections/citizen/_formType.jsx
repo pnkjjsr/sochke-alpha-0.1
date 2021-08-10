@@ -44,8 +44,10 @@ export default function FormType({ user, close }) {
     };
     await postNewPolitician(payloadPolitician);
 
-    if (state.type == "other") close(state.typeOther);
-    else close(state.type);
+    setTimeout(() => {
+      if (state.type == "other") close(state.typeOther);
+      else close(state.type);
+    }, 1000);
   };
 
   const onChange = async (e) => {
