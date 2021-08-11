@@ -161,7 +161,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
 
             {token == citizen.id && !citizen.area ? (
               <div className={s.section}>
-                <div>
+                <div className={s.address}>
                   <Button
                     size="large"
                     variant="contained"
@@ -179,7 +179,80 @@ export default function CitizenPublicProfile({ citizen, token }) {
                 </p>
               </div>
             ) : (
-              ""
+              <>
+                <div className={s.section}>
+                  <div className={s.scrollable}>
+                    <div className={s.demothumb}>
+                      <figure>
+                        <img
+                          src="/images/thumb-area.png"
+                          alt="Area Thumbnail"
+                        />
+                      </figure>
+                      <figcaption>Area</figcaption>
+                    </div>
+
+                    <div className={s.demothumb}>
+                      <figure>
+                        <img
+                          src="/images/thumb-district.png"
+                          alt="Area Thumbnail"
+                        />
+                      </figure>
+                      <figcaption>District</figcaption>
+                    </div>
+
+                    <div className={s.demothumb}>
+                      <figure>
+                        <img
+                          src="/images/thumb-city.png"
+                          alt="Area Thumbnail"
+                        />
+                      </figure>
+                      <figcaption>City</figcaption>
+                    </div>
+
+                    <div className={s.demothumb}>
+                      <figure>
+                        <img
+                          src="/images/thumb-country.png"
+                          alt="Area Thumbnail"
+                        />
+                      </figure>
+                      <figcaption>Country</figcaption>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={s.section}>
+                  <div className={s.scrollable}>
+                    <div className={s.demothumb}>
+                      <figure></figure>
+                      <figcaption>Councillor</figcaption>
+                    </div>
+
+                    <div className={s.demothumb}>
+                      <figure></figure>
+                      <figcaption>Minister of Legislative Assembly</figcaption>
+                    </div>
+
+                    <div className={s.demothumb}>
+                      <figure></figure>
+                      <figcaption>Member of Parliament</figcaption>
+                    </div>
+
+                    <div className={s.demothumb}>
+                      <figure></figure>
+                      <figcaption>Chief Minister</figcaption>
+                    </div>
+
+                    <div className={s.demothumb}>
+                      <figure></figure>
+                      <figcaption>Prime Minister</figcaption>
+                    </div>
+                  </div>
+                </div>
+              </>
             )}
           </Container>
 
