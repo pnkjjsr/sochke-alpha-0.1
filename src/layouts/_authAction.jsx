@@ -93,6 +93,9 @@ export default function AuthAction() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <MenuItem name="profile" onClick={handleMenuClose}>
+        Profile
+      </MenuItem>
       <MenuItem name="setting" onClick={handleMenuClose}>
         Setting
       </MenuItem>

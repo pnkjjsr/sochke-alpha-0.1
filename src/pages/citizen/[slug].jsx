@@ -7,18 +7,13 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
-import EditIcon from "@material-ui/icons/Edit";
 
 import { getCitizen } from "@libs/firebase/citizen";
 import { isLoggedIn } from "@utils/session";
 
 import Layout from "@layouts/open";
 import ThumbPhoto from "@components/Thumb/photo";
-import SimpleDialog from "@components/Mui/Dialog";
 
-import FormType from "@sections/citizen/_formType";
-import FormAddress from "@sections/citizen/_formAddress";
 import s from "./citizen.module.scss";
 
 export default function CitizenPublicProfile({ citizen, token }) {
@@ -53,27 +48,8 @@ export default function CitizenPublicProfile({ citizen, token }) {
     router.push("/signup");
   };
 
-  const handleDialogOpen = (type) => {
-    setOpenDialog(true);
-    setDialogChildren(type);
-  };
-
-  const handleDialogClose = (value) => {
-    setOpenDialog(false);
-
-    if (!value) return;
-    setState({ type: value });
-  };
-
-  const renderChildren = () => {
-    switch (dialogChildren) {
-      case "type":
-        return <FormType user={citizen} close={handleDialogClose} />;
-      case "address":
-        return <FormAddress user={citizen} close={handleDialogClose} />;
-      default:
-        "";
-    }
+  const handleSetting = () => {
+    router.push("/setting");
   };
 
   useEffect(() => {
@@ -82,6 +58,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
 
     if (token == false) setDSignup("block");
   }, []);
+
   return (
     <>
       <Layout>
@@ -101,45 +78,15 @@ export default function CitizenPublicProfile({ citizen, token }) {
                 <img src={bannerUrl} alt={`${citizen.name} profile banner`} />
               </figure>
 
-              {token == citizen.id ? (
-                <Link href="/setting">
-                  <a className={s.action}>Upload Banner</a>
-                </Link>
-              ) : (
-                ""
-              )}
-
               <div className={s.thumb}>
-                {token == citizen.id ? (
-                  <Link href="/setting">
-                    <a className={s.action}>
-                      <PhotoCameraIcon />
-                    </a>
-                  </Link>
-                ) : (
-                  ""
-                )}
-
                 <ThumbPhoto src={citizen.photoURL} name={citizen.name} />
               </div>
             </div>
 
+            {/* User Info */}
             <div className={s.top}>
               <div className={s.header}>
-                <small>
-                  {state.type}
-
-                  {token == citizen.id ? (
-                    <span
-                      className={s.action}
-                      onClick={() => handleDialogOpen("type")}
-                    >
-                      <EditIcon />
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </small>
+                <small>{state.type}</small>
                 <h1>{citizen.name || sliceName}</h1>
               </div>
 
@@ -159,6 +106,12 @@ export default function CitizenPublicProfile({ citizen, token }) {
               </Box>
             </div>
 
+            {/* Leader */}
+            {/* {token == citizen.id && state.type == "politician"
+              ? "leader"
+              : "not leader"} */}
+
+            {/* Constituency and Leader links */}
             {token == citizen.id && !citizen.area ? (
               <div className={s.section}>
                 <div className={s.address}>
@@ -166,7 +119,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
                     size="large"
                     variant="contained"
                     color="secondary"
-                    onClick={() => handleDialogOpen("address")}
+                    onClick={handleSetting}
                   >
                     Add Your Address
                   </Button>
@@ -189,7 +142,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
                           alt="Area Thumbnail"
                         />
                       </figure>
-                      <figcaption>Area</figcaption>
+                      <figcaption>{citizen.area || "Area"}</figcaption>
                     </div>
 
                     <div className={s.demothumb}>
@@ -199,7 +152,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
                           alt="Area Thumbnail"
                         />
                       </figure>
-                      <figcaption>District</figcaption>
+                      <figcaption>{citizen.district || "District"}</figcaption>
                     </div>
 
                     <div className={s.demothumb}>
@@ -209,7 +162,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
                           alt="Area Thumbnail"
                         />
                       </figure>
-                      <figcaption>City</figcaption>
+                      <figcaption>{citizen.city || "City"}</figcaption>
                     </div>
 
                     <div className={s.demothumb}>
@@ -219,7 +172,7 @@ export default function CitizenPublicProfile({ citizen, token }) {
                           alt="Area Thumbnail"
                         />
                       </figure>
-                      <figcaption>Country</figcaption>
+                      <figcaption>{citizen.country || "Country"}</figcaption>
                     </div>
                   </div>
                 </div>
@@ -255,10 +208,6 @@ export default function CitizenPublicProfile({ citizen, token }) {
               </>
             )}
           </Container>
-
-          <SimpleDialog open={openDialog} onClose={(e) => handleDialogClose(e)}>
-            {renderChildren()}
-          </SimpleDialog>
 
           <style jsx>{``}</style>
           <style jsx global>{``}</style>

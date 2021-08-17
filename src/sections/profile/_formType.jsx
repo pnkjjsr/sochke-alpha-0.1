@@ -40,7 +40,7 @@ export default function FormType({ user, close }) {
 
     let payloadPolitician = {
       ...payload,
-      userName: user.slug,
+      userName: user.userName,
     };
     await postNewPolitician(payloadPolitician);
 

@@ -9,6 +9,8 @@ function parseCitizen(fields) {
         photoURL: fields.photoURL,
         bannerUrl: fields.bannerUrl || "",
         area: fields.area,
+        district: fields.district,
+        city: fields.city || "",
         country: fields.country,
         type: fields.type || fields.userType
     }
