@@ -106,11 +106,6 @@ export default function CitizenPublicProfile({ citizen, token }) {
               </Box>
             </div>
 
-            {/* Leader */}
-            {/* {token == citizen.id && state.type == "politician"
-              ? "leader"
-              : "not leader"} */}
-
             {/* Constituency and Leader links */}
             {token == citizen.id && !citizen.area ? (
               <div className={s.section}>

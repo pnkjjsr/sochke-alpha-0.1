@@ -184,6 +184,43 @@ export default function Profile({ data }) {
                     </div>
                   </div>
                 )}
+
+                {/* Leader */}
+                {user.type == "politician" ? (
+                  <>
+                    <div className={`${s.section} ${s.bg}`}>
+                      <div className={s.header}>
+                        <h2>Your Politician Profile</h2>
+                      </div>
+
+                      <div className={s.info}>
+                        <figure>
+                          <img
+                            src="/images/vector-politician.png"
+                            alt="Politician Vector"
+                          />
+                        </figure>
+                        <figcaption>
+                          Update profile helps citizen’s to find you and learn
+                          about your work.
+                        </figcaption>
+                      </div>
+
+                      <div className={s.action}>
+                        <Button
+                          // size="small"
+                          variant="contained"
+                          color="primary"
+                          onClick={() => handleDialogOpen("address")}
+                        >
+                          Update Political Career
+                        </Button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>not leader</>
+                )}
               </>
             )}
           </div>

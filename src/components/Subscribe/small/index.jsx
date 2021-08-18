@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 import { service } from "@utils/api";
 import { Session } from "@utils/session";
@@ -112,30 +113,35 @@ export default class SubscribeSmall extends Component {
         >
           <div className={`${s.form} ${d_form}`}>
             <div className={s.group}>
-              <TextField
-                name="email"
-                label="Enter email id"
-                type="email"
-                inputProps={{
-                  "aria-label": "email",
-                }}
-                InputLabelProps={{
-                  htmlFor: "email",
-                }}
-                size="small"
+              <ButtonGroup
                 color="primary"
-                variant="filled"
-                onChange={this.handleChange}
-              />
-
-              <Button
-                className={loading}
-                variant="contained"
-                color="secondary"
-                type="submit"
+                aria-label="outlined primary button group"
               >
-                Subscribe
-              </Button>
+                <TextField
+                  name="email"
+                  label="Enter email id"
+                  type="email"
+                  inputProps={{
+                    "aria-label": "email",
+                  }}
+                  InputLabelProps={{
+                    htmlFor: "email",
+                  }}
+                  size="small"
+                  color="primary"
+                  variant="filled"
+                  onChange={this.handleChange}
+                />
+
+                <Button
+                  className={loading}
+                  variant="contained"
+                  color="secondary"
+                  type="submit"
+                >
+                  Subscribe
+                </Button>
+              </ButtonGroup>
             </div>
 
             <div className={s.note}>Get latest update of Indian Politics</div>

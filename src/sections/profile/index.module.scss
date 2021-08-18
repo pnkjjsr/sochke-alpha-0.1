@@ -114,40 +114,76 @@
   }
 
   .section {
+    max-width: 500px;
+    margin: auto;
     margin-bottom: $gap * 3;
 
-    > .address {
-      max-width: 280px;
-      margin: auto;
+    .header {
       margin-bottom: $gap;
-      padding: $gap * 2;
-      background-color: $color-lightest;
-      border-radius: 20px;
+
+      > h2 {
+        margin: 0;
+
+        font-size: rem(18);
+        font-weight: $font-weight-bold;
+      }
+    }
+
+    .info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: $gap;
+
+      figure {
+        margin-right: $gap * 2;
+      }
+      figcaption {
+      }
+    }
+
+    .action {
       text-align: center;
-
-      &.add {
-        height: 80px;
-        padding: $gap * 2;
-        background: $base-color url("/images/bg-updatebox.png") center center
-          no-repeat;
-      }
-
-      &.update {
-        p {
-          // font-size: rem(20);
-          // font-weight: $font-weight;
-        }
-      }
-
-      p {
-        margin-top: 0;
-      }
     }
 
     > .note {
       margin: 0;
       font-size: rem(14);
       text-align: center;
+    }
+
+    &.bg {
+      padding: $gap * 2;
+      background-color: $color-lighter;
+      border-radius: $gap * 2;
+    }
+  }
+
+  .address {
+    max-width: 280px;
+    margin: auto;
+    margin-bottom: $gap;
+    padding: $gap * 2;
+    background-color: $color-lightest;
+    border-radius: 20px;
+    text-align: center;
+
+    &.add {
+      height: 80px;
+      padding: $gap * 2;
+      background: $base-color url("/images/bg-updatebox.png") center center
+        no-repeat;
+    }
+
+    &.update {
+      p {
+        // font-size: rem(20);
+        // font-weight: $font-weight;
+      }
+    }
+
+    p {
+      margin-top: 0;
     }
   }
 }
