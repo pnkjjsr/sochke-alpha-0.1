@@ -35,8 +35,11 @@
       font-weight: $font-weight;
     }
 
-    button {
-      box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.3);
+    .links {
+      button {
+        margin-left: $gap;
+        box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.3);
+      }
     }
   }
 

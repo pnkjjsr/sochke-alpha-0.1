@@ -211,7 +211,7 @@ export default function Profile({ data }) {
                           // size="small"
                           variant="contained"
                           color="primary"
-                          onClick={() => handleDialogOpen("address")}
+                          onClick={() => handleDialogOpen("politician")}
                         >
                           Update Political Career
                         </Button>
