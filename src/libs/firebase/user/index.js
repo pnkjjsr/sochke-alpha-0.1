@@ -19,6 +19,7 @@ function parseUser(fields) {
         pincode: fields.pincode,
         country: fields.country,
         type: fields.type || fields.userType,
+        leaderId: fields.leaderId,
     }
 }
 

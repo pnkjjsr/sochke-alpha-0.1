@@ -9,6 +9,7 @@ import EditIcon from "@material-ui/icons/Edit";
 
 import firebaseAuth from "@libs/firebase/auth";
 import { getUser } from "@libs/firebase/user";
+import { getLeader } from "@libs/firebase/leader";
 import { contentfulClient } from "@libs/contentful";
 import { isLoggedIn } from "@utils/session";
 
@@ -18,6 +19,7 @@ import Layout from "@layouts/open/index";
 
 import FormType from "@sections/profile/_formType";
 import FormAddress from "@sections/profile/_formAddress";
+import FormParty from "@sections/profile/_formParty";
 import s from "@sections/profile/index.module.scss";
 
 export default function Profile({ data }) {
@@ -28,6 +30,7 @@ export default function Profile({ data }) {
   const [dialogChildren, setDialogChildren] = useState();
 
   const [user, setUser] = useState();
+  const [leader, setLeader] = useState();
   const [banner, setBanner] = useState(
     "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fglobal%2Fsochke-banner.png?alt=media&token=6da487e1-3b49-43db-bd6e-bc6f2ba609cc"
   );
@@ -64,6 +67,8 @@ export default function Profile({ data }) {
         return <FormType user={user} close={handleDialogClose} />;
       case "address":
         return <FormAddress user={user} close={handleDialogClose} />;
+      case "politician":
+        return <FormParty user={user} close={handleDialogClose} />;
       default:
         "";
     }
@@ -77,6 +82,11 @@ export default function Profile({ data }) {
         let token = user.uid;
         let userData = await getUser(token);
         setUser(userData);
+
+        if (userData.type == "politician") {
+          let leaderData = await getLeader(userData.leaderId);
+          setLeader(leaderData);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -97,7 +107,7 @@ export default function Profile({ data }) {
       </Head>
 
       <Layout>
-        <Container maxWidth="xl">
+        <Container>
           <div className={s.profile}>
             {!user?.id ? (
               "...loading"
@@ -187,7 +197,7 @@ export default function Profile({ data }) {
 
                 {/* Leader */}
                 {user.type == "politician" ? (
-                  <>
+                  !leader?.partyId ? (
                     <div className={`${s.section} ${s.bg}`}>
                       <div className={s.header}>
                         <h2>Your Politician Profile</h2>
@@ -208,18 +218,19 @@ export default function Profile({ data }) {
 
                       <div className={s.action}>
                         <Button
-                          // size="small"
                           variant="contained"
                           color="primary"
                           onClick={() => handleDialogOpen("politician")}
                         >
-                          Update Political Career
+                          Update Party Detail
                         </Button>
                       </div>
                     </div>
-                  </>
+                  ) : (
+                    leader.party
+                  )
                 ) : (
-                  <>not leader</>
+                  user.type
                 )}
               </>
             )}

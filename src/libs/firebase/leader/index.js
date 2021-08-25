@@ -31,7 +31,6 @@ export async function getLeaderTypes() {
             console.log(err);
         });
 
-
     return parseLeaderTypes(result);
 }
 
@@ -102,10 +101,42 @@ export async function postNewPolitician(payload) {
     return result;
 }
 
-// Get leader data
-export async function getPolitician(payload) {
-    let db = await firestore();
-    const result = [];
+// Get leader Parse
+function parseLeader(fields) {
+    return {
+        age: fields.age,
+        assets: fields.assets,
+        cases: fields.cases,
+        createdate: fields.createdate,
+        constituency: fields.constituency,
+        education: fields.education,
+        liabilities: fields.liabilities,
+        party: fields.party,
+        partyId: fields.partyId,
+        partyLogo: fields.partyLogo,
+        partyShort: fields.partyShort,
+        partyStatus: fields.partyStatus,
+        promoted: fields.promoted,
+        searchTags: fields.searchTags,
+        twitterHandle: fields.twitterHandle,
+        winner: fields.winner,
+        year: fields.year,
+    }
+}
 
-    let colRef = db.collection("leaders");
+// Get leader data by ID
+export async function getLeader(id) {
+    let db = await firestore();
+
+    let leaderData = {};
+    await db.doc(`/leaders/${id}`)
+        .get()
+        .then((doc) => {
+            leaderData = doc.data();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    return parseLeader(leaderData);
 }

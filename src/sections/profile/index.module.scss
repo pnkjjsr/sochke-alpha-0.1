@@ -189,4 +189,11 @@
 }
 
 @include media-breakpoint-up(md) {
+  .profile {
+    .banner {
+      figure {
+        height: 250px;
+      }
+    }
+  }
 }
