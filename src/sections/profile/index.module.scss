@@ -215,7 +215,12 @@
     margin-bottom: $gap;
 
     > figure {
+      max-width: 65px;
       margin-right: $gap;
+
+      img {
+        height: 100%;
+      }
     }
     > h3 {
       margin: 0;
