@@ -1,5 +1,10 @@
 import { firestore } from "@libs/firebase/firestore";
 
+async function patchLeader(leaderId, data) {
+    let db = await firestore();
+    db.collection("leaders").doc(leaderId).update(data);
+}
+
 //Add new Party
 export async function postNewParty(payload) {
     let db = await firestore();
@@ -21,7 +26,7 @@ export async function postNewParty(payload) {
         .then((snapshot) => {
             if (!snapshot.empty) {
                 // Already in database
-                console.log("This party alreayd in the database.");
+                console.log("This party already in the database.");
             }
             else {
                 // Create new party doc
@@ -37,13 +42,14 @@ export async function postNewParty(payload) {
                             console.log(err);
                         });
 
-                    db.collection("leaders").doc(payload.leaderId).update({
+                    let newParty = {
                         partyId: ref.id,
                         party: data.name,
                         partyShort: data.nameShort,
                         partyLogo: data.logo,
                         partyStatus: data.status,
-                    });
+                    };
+                    patchLeader(payload.leaderId, newParty);
                 });
 
             }
@@ -90,4 +96,29 @@ export async function getParties() {
         });
 
     return parseParties(result);
+}
+
+//Get Party by ID
+export async function getParty(payload) {
+    let db = await firestore();
+    let result = [];
+
+    await db.doc(`/parties/${payload.partyId}`)
+        .get()
+        .then((doc) => {
+            result = doc.data();
+            let data = {
+                partyId: result.id,
+                party: result.name,
+                partyShort: result.nameShort,
+                partyLogo: result.logo,
+                partyStatus: result.status,
+            };
+            patchLeader(payload.leaderId, data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    return parsePartiesField(result);
 }

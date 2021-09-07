@@ -132,7 +132,7 @@ export default function FormAddress({ user, close }) {
     }
 
     setTimeout(() => {
-      close();
+      close("address", payload);
     }, 1000);
   };
 

@@ -45,8 +45,8 @@ export default function FormType({ user, close }) {
     await postNewPolitician(payloadPolitician);
 
     setTimeout(() => {
-      if (state.type == "other") close(state.typeOther);
-      else close(state.type);
+      if (state.type == "other") close("type", state.typeOther);
+      else close("type", state.type);
     }, 1000);
   };
 
@@ -87,7 +87,7 @@ export default function FormType({ user, close }) {
             name="type"
             onChange={onChange}
           >
-            <MenuItem value="citizen">I'm awake &amp; aware Citizen!</MenuItem>
+            <MenuItem value="citizen">Citizen</MenuItem>
             <MenuItem value="politician">Politician</MenuItem>
             <MenuItem value="individual">Individual</MenuItem>
             <MenuItem value="other">Others</MenuItem>

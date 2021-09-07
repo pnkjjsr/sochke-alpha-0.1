@@ -175,27 +175,52 @@ export default function CitizenPublicProfile({ citizen, token }) {
                 <div className={s.section}>
                   <div className={s.scrollable}>
                     <div className={s.demothumb}>
-                      <figure></figure>
+                      <figure>
+                        <img
+                          src="/images/thumb-area.png"
+                          alt="Area Thumbnail"
+                        />
+                      </figure>
                       <figcaption>Councillor</figcaption>
                     </div>
 
                     <div className={s.demothumb}>
-                      <figure></figure>
+                      <figure>
+                        <img
+                          src="/images/thumb-district.png"
+                          alt="Area Thumbnail"
+                        />
+                      </figure>
                       <figcaption>Minister of Legislative Assembly</figcaption>
                     </div>
 
                     <div className={s.demothumb}>
-                      <figure></figure>
+                      <figure>
+                        <img
+                          src="/images/thumb-city.png"
+                          alt="Area Thumbnail"
+                        />
+                      </figure>
                       <figcaption>Member of Parliament</figcaption>
                     </div>
 
                     <div className={s.demothumb}>
-                      <figure></figure>
+                      <figure>
+                        <img
+                          src="/images/thumb-city.png"
+                          alt="Area Thumbnail"
+                        />
+                      </figure>
                       <figcaption>Chief Minister</figcaption>
                     </div>
 
                     <div className={s.demothumb}>
-                      <figure></figure>
+                      <figure>
+                        <img
+                          src="/images/thumb-country.png"
+                          alt="Area Thumbnail"
+                        />
+                      </figure>
                       <figcaption>Prime Minister</figcaption>
                     </div>
                   </div>

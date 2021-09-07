@@ -6,7 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-import { postNewParty, getParties } from "@libs/firebase/parties";
+import { postNewParty, getParties, getParty } from "@libs/firebase/profile";
 
 import MuiSnackbar from "@components/Mui/Snackbar";
 
@@ -17,6 +17,7 @@ export default function FormType({ user, close }) {
   const [nOpen, setNopen] = useState(false);
   const [nType, setNtype] = useState("success");
   const [state, setState] = useState({
+    partyId: "",
     party: "",
     name: "",
     nameShort: "",
@@ -29,12 +30,24 @@ export default function FormType({ user, close }) {
   const onChange = async (e) => {
     let name = e.target.name;
     let val = e.target.value;
+    let id = e.currentTarget.dataset.id;
 
     switch (name) {
       case "party":
-        if (val == "other") setViewOther("block");
-        else setViewOther("none");
-        setState({ ...state, [name]: val, partyOther: "" });
+        if (val == "other") {
+          setViewOther("block");
+          setState({ ...state, [name]: val });
+        } else {
+          setViewOther("none");
+          setState({
+            partyId: id,
+            party: val,
+            name: "",
+            nameShort: "",
+            logo: "",
+          });
+        }
+
         break;
       default:
         setState({ ...state, [name]: val });
@@ -45,21 +58,28 @@ export default function FormType({ user, close }) {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    let payload = {
-      leaderId: user.leaderId,
-      party: state.party,
-      name: state.name,
-      nameShort: state.nameShort,
-      logo: base64,
-    };
+    let payload = {};
+    if (state.party == "other") {
+      payload = {
+        leaderId: user.leaderId,
+        party: state.party,
+        name: state.name,
+        nameShort: state.nameShort,
+        logo: base64,
+      };
 
-    // return console.log(payload);
-
-    await postNewParty(payload);
+      await postNewParty(payload);
+    } else {
+      let data = {
+        partyId: state.partyId,
+        leaderId: user.leaderId,
+      };
+      payload = await getParty(data);
+    }
 
     setTimeout(() => {
-      if (state.type == "other") close(state.typeOther);
-      else close(state.type);
+      if (state.type == "other") close("party", payload);
+      else close("party", payload);
     }, 1000);
   };
 
@@ -82,12 +102,27 @@ export default function FormType({ user, close }) {
     }
   };
 
+  const renderMenuItem = (arr, name) => {
+    return arr.map((item, i) => {
+      if (item.status == "enable") {
+        return (
+          <MenuItem
+            key={item.id}
+            value={item[name]}
+            data-id={item.id}
+            data-shortname={item.nameShort}
+          >
+            {item[name]}
+          </MenuItem>
+        );
+      }
+    });
+  };
+
   useEffect(async () => {
     let partiesData = await getParties();
     setParties(partiesData);
   }, []);
-
-  console.log(parties);
 
   return (
     <div className={s.form}>
@@ -102,7 +137,7 @@ export default function FormType({ user, close }) {
             name="party"
             onChange={onChange}
           >
-            {/* <MenuItem value="citizen">I'm awake &amp; aware Citizen!</MenuItem> */}
+            {renderMenuItem(parties, "name")}
             <MenuItem value="other">Others</MenuItem>
           </Select>
         </FormControl>

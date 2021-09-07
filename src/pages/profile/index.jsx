@@ -34,9 +34,9 @@ export default function Profile({ data }) {
   const [banner, setBanner] = useState(
     "https://firebasestorage.googleapis.com/v0/b/sochke-web.appspot.com/o/cdn%2Fglobal%2Fsochke-banner.png?alt=media&token=6da487e1-3b49-43db-bd6e-bc6f2ba609cc"
   );
-  const [state, setState] = useState({
-    type: "",
-  });
+  const [address, setAddress] = useState();
+  const [type, setType] = useState();
+  const [party, setParty] = useState();
 
   const DEFAULT = {
     title: head.title,
@@ -54,11 +54,24 @@ export default function Profile({ data }) {
     setDialogChildren(type);
   };
 
-  const handleDialogClose = (value) => {
+  const handleDialogClose = (key, value) => {
     setOpenDialog(false);
 
     if (!value) return;
-    setState({ type: value });
+    switch (key) {
+      case "address":
+        setAddress(value);
+        break;
+      case "type":
+        setType(value);
+        break;
+      case "party":
+        setParty(value);
+        break;
+
+      default:
+        break;
+    }
   };
 
   const renderChildren = () => {
@@ -82,11 +95,20 @@ export default function Profile({ data }) {
         let token = user.uid;
         let userData = await getUser(token);
         setUser(userData);
+        setType(userData.type);
+        setAddress({
+          address: userData.address,
+          city: userData.city,
+          pincode: userData.pincode,
+        });
 
-        if (userData.type == "politician") {
-          let leaderData = await getLeader(userData.leaderId);
-          setLeader(leaderData);
-        }
+        let leaderData = await getLeader(userData.leaderId);
+        setLeader(leaderData);
+        setParty({
+          name: leaderData.party,
+          nameShort: leaderData.partyShort,
+          logo: leaderData.partyLogo,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -141,8 +163,7 @@ export default function Profile({ data }) {
                 <div className={s.top}>
                   <div className={s.header}>
                     <small>
-                      {state.type || user.type}
-
+                      {type || user.type}
                       <span
                         className={s.action}
                         onClick={() => handleDialogOpen("type")}
@@ -155,7 +176,7 @@ export default function Profile({ data }) {
                 </div>
 
                 {/* Constituency and Leader links */}
-                {!user.area ? (
+                {!address?.pincode ? (
                   <div className={s.section}>
                     <div className={`${s.address} ${s.add}`}>
                       <Button
@@ -178,9 +199,9 @@ export default function Profile({ data }) {
                   <div className={s.section}>
                     <div className={`${s.address} ${s.update}`}>
                       <p>
-                        {`${user.address},`}
+                        {`${address.address},`}
                         <br />
-                        {`${user.city}, ${user.country} - ${user.pincode}`}
+                        {`${address.city}, ${address.country} - ${address.pincode}`}
                       </p>
 
                       <Button
@@ -196,8 +217,8 @@ export default function Profile({ data }) {
                 )}
 
                 {/* Leader */}
-                {user.type == "politician" ? (
-                  !leader?.partyId ? (
+                {type == "politician" ? (
+                  !party?.name ? (
                     <div className={`${s.section} ${s.bg}`}>
                       <div className={s.header}>
                         <h2>Your Politician Profile</h2>
@@ -227,10 +248,31 @@ export default function Profile({ data }) {
                       </div>
                     </div>
                   ) : (
-                    leader.party
+                    <div className={`${s.section} ${s.party}`}>
+                      <figure>
+                        <img
+                          src={party.logo}
+                          alt={party.name}
+                          title={party.name}
+                        />
+                      </figure>
+
+                      <h3>
+                        {party.nameShort}
+                        <small>{party.name}</small>
+                      </h3>
+
+                      <Button
+                        size="small"
+                        variant="contained"
+                        onClick={() => handleDialogOpen("politician")}
+                      >
+                        Edit
+                      </Button>
+                    </div>
                   )
                 ) : (
-                  user.type
+                  "" //user.type
                 )}
               </>
             )}
